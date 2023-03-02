@@ -3,8 +3,26 @@ import FormData from "./components/FormData";
 
 function App() {  
   const [data, setData] = useState([]);
+  const [zonas, setZonas]= useState([])
 
-    const fetchData = async () => {
+    const fetchZonas = async () => {
+      try {
+        const response = await fetch(
+          "src/zonas.json"
+        );
+        if (!response.ok) {
+          throw "Error al conectar la API";
+        }
+        const data = await response.json();
+        setZonas(data);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+        setZonas([]);
+      }
+    };
+
+    const fetchTabla = async () => {
       try {
         const response = await fetch(
           "src/tabla.json"
@@ -14,7 +32,6 @@ function App() {
         }
         const data = await response.json();
         setData(data);
-        console.log(data)
       } catch (error) {
         console.log(error);
         setData([]);
@@ -22,15 +39,16 @@ function App() {
     };
 
     useEffect(() => {
-      fetchData();
+      fetchTabla();
+      fetchZonas()
     }, []);
   
   return (
     <>
       <h1 className="m-10 text-3xl font-bold text-teal-700">
-        Analisis de carga (viga tubo)
+        Analisis de carga (vigas)
       </h1>
-      <FormData data={data } />
+      <FormData data={data } zonas={zonas}/>
     </>
   );
 }

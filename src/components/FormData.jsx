@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
-const FormData = ({ data }) => {
+const FormData = ({ data, zonas }) => {
   const [dataForm, setDataForm] = useState({
     kgCubierta: "35",
     kgEntrepiso: "0",
     kgSobrecarga: "96",
+    kgTerminacion: "28",
     luz: "",
     separacion: "s40",
+    ubicacion: "Cordoba",
   });
   const [kgTotales, setKgTotales] = useState("");
-  const [posiblesPerfiles, setPosiblesPerfiles] = useState([])
+  const [posiblesPerfiles, setPosiblesPerfiles] = useState([]);
+  const [zonaActual, setZonaActual] = useState({
+    nieve: "30",
+    viento: "20",
+  });
 
   useEffect(() => {
     dataForm.kgEntrepiso > "0"
@@ -17,45 +23,50 @@ const FormData = ({ data }) => {
   }, [dataForm.kgEntrepiso]);
 
   useEffect(() => {
+    zonas.map((zona) => {
+      if (zona.zona == dataForm.ubicacion) {
+        setZonaActual({
+          nieve: zona.cargas.nieve,
+          viento: zona.cargas.viento,
+        });
+      }
+    });
+  }, [dataForm.ubicacion]);
+
+  useEffect(() => {
     setKgTotales(
       parseInt(dataForm.kgSobrecarga) +
         parseInt(dataForm.kgCubierta) +
-        parseInt(dataForm.kgEntrepiso)
+        parseInt(dataForm.kgEntrepiso) +
+        parseInt(zonaActual.nieve)
     );
-  }, [dataForm]);
+  }, [dataForm, zonaActual]);
 
-    const calcularPerfil = () => {
-        setPosiblesPerfiles([])
-       const luzRounded = Math.ceil(dataForm.luz * 2) / 2;
-      
-      data.map((item) => {
-         if (item.largo == luzRounded) {
-            item.s40.map((perfil) => {
-             if (
-               perfil.resistencia > kgTotales/100 &&
-               perfil.deformacion > kgTotales/100
-             ) {
-                 //posiblesPerfiles.push(perfil.perfil);
-                setPosiblesPerfiles((prev) => ([
-                     ...prev,
-                     perfil
-                 ]))
-                }
-            });
-        }
+  const calcularPerfil = () => {
+    setPosiblesPerfiles([]);
+    const luzRounded = Math.ceil(dataForm.luz * 2) / 2;
+
+    data.map((item) => {
+      if (item.largo == luzRounded) {
+        item.s40.map((perfil) => {
+          if (
+            perfil.resistencia > kgTotales / 100 &&
+            perfil.deformacion > kgTotales / 100
+          ) {
+            setPosiblesPerfiles((prev) => [...prev, perfil]);
+          }
+        });
+      }
     });
-    
-        
-        
   };
 
   const handelSubmit = (e) => {
     e.preventDefault();
-    //console.log(dataForm);
     calcularPerfil();
+    console.log(dataForm);
   };
-    const handelChange = (e) => {
-      setPosiblesPerfiles([])
+  const handelChange = (e) => {
+    setPosiblesPerfiles([]);
     setDataForm({
       ...dataForm,
       [e.target.name]: e.target.value,
@@ -64,57 +75,75 @@ const FormData = ({ data }) => {
   return (
     <>
       <form
-        className="m-10 grid w-4/12 grid-cols-3  items-center gap-2 text-gray-600"
+        className="m-10 grid grid-cols-12 items-center  gap-2 text-gray-600 md:w-6/12"
         onSubmit={handelSubmit}
       >
-        <label className="col-span-2">
+        <label className="col-span-8">
           Tipo de cubierta <b>({dataForm.kgCubierta} kg/m2)</b>
         </label>
         <select
-          className=" rounded border-2 border-gray-400 p-2 outline-none"
+          className=" col-span-4 rounded border-2 border-gray-400 p-2 outline-none"
           name="kgCubierta"
           onChange={handelChange}
         >
           <option value="35">Chapa</option>
-          <option value="80">Teja</option>
+          <option value="85">Teja</option>
+          <option value="180">Cubierta plana</option>
         </select>
-        <label className="col-span-2">
+
+        <label className="col-span-8">
           Entrepiso <b>({dataForm.kgEntrepiso} kg/m2)</b>
         </label>
         <select
-          className=" rounded border-2 border-gray-400 p-2 outline-none"
+          className=" col-span-4 rounded border-2 border-gray-400 p-2 outline-none"
           name="kgEntrepiso"
           onChange={handelChange}
         >
           <option value="0">No</option>
-          <option value="40">Seco s/placa cementicia</option>
-          <option value="80">Seco c/placa cementicia</option>
-          <option value="100">Humedo</option>
+          <option value="50">Seco s/placa cementicia</option>
+          <option value="90">Seco c/placa cementicia</option>
+          <option value="160">Humedo</option>
         </select>
 
-        <label className="col-span-2">
+        <label className="col-span-8">
           Sobrecarga estandar <b>({dataForm.kgSobrecarga} kg/m2)</b>
         </label>
         <input
-          className="rounded border-2 border-gray-400 p-2 outline-none"
+          min="0"
+          className="col-span-4 rounded border-2 border-gray-400 p-2 outline-none"
           type="number"
           name="kgSobrecarga"
           onChange={handelChange}
           value={dataForm.kgSobrecarga}
         />
+        <label className="col-span-8">
+          Ubicacion{" "}
+          <b>
+            (Nieve:{zonaActual.nieve} kg/m2 - Viento {zonaActual.viento} v/ms)
+          </b>
+        </label>
+        <select
+          className=" col-span-4 rounded border-2 border-gray-400 p-2 outline-none"
+          onChange={handelChange}
+          name="ubicacion"
+        >
+          {zonas.map((zona, index) => {
+            return <option key={index}>{zona.zona}</option>;
+          })}
+        </select>
 
-        <label className="col-span-2">Luz de apoyo</label>
+        <label className="col-span-8">Luz de apoyo</label>
         <input
           required
           step="0.01"
-          className="rounded border-2 border-gray-400 p-2 outline-none"
+          className="col-span-4 rounded border-2 border-gray-400 p-2 outline-none"
           type="number"
           name="luz"
           onChange={handelChange}
         />
-        <label className="col-span-2">Separacion entre perfiles: </label>
+        <label className="col-span-8">Separacion entre perfiles: </label>
         <select
-          className="rounded border-2 border-gray-400 p-2 outline-none"
+          className="col-span-4 rounded border-2 border-gray-400 p-2 outline-none"
           name="separacion"
           onChange={handelChange}
         >
@@ -130,9 +159,18 @@ const FormData = ({ data }) => {
           Calcular
         </button>
       </form>
-          {
-              posiblesPerfiles.length > 0 && <p className="max-w-md p-10">Para una luz de {dataForm.luz}m y una carga de {kgTotales}kg/m2 se necesita un perfil de <b>{posiblesPerfiles[0].perfil} mm</b> que tiene una deformacion de {posiblesPerfiles[0].deformacion} y una resistencia de {posiblesPerfiles[0].resistencia } segun la tabla del cirsoc para vigas</p>
-      }
+      {posiblesPerfiles.length > 0 && (
+        <>
+          <p className="m-10 text-gray-600 md:w-6/12">
+            Para una luz de {dataForm.luz}m y una carga de {kgTotales}kg/m2 se
+            necesita un perfil de{" "}
+            <b className="text-teal-700">{posiblesPerfiles[0].perfil} mm</b> que
+            tiene una deformacion de {posiblesPerfiles[0].deformacion} y una
+            resistencia de {posiblesPerfiles[0].resistencia} segun la tabla del
+            cirsoc para vigas
+          </p>
+        </>
+      )}
     </>
   );
 };

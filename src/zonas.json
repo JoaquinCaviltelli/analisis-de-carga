@@ -1,0 +1,24 @@
+[
+  {
+    "zona": "Cordoba",
+    "cargas":{
+      "nieve":30,
+      "viento": 20
+    }
+  },
+  {
+    "zona": "Mendoza",
+    "cargas":{
+      "nieve":40,
+      "viento": 50
+    }
+  },
+  {
+    "zona": "Buenos Aires",
+    "cargas":{
+      "nieve":20,
+      "viento": 30
+    }
+  }
+  
+]
