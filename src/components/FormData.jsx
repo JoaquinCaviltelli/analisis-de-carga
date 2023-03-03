@@ -161,7 +161,10 @@ const FormData = ({ data, zonas }) => {
       </form>
       {posiblesPerfiles.length > 0 && (
         <>
-          <p className="m-10 text-gray-600 md:w-6/12">
+          <h2 className="mx-10 text-teal-700 md:w-6/12 text-xl font-bold">
+            {posiblesPerfiles[0].perfil}
+          </h2>
+          <p className="mx-10 text-gray-600 md:w-6/12">
             Para una luz de {dataForm.luz}m y una carga de {kgTotales}kg/m2 se
             necesita un perfil de{" "}
             <b className="text-teal-700">{posiblesPerfiles[0].perfil} mm</b> que

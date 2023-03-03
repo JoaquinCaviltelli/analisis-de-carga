@@ -8,7 +8,7 @@ function App() {
     const fetchZonas = async () => {
       try {
         const response = await fetch(
-          "src/zonas.json"
+          "https://joaquincaviltelli.github.io/base-de-datos/tabla.json"
         );
         if (!response.ok) {
           throw "Error al conectar la API";
@@ -25,7 +25,7 @@ function App() {
     const fetchTabla = async () => {
       try {
         const response = await fetch(
-          "src/tabla.json"
+          "https://joaquincaviltelli.github.io/base-de-datos/zonas.json"
         );
         if (!response.ok) {
           throw "Error al conectar la API";
