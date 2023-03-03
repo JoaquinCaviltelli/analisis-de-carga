@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 const FormData = ({ data, zonas }) => {
   const [dataForm, setDataForm] = useState({
@@ -60,6 +61,16 @@ const FormData = ({ data, zonas }) => {
     });
   };
 
+  const info = ()=>{
+    Swal.fire({
+      title: 'Luz de apoyo',
+      text: 'En este caso la distancia total es de 8m, pero la luz de apoyo es de 5m ya que hay una viga que divide las luces',
+      imageUrl: 'src/assets/luz-de-apoyo.jpeg',
+      imageAlt: 'Custom image',
+      confirmButtonColor: '#022a3a',
+    })
+  }
+
   const handelSubmit = (e) => {
     e.preventDefault();
     calcularPerfil();
@@ -76,14 +87,18 @@ const FormData = ({ data, zonas }) => {
   return (
     <>
       <form
-        className="m-10 grid grid-cols-12 items-center  gap-2 text-gray-600 md:w-6/12"
+        className="m-10 grid grid-cols-12  gap-2 text-gray md:w-6/12"
         onSubmit={handelSubmit}
       >
         <label className="col-span-8">
-          Tipo de cubierta <b>({dataForm.kgCubierta} kg/m2)</b>
+          Tipo de cubierta{" "}
+          <b>
+            ({dataForm.kgCubierta} kg/m2){" "}
+          </b>
+            
         </label>
         <select
-          className=" col-span-4 rounded border-2 border-gray-400 p-2 outline-none"
+          className=" col-span-4 rounded border border-gray p-2 outline-none"
           name="kgCubierta"
           onChange={handelChange}
         >
@@ -96,7 +111,7 @@ const FormData = ({ data, zonas }) => {
           Entrepiso <b>({dataForm.kgEntrepiso} kg/m2)</b>
         </label>
         <select
-          className=" col-span-4 rounded border-2 border-gray-400 p-2 outline-none"
+          className=" col-span-4 rounded border border-gray p-2 outline-none"
           name="kgEntrepiso"
           onChange={handelChange}
         >
@@ -111,7 +126,7 @@ const FormData = ({ data, zonas }) => {
         </label>
         <input
           min="0"
-          className="col-span-4 rounded border-2 border-gray-400 p-2 outline-none"
+          className="col-span-4 rounded border border-gray p-2 outline-none"
           type="number"
           name="kgSobrecarga"
           onChange={handelChange}
@@ -124,7 +139,7 @@ const FormData = ({ data, zonas }) => {
           </b>
         </label>
         <select
-          className=" col-span-4 rounded border-2 border-gray-400 p-2 outline-none"
+          className=" col-span-4 rounded border border-gray p-2 outline-none"
           onChange={handelChange}
           name="ubicacion"
         >
@@ -133,18 +148,20 @@ const FormData = ({ data, zonas }) => {
           })}
         </select>
 
-        <label className="col-span-8">Luz de apoyo</label>
+        <label className="col-span-8">Luz de apoyo
+        <span onClick={info} className="material-symbols-outlined text-lg cursor-pointer">info</span>
+        </label>
         <input
           required
           step="0.01"
-          className="col-span-4 rounded border-2 border-gray-400 p-2 outline-none"
+          className="col-span-4 rounded border border-gray p-2 outline-none"
           type="number"
           name="luz"
           onChange={handelChange}
         />
         <label className="col-span-8">Separacion entre perfiles: </label>
         <select
-          className="col-span-4 rounded border-2 border-gray-400 p-2 outline-none"
+          className="col-span-4 rounded border border-gray p-2 outline-none"
           name="separacion"
           onChange={handelChange}
         >
@@ -156,20 +173,20 @@ const FormData = ({ data, zonas }) => {
           Total: <b>{kgTotales} kg/m2</b>
         </p>
 
-        <button className="col-span-full rounded bg-teal-700 p-2 text-white">
+        <button className="col-span-full rounded bg-barbieriBlue p-2 text-white">
           Calcular
         </button>
       </form>
       {posiblesPerfiles.length > 0 && (
         <>
-          <h2 className="mx-10 text-teal-700 md:w-6/12 text-xl font-bold">
+          <h2 className="mx-10 text-xl font-bold text-barbieriBlue md:w-6/12">
             {posiblesPerfiles[0].perfil}
           </h2>
-          <p className="mx-10 text-gray-600 md:w-6/12">
+          <p className="text-gray-600 mx-10 md:w-6/12">
             Para una luz de {dataForm.luz}m y una carga de {kgTotales}kg/m2 se
             necesita un perfil de{" "}
-            <b className="text-teal-700">{posiblesPerfiles[0].perfil} mm</b> que
-            tiene una deformacion de {posiblesPerfiles[0].deformacion} y una
+            <b className="text-barbieriBlue">{posiblesPerfiles[0].perfil} mm</b>{" "}
+            que tiene una deformacion de {posiblesPerfiles[0].deformacion} y una
             resistencia de {posiblesPerfiles[0].resistencia} segun la tabla del
             cirsoc para vigas
           </p>

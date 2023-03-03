@@ -45,7 +45,7 @@ function App() {
   
   return (
     <>
-      <h1 className="m-10 text-3xl font-bold text-teal-700">
+      <h1 className="p-5 text-center text-3xl font-bold text-white bg-barbieriBlue">
         Analisis de carga (vigas)
       </h1>
       <FormData data={data } zonas={zonas}/>
