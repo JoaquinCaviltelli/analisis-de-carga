@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+
 import { useEffect, useState } from "react";
 const FormData = ({ data, zonas }) => {
   const [dataForm, setDataForm] = useState({
@@ -61,15 +62,15 @@ const FormData = ({ data, zonas }) => {
     });
   };
 
-  const info = ()=>{
+  const info = (title, text, img) => {
     Swal.fire({
-      title: 'Luz de apoyo',
-      text: 'En este caso la distancia total es de 8m, pero la luz de apoyo es de 5m ya que hay una viga que divide las luces',
-      imageUrl: 'src/assets/luz-de-apoyo.jpeg',
-      imageAlt: 'Custom image',
-      confirmButtonColor: '#022a3a',
-    })
-  }
+      title: title,
+      text: text,
+      imageUrl: img,
+      imageAlt: "Custom image",
+      confirmButtonColor: "#022a3a",
+    });
+  };
 
   const handelSubmit = (e) => {
     e.preventDefault();
@@ -91,11 +92,7 @@ const FormData = ({ data, zonas }) => {
         onSubmit={handelSubmit}
       >
         <label className="col-span-8">
-          Tipo de cubierta{" "}
-          <b>
-            ({dataForm.kgCubierta} kg/m2){" "}
-          </b>
-            
+          Tipo de cubierta <b>({dataForm.kgCubierta} kg/m2) </b>
         </label>
         <select
           className=" col-span-4 rounded border border-gray p-2 outline-none"
@@ -148,8 +145,20 @@ const FormData = ({ data, zonas }) => {
           })}
         </select>
 
-        <label className="col-span-8">Luz de apoyo
-        <span onClick={info} className="material-symbols-outlined text-lg cursor-pointer">info</span>
+        <label className="col-span-8">
+          Luz de apoyo
+          <span
+            onClick={() =>
+              info(
+                "Luz de apoyo",
+                "En este caso la distancia total es de 8m, pero la luz de apoyo es de 5m ya que hay una viga que divide las luces",
+                "https://joaquincaviltelli.github.io/base-de-datos/luz-de-apoyo.jpeg"
+              )
+            }
+            className="material-symbols-outlined cursor-pointer text-lg"
+          >
+            info
+          </span>
         </label>
         <input
           required
