@@ -64,6 +64,7 @@ const FormData = ({ data, zonas }) => {
     e.preventDefault();
     calcularPerfil();
     console.log(dataForm);
+    console.log(data);
   };
   const handelChange = (e) => {
     setPosiblesPerfiles([]);
