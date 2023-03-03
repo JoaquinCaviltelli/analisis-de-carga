@@ -3,21 +3,28 @@
     "zona": "Cordoba",
     "cargas":{
       "nieve":30,
-      "viento": 20
+      "viento": 45
     }
   },
   {
     "zona": "Mendoza",
     "cargas":{
-      "nieve":40,
-      "viento": 50
+      "nieve":30,
+      "viento": 39
     }
   },
   {
     "zona": "Buenos Aires",
     "cargas":{
-      "nieve":20,
-      "viento": 30
+      "nieve":30,
+      "viento": 45
+    }
+  },
+  {
+    "zona": "Neuquen",
+    "cargas":{
+      "nieve":90,
+      "viento": 48
     }
   }
   

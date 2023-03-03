@@ -10,13 +10,24 @@ const FormData = ({ data, zonas }) => {
     luz: "",
     separacion: "s40",
     ubicacion: "Cordoba",
+    exposicion: "C",
   });
   const [kgTotales, setKgTotales] = useState("");
+  const [cargaViento, setCargaViento] = useState({
+    wp: "",
+    ws: "",
+  });
+  const [exposicionViento, setExposicionViento] = useState({
+    wp: "2.74",
+    ws: "-8.72",
+  });
+
   const [posiblesPerfiles, setPosiblesPerfiles] = useState([]);
   const [zonaActual, setZonaActual] = useState({
     nieve: "30",
-    viento: "20",
+    viento: "45",
   });
+  const [valorMaximo, setValorMaximo] = useState("");
 
   useEffect(() => {
     dataForm.kgEntrepiso > "0"
@@ -33,15 +44,42 @@ const FormData = ({ data, zonas }) => {
         });
       }
     });
-  }, [dataForm.ubicacion]);
+    if (dataForm.exposicion === "C") {
+      setExposicionViento({
+        wp: "2.74",
+        ws: "-8.72",
+      });
+    }
+    if (dataForm.exposicion === "D") {
+      setExposicionViento({
+        wp: "3.27",
+        ws: "-10.39",
+      });
+    }
+  }, [dataForm]);
 
   useEffect(() => {
     setKgTotales(
-      parseInt(dataForm.kgSobrecarga) +
-        parseInt(dataForm.kgCubierta) +
-        parseInt(dataForm.kgEntrepiso) +
-        parseInt(zonaActual.nieve)
+      Math.round(
+        parseInt(dataForm.kgSobrecarga) +
+          parseInt(dataForm.kgCubierta) +
+          parseInt(dataForm.kgEntrepiso) +
+          parseInt(zonaActual.nieve)
+      )
     );
+    setCargaViento({
+      wp: Math.round(
+        ((parseInt(zonaActual.viento) * parseInt(zonaActual.viento)) / 100) *
+          exposicionViento.wp +
+          dataForm.kgCubierta
+      ),
+      ws: Math.round(
+        ((parseInt(zonaActual.viento) * parseInt(zonaActual.viento)) / 100) *
+          exposicionViento.ws +
+          dataForm.kgCubierta
+      ),
+    });
+    setValorMaximo(Math.max(kgTotales, cargaViento.wp, cargaViento.ws));
   }, [dataForm, zonaActual]);
 
   const calcularPerfil = () => {
@@ -52,8 +90,8 @@ const FormData = ({ data, zonas }) => {
       if (item.largo == luzRounded) {
         item.s40.map((perfil) => {
           if (
-            perfil.resistencia > kgTotales / 100 &&
-            perfil.deformacion > kgTotales / 100
+            perfil.resistencia > valorMaximo / 100 &&
+            perfil.deformacion > valorMaximo / 100
           ) {
             setPosiblesPerfiles((prev) => [...prev, perfil]);
           }
@@ -119,7 +157,19 @@ const FormData = ({ data, zonas }) => {
         </select>
 
         <label className="col-span-8">
-          Sobrecarga estandar <b>({dataForm.kgSobrecarga} kg/m2)</b>
+          Sobrecarga <b>({dataForm.kgSobrecarga} kg/m2)</b>
+          <span
+            onClick={() =>
+              info(
+                "",
+                "",
+                "https://joaquincaviltelli.github.io/base-de-datos/sobrecarga.PNG"
+              )
+            }
+            className="material-symbols-outlined cursor-pointer text-lg"
+          >
+            info
+          </span>
         </label>
         <input
           min="0"
@@ -143,6 +193,32 @@ const FormData = ({ data, zonas }) => {
           {zonas.map((zona, index) => {
             return <option key={index}>{zona.zona}</option>;
           })}
+        </select>
+        <label className="col-span-8">
+          Exposicion del viento{" "}
+          <b>
+            (Wp: {exposicionViento.wp} Ws: {exposicionViento.ws})
+          </b>
+          <span
+            onClick={() =>
+              info(
+                "Exposicion del viento",
+                "",
+                "https://joaquincaviltelli.github.io/base-de-datos/exposicion-viento.PNG"
+              )
+            }
+            className="material-symbols-outlined cursor-pointer text-lg"
+          >
+            info
+          </span>
+        </label>
+        <select
+          className=" col-span-4 rounded border border-gray p-2 outline-none"
+          onChange={handelChange}
+          name="exposicion"
+        >
+          <option value="C">Tipo C</option>
+          <option value="D">Tipo D</option>
         </select>
 
         <label className="col-span-8">
@@ -181,6 +257,12 @@ const FormData = ({ data, zonas }) => {
         <p className="col-span-full p-2 text-right">
           Total: <b>{kgTotales} kg/m2</b>
         </p>
+        <p className="col-span-full p-2 text-right">
+          Carga de viento presion: <b>{cargaViento.wp} kg/m2</b>
+        </p>
+        <p className="col-span-full p-2 text-right">
+          Carga de viento succion: <b>{cargaViento.ws} kg/m2</b>
+        </p>
 
         <button className="col-span-full rounded bg-barbieriBlue p-2 text-white">
           Calcular
@@ -192,7 +274,7 @@ const FormData = ({ data, zonas }) => {
             {posiblesPerfiles[0].perfil}
           </h2>
           <p className="text-gray-600 mx-10 md:w-6/12">
-            Para una luz de {dataForm.luz}m y una carga de {kgTotales}kg/m2 se
+            Para una luz de {dataForm.luz}m y una carga de {valorMaximo}kg/m2 se
             necesita un perfil de{" "}
             <b className="text-barbieriBlue">{posiblesPerfiles[0].perfil} mm</b>{" "}
             que tiene una deformacion de {posiblesPerfiles[0].deformacion} y una
