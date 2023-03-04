@@ -9,7 +9,7 @@ const FormData = ({ data, zonas }) => {
     kgSobrecarga: "96",
     luz: "",
     separacion: "40",
-    ubicacion: "Cordoba",
+    ubicacion: "Seleccionar",
     exposicion: "C",
   });
 
@@ -60,14 +60,39 @@ const FormData = ({ data, zonas }) => {
     dataForm.exposicion === "C" &&
       setExposicionViento({
         wp: "2.74",
-        ws: "-8.72",
+        ws: "8.72",
       });
     dataForm.exposicion === "D" &&
       setExposicionViento({
         wp: "3.27",
-        ws: "-10.39",
+        ws: "10.39",
       });
+  }, [dataForm.exposicion, dataForm.ubicacion]);
 
+  useEffect(() => {
+    //se calcula la carga de precion y succion segun la zona y la expocicion
+    setCargaViento({
+      wp: Math.round(
+        (parseInt(Math.pow(zonaActual.viento, 2)) / 100) *
+          parseInt(exposicionViento.wp) +
+          parseInt(dataForm.kgCubierta)
+      ),
+      ws: Math.round(
+        (parseInt(Math.pow(zonaActual.viento, 2)) / 100) *
+          parseInt(exposicionViento.ws) -
+          parseInt(dataForm.kgCubierta)
+      ),
+    });
+    
+    console.log((parseInt(Math.pow(zonaActual.viento, 2)) / 100));
+    
+    console.log((parseInt(Math.pow(zonaActual.viento, 2)) / 100)*
+    parseInt(exposicionViento.wp));
+
+
+  }, [zonaActual, exposicionViento, dataForm.kgCubierta]);
+
+  useEffect(() => {
     //se suma los kg de la cubierta, entrepiso, sobregarga y nieve
     setKgTotales(
       Math.round(
@@ -77,34 +102,22 @@ const FormData = ({ data, zonas }) => {
           parseInt(zonaActual.nieve)
       )
     );
+  }, [
+    dataForm.kgSobrecarga,
+    dataForm.kgCubierta,
+    dataForm.kgEntrepiso,
+    zonaActual.nieve,
+  ]);
 
-    //se calcula la carga de precion y succion segun la zona y la expocicion
-    setCargaViento({
-      wp: Math.round(
-        ((parseInt(zonaActual.viento) * parseInt(zonaActual.viento)) / 100) *
-          exposicionViento.wp +
-          dataForm.kgCubierta
-      ),
-      ws: Math.round(
-        ((parseInt(zonaActual.viento) * parseInt(zonaActual.viento)) / 100) *
-          exposicionViento.ws +
-          dataForm.kgCubierta
-      ),
-    });
-    
-  }, [dataForm]);
-
-  useEffect(()=>{
+  useEffect(() => {
     setValorMaximo(Math.max(kgTotales, cargaViento.wp, cargaViento.ws));
-  },[kgTotales, cargaViento.wp, cargaViento.ws])
-  
-  
+  }, [kgTotales, cargaViento]);
+
   const calcularPerfil = () => {
-    console.log(valorMaximo);
     setPosiblesPerfiles([]);
 
     //se redonde hacia arriba la luz de apoyo para que sea igual al de la tabla
-    var luzRounded = Math.ceil(dataForm.luz * 2) / 2;
+    var luzRounded = dataForm.luz < 2.5 ? 2.5 : Math.ceil(dataForm.luz * 2) / 2;
 
     data.map((item) => {
       if (item.largo == luzRounded) {
@@ -163,7 +176,7 @@ const FormData = ({ data, zonas }) => {
   return (
     <>
       <form
-        className="m-10 grid grid-cols-12  gap-2 text-gray md:w-6/12"
+        className="m-10 grid max-w-3xl  grid-cols-12 gap-1 text-gray md:w-8/12"
         onSubmit={handelSubmit}
       >
         <label className="col-span-8">
