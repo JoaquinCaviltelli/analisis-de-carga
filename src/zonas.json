@@ -1,5 +1,12 @@
 [
   {
+    "zona": "Seleccionar",
+    "cargas":{
+      "nieve":0,
+      "viento": 0
+    }
+  },
+  {
     "zona": "Cordoba",
     "cargas":{
       "nieve":30,

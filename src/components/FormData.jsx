@@ -14,7 +14,7 @@ const FormData = ({ data, zonas }) => {
   });
 
   // suma los kg de la cubierta, entrepiso, sobregarga y nieve
-  const [kgTotales, setKgTotales] = useState("");
+  const [kgTotales, setKgTotales] = useState(0);
 
   //carga de viento segun la zona y la exposicion
   const [cargaViento, setCargaViento] = useState({
@@ -30,8 +30,8 @@ const FormData = ({ data, zonas }) => {
 
   //cargas de viento y nieve segun la zona (por defecto Cordoba)
   const [zonaActual, setZonaActual] = useState({
-    nieve: "30",
-    viento: "45",
+    nieve: "0",
+    viento: "0",
   });
 
   //se toma el valor maximo entre la carga vertical (kgTotales) y las cargas verticales (precion y succion)
@@ -91,12 +91,16 @@ const FormData = ({ data, zonas }) => {
           dataForm.kgCubierta
       ),
     });
-
-    //se obtiene el valor maximo entre la carga vertical (kgTotales) y las cargas verticales (precion y succion)
-    setValorMaximo(Math.max(kgTotales, cargaViento.wp, cargaViento.ws));
+    
   }, [dataForm]);
 
+  useEffect(()=>{
+    setValorMaximo(Math.max(kgTotales, cargaViento.wp, cargaViento.ws));
+  },[kgTotales, cargaViento.wp, cargaViento.ws])
+  
+  
   const calcularPerfil = () => {
+    console.log(valorMaximo);
     setPosiblesPerfiles([]);
 
     //se redonde hacia arriba la luz de apoyo para que sea igual al de la tabla
@@ -143,6 +147,7 @@ const FormData = ({ data, zonas }) => {
 
   const handelSubmit = (e) => {
     e.preventDefault();
+
     calcularPerfil();
     console.log(dataForm);
     console.log(data);
