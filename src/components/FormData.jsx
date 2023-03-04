@@ -2,63 +2,73 @@ import Swal from "sweetalert2";
 
 import { useEffect, useState } from "react";
 const FormData = ({ data, zonas }) => {
+  //datos del formulario
   const [dataForm, setDataForm] = useState({
     kgCubierta: "35",
     kgEntrepiso: "0",
     kgSobrecarga: "96",
-    kgTerminacion: "28",
     luz: "",
-    separacion: "s40",
+    separacion: "40",
     ubicacion: "Cordoba",
     exposicion: "C",
   });
+
+  // suma los kg de la cubierta, entrepiso, sobregarga y nieve
   const [kgTotales, setKgTotales] = useState("");
+
+  //carga de viento segun la zona y la exposicion
   const [cargaViento, setCargaViento] = useState({
     wp: "",
     ws: "",
   });
+
+  //exposicion del viento (por defecto tipo C)
   const [exposicionViento, setExposicionViento] = useState({
     wp: "2.74",
     ws: "-8.72",
   });
 
-  const [posiblesPerfiles, setPosiblesPerfiles] = useState([]);
+  //cargas de viento y nieve segun la zona (por defecto Cordoba)
   const [zonaActual, setZonaActual] = useState({
     nieve: "30",
     viento: "45",
   });
+
+  //se toma el valor maximo entre la carga vertical (kgTotales) y las cargas verticales (precion y succion)
   const [valorMaximo, setValorMaximo] = useState("");
 
+  //si el perfil verifica entra en esta constante
+  const [posiblesPerfiles, setPosiblesPerfiles] = useState([]);
+
   useEffect(() => {
+    //se modifica la sobrecarga si existe entrepiso
     dataForm.kgEntrepiso > "0"
       ? (dataForm.kgSobrecarga = "200")
       : (dataForm.kgSobrecarga = "96");
   }, [dataForm.kgEntrepiso]);
 
   useEffect(() => {
+    //se modifica las cargas de viento y nieve segun la zona (se trae de un json)
     zonas.map((zona) => {
-      if (zona.zona == dataForm.ubicacion) {
+      zona.zona == dataForm.ubicacion &&
         setZonaActual({
           nieve: zona.cargas.nieve,
           viento: zona.cargas.viento,
         });
-      }
     });
-    if (dataForm.exposicion === "C") {
+    //se modifica la exposicion
+    dataForm.exposicion === "C" &&
       setExposicionViento({
         wp: "2.74",
         ws: "-8.72",
       });
-    }
-    if (dataForm.exposicion === "D") {
+    dataForm.exposicion === "D" &&
       setExposicionViento({
         wp: "3.27",
         ws: "-10.39",
       });
-    }
-  }, [dataForm]);
 
-  useEffect(() => {
+    //se suma los kg de la cubierta, entrepiso, sobregarga y nieve
     setKgTotales(
       Math.round(
         parseInt(dataForm.kgSobrecarga) +
@@ -67,6 +77,8 @@ const FormData = ({ data, zonas }) => {
           parseInt(zonaActual.nieve)
       )
     );
+
+    //se calcula la carga de precion y succion segun la zona y la expocicion
     setCargaViento({
       wp: Math.round(
         ((parseInt(zonaActual.viento) * parseInt(zonaActual.viento)) / 100) *
@@ -79,27 +91,46 @@ const FormData = ({ data, zonas }) => {
           dataForm.kgCubierta
       ),
     });
+
+    //se obtiene el valor maximo entre la carga vertical (kgTotales) y las cargas verticales (precion y succion)
     setValorMaximo(Math.max(kgTotales, cargaViento.wp, cargaViento.ws));
-  }, [dataForm, zonaActual]);
+  }, [dataForm]);
 
   const calcularPerfil = () => {
     setPosiblesPerfiles([]);
-    const luzRounded = Math.ceil(dataForm.luz * 2) / 2;
+
+    //se redonde hacia arriba la luz de apoyo para que sea igual al de la tabla
+    var luzRounded = Math.ceil(dataForm.luz * 2) / 2;
 
     data.map((item) => {
       if (item.largo == luzRounded) {
-        item.s40.map((perfil) => {
-          if (
-            perfil.resistencia > valorMaximo / 100 &&
-            perfil.deformacion > valorMaximo / 100
-          ) {
-            setPosiblesPerfiles((prev) => [...prev, perfil]);
-          }
-        });
+        //separacion cada 40cm
+        if (dataForm.separacion == "40") {
+          item.s40.map((perfil) => {
+            if (
+              perfil.resistencia > valorMaximo / 100 &&
+              perfil.deformacion > valorMaximo / 100
+            ) {
+              setPosiblesPerfiles((prev) => [...prev, perfil]);
+            }
+          });
+        }
+        //separacion cada 60cm
+        if (dataForm.separacion == "60") {
+          item.s60.map((perfil) => {
+            if (
+              perfil.resistencia > valorMaximo / 100 &&
+              perfil.deformacion > valorMaximo / 100
+            ) {
+              setPosiblesPerfiles((prev) => [...prev, perfil]);
+            }
+          });
+        }
       }
     });
   };
 
+  //modal con la informacion
   const info = (title, text, img) => {
     Swal.fire({
       title: title,
@@ -123,6 +154,7 @@ const FormData = ({ data, zonas }) => {
       [e.target.name]: e.target.value,
     });
   };
+
   return (
     <>
       <form
@@ -140,6 +172,7 @@ const FormData = ({ data, zonas }) => {
           <option value="35">Chapa</option>
           <option value="85">Teja</option>
           <option value="180">Cubierta plana</option>
+          <option value="0">No</option>
         </select>
 
         <label className="col-span-8">

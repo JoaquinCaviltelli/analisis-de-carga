@@ -625,5 +625,75 @@
         "deformacion": 5.75
        }
     ]
+  },
+  {
+    "largo": 6.5,
+    "s40": [
+      {
+        "perfil": "150x0,9",
+        "resistencia": 0.61,
+        "deformacion": 0.3
+       },
+       {
+        "perfil": "150x1,2",
+        "resistencia": 0.99,
+        "deformacion": 0.41
+       },
+       {
+        "perfil": "150x1,6",
+        "resistencia": 1.29,
+        "deformacion": 0.52
+       },
+       {
+        "perfil": "150x2",
+        "resistencia": 1.62,
+        "deformacion": 0.63
+       },
+       {
+        "perfil": "200x1,2",
+        "resistencia": 1.46,
+        "deformacion": 0.87
+       },
+       {
+        "perfil": "200x1,6",
+        "resistencia": 1.93,
+        "deformacion": 1.1
+       },
+       {
+        "perfil": "200x2",
+        "resistencia": 2.45,
+        "deformacion": 1.35
+       },
+       {
+        "perfil": "250x1,6",
+        "resistencia": 2.49,
+        "deformacion": 1.91
+       },
+       {
+        "perfil": "250x2",
+        "resistencia": 3.19,
+        "deformacion": 2.34
+       },
+       {
+        "perfil": "250x2,5",
+        "resistencia": 4.07,
+        "deformacion": 2.85
+       },
+       {
+        "perfil": "300x1,6",
+        "resistencia": 2.57,
+        "deformacion": 3.01
+       },
+       {
+        "perfil": "300x2",
+        "resistencia": 3.95,
+        "deformacion": 3.7
+       },
+       {
+        "perfil": "300x2,5",
+        "resistencia": 5.08,
+        "deformacion": 4.52
+       }
+    ]
   }
 ]
