@@ -1,13 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
+import LayoutPublic from "../Layout/LayoutPublic";
 import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
-import LayoutPublic from "../layout/LayoutPublic";
+
 import Vigas from "../pages/Vigas";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <LayoutPublic />,
+    element: <LayoutPublic/>,
     errorElement: <NotFound />,
     children: [
       {
