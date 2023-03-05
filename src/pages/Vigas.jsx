@@ -1,7 +1,48 @@
 import Swal from "sweetalert2";
 
 import { useEffect, useState } from "react";
-const FormData = ({ data, zonas }) => {
+import Result from "../components/Result";
+const Vigas = () => {
+  const [data, setData] = useState([]);
+  const [zonas, setZonas] = useState([]);
+
+  const fetchZonas = async () => {
+    try {
+      const response = await fetch(
+        "https://joaquincaviltelli.github.io/base-de-datos/zonas.json"
+      );
+      if (!response.ok) {
+        throw "Error al conectar la API";
+      }
+      const data = await response.json();
+      setZonas(data);
+    } catch (error) {
+      console.log(error);
+      setZonas([]);
+    }
+  };
+
+  const fetchTabla = async () => {
+    try {
+      const response = await fetch(
+        "https://joaquincaviltelli.github.io/base-de-datos/tabla.json"
+      );
+      if (!response.ok) {
+        throw "Error al conectar la API";
+      }
+      const data = await response.json();
+      setData(data);
+    } catch (error) {
+      console.log(error);
+      setData([]);
+    }
+  };
+
+  useEffect(() => {
+    fetchTabla();
+    fetchZonas();
+  }, []);
+
   //datos del formulario
   const [dataForm, setDataForm] = useState({
     kgCubierta: 35,
@@ -12,6 +53,16 @@ const FormData = ({ data, zonas }) => {
     ubicacion: "Seleccionar",
     exposicion: "C",
   });
+
+  var {
+    kgCubierta,
+    kgEntrepiso,
+    kgSobrecarga,
+    luz,
+    separacion,
+    ubicacion,
+    exposicion,
+  } = dataForm;
 
   // suma los kg de la cubierta, entrepiso, sobregarga y nieve
   const [kgTotales, setKgTotales] = useState(0);
@@ -42,32 +93,30 @@ const FormData = ({ data, zonas }) => {
 
   useEffect(() => {
     //se modifica la sobrecarga si existe entrepiso
-    dataForm.kgEntrepiso > 0
-      ? (dataForm.kgSobrecarga = 200)
-      : (dataForm.kgSobrecarga = 96);
-  }, [dataForm.kgEntrepiso]);
+    kgEntrepiso > 0 ? (kgSobrecarga = 200) : (kgSobrecarga = 96);
+  }, [kgEntrepiso]);
 
   useEffect(() => {
     //se modifica las cargas de viento y nieve segun la zona (se trae de un json)
     zonas.map((zona) => {
-      zona.zona == dataForm.ubicacion &&
+      zona.zona == ubicacion &&
         setZonaActual({
           nieve: zona.cargas.nieve,
           viento: zona.cargas.viento,
         });
     });
     //se modifica la exposicion
-    dataForm.exposicion === "C" &&
+    exposicion === "C" &&
       setExposicionViento({
         wp: 2.74,
         ws: 8.72,
       });
-    dataForm.exposicion === "D" &&
+    exposicion === "D" &&
       setExposicionViento({
         wp: 3.27,
         ws: 10.39,
       });
-  }, [dataForm.exposicion, dataForm.ubicacion]);
+  }, [exposicion, ubicacion]);
 
   useEffect(() => {
     //se calcula la carga de precion y succion segun la zona y la expocicion
@@ -75,32 +124,27 @@ const FormData = ({ data, zonas }) => {
       wp: Math.round(
         (Number(Math.pow(zonaActual.viento, 2)) / 100) *
           Number(exposicionViento.wp) +
-          Number(dataForm.kgCubierta)
+          Number(kgCubierta)
       ),
       ws: Math.round(
         (Number(Math.pow(zonaActual.viento, 2)) / 100) *
           Number(exposicionViento.ws) -
-          Number(dataForm.kgCubierta)
+          Number(kgCubierta)
       ),
     });
-  }, [zonaActual, exposicionViento, dataForm.kgCubierta]);
+  }, [zonaActual, exposicionViento, kgCubierta]);
 
   useEffect(() => {
     //se suma los kg de la cubierta, entrepiso, sobregarga y nieve
     setKgTotales(
       Math.round(
-        Number(dataForm.kgSobrecarga) +
-          Number(dataForm.kgCubierta) +
-          Number(dataForm.kgEntrepiso) +
+        Number(kgSobrecarga) +
+          Number(kgCubierta) +
+          Number(kgEntrepiso) +
           Number(zonaActual.nieve)
       )
     );
-  }, [
-    dataForm.kgSobrecarga,
-    dataForm.kgCubierta,
-    dataForm.kgEntrepiso,
-    zonaActual.nieve,
-  ]);
+  }, [kgSobrecarga, kgCubierta, kgEntrepiso, zonaActual.nieve]);
 
   useEffect(() => {
     setValorMaximo(Math.max(kgTotales, cargaViento.wp, cargaViento.ws));
@@ -110,12 +154,12 @@ const FormData = ({ data, zonas }) => {
     setPosiblesPerfiles([]);
 
     //se redonde hacia arriba la luz de apoyo para que sea igual al de la tabla
-    var luzRounded = dataForm.luz < 2.5 ? 2.5 : Math.ceil(dataForm.luz * 2) / 2;
+    var luzRounded = luz < 2.5 ? 2.5 : Math.ceil(luz * 2) / 2;
 
     data.map((item) => {
       if (item.largo == luzRounded) {
         //separacion cada 40cm
-        if (dataForm.separacion == 40) {
+        if (separacion == 40) {
           item.s40.map((perfil) => {
             if (
               perfil.resistencia > valorMaximo / 100 &&
@@ -126,7 +170,7 @@ const FormData = ({ data, zonas }) => {
           });
         }
         //separacion cada 60cm
-        if (dataForm.separacion == 60) {
+        if (separacion == 60) {
           item.s60.map((perfil) => {
             if (
               perfil.resistencia > valorMaximo / 100 &&
@@ -151,12 +195,27 @@ const FormData = ({ data, zonas }) => {
     });
   };
 
+  useEffect(() => {
+    if (posiblesPerfiles.length > 0) {
+      Swal.fire({
+        title: `${posiblesPerfiles[0].perfil} mm`,
+        text: `Para una luz de ${dataForm.luz}m y una carga de ${valorMaximo}kg/m2 se
+            necesita un perfil de${posiblesPerfiles[0].perfil} mm
+            que tiene una deformacion de ${posiblesPerfiles[0].deformacion} y una
+            resistencia de ${posiblesPerfiles[0].resistencia} segun la tabla del
+            cirsoc para vigas`,
+        imageUrl:
+          "https://btoc.ferreteriaargentina.com.ar/1313-large_default/perfil-pgc200-e129-x-6m-barbieri.jpg",
+        imageHeight: 200,
+        imageAlt: "Custom image",
+      });
+    }
+  }, [posiblesPerfiles]);
+
   const handelSubmit = (e) => {
     e.preventDefault();
 
     calcularPerfil();
-    console.log(dataForm);
-    console.log(data);
   };
   const handelChange = (e) => {
     setPosiblesPerfiles([]);
@@ -167,13 +226,14 @@ const FormData = ({ data, zonas }) => {
   };
 
   return (
-    <div className="">
+    <div className="m-10  flex flex-wrap gap-10 text-gray">
+      <h1 className=" w-full text-2xl font-bold">Analisis de cargas (vigas)</h1>
       <form
-        className="m-10 grid max-w-2xl  grid-cols-12 gap-x-4 gap-y-1 text-sm  text-gray"
+        className=" grid w-full max-w-3xl  grid-cols-12 items-center gap-x-4 gap-y-1 text-sm md:w-8/12  "
         onSubmit={handelSubmit}
       >
         <label className="col-span-8">
-          Tipo de cubierta <b>({dataForm.kgCubierta} kg/m2) </b>
+          Tipo de cubierta <b>({kgCubierta} kg/m2) </b>
         </label>
         <select
           className=" col-span-4 rounded border border-gray p-2 outline-none"
@@ -187,7 +247,7 @@ const FormData = ({ data, zonas }) => {
         </select>
 
         <label className="col-span-8">
-          Entrepiso <b>({dataForm.kgEntrepiso} kg/m2)</b>
+          Entrepiso <b>({kgEntrepiso} kg/m2)</b>
         </label>
         <select
           className=" col-span-4 rounded border border-gray p-2 outline-none"
@@ -201,7 +261,7 @@ const FormData = ({ data, zonas }) => {
         </select>
 
         <label className="col-span-8">
-          Sobrecarga <b>({dataForm.kgSobrecarga} kg/m2)</b>
+          Sobrecarga <b>({kgSobrecarga} kg/m2)</b>
           <span
             onClick={() =>
               info(
@@ -210,7 +270,7 @@ const FormData = ({ data, zonas }) => {
                 "https://joaquincaviltelli.github.io/base-de-datos/sobrecarga.PNG"
               )
             }
-            className="material-symbols-outlined cursor-pointer text-lg"
+            className="material-symbols-outlined cursor-pointer text-lg "
           >
             info
           </span>
@@ -221,7 +281,7 @@ const FormData = ({ data, zonas }) => {
           type="number"
           name="kgSobrecarga"
           onChange={handelChange}
-          value={dataForm.kgSobrecarga}
+          value={kgSobrecarga}
         />
         <label className="col-span-8">
           Ubicacion{" "}
@@ -281,6 +341,7 @@ const FormData = ({ data, zonas }) => {
           </span>
         </label>
         <input
+          autoComplete="off"
           required
           step="0.01"
           className="col-span-4 rounded border border-gray p-2 outline-none"
@@ -314,26 +375,13 @@ const FormData = ({ data, zonas }) => {
           Calcular
         </button>
       </form>
-      <div>
-        {posiblesPerfiles.length > 0 && (
-          <>
-            <h2 className="mx-10 text-xl font-bold text-barbieriBlue md:w-6/12">
-              {posiblesPerfiles[0].perfil} mm
-            </h2>
-            <p className="text-gray-600 mx-10 md:w-6/12">
-              Para una luz de {dataForm.luz}m y una carga de {valorMaximo}kg/m2
-              se necesita un perfil de{" "}
-              <b className="text-barbieriBlue">
-                {posiblesPerfiles[0].perfil} mm
-              </b>{" "}
-              que tiene una deformacion de {posiblesPerfiles[0].deformacion} y
-              una resistencia de {posiblesPerfiles[0].resistencia} segun la
-              tabla del cirsoc para vigas
-            </p>
-          </>
-        )}
-      </div>
+
+      {/* <Result
+        posiblesPerfiles={posiblesPerfiles}
+        dataForm={dataForm}
+        valorMaximo={valorMaximo}
+      /> */}
     </div>
   );
 };
-export default FormData;
+export default Vigas;
