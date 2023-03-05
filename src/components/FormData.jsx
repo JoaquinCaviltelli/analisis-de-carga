@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 const FormData = ({ data, zonas }) => {
   //datos del formulario
   const [dataForm, setDataForm] = useState({
-    kgCubierta: "35",
-    kgEntrepiso: "0",
-    kgSobrecarga: "96",
-    luz: "",
-    separacion: "40",
+    kgCubierta: 35,
+    kgEntrepiso: 0,
+    kgSobrecarga: 96,
+    luz: 0,
+    separacion: 40,
     ubicacion: "Seleccionar",
     exposicion: "C",
   });
@@ -18,20 +18,20 @@ const FormData = ({ data, zonas }) => {
 
   //carga de viento segun la zona y la exposicion
   const [cargaViento, setCargaViento] = useState({
-    wp: "",
-    ws: "",
+    wp: 0,
+    ws: 0,
   });
 
   //exposicion del viento (por defecto tipo C)
   const [exposicionViento, setExposicionViento] = useState({
-    wp: "2.74",
-    ws: "-8.72",
+    wp: 2.74,
+    ws: 8.72,
   });
 
   //cargas de viento y nieve segun la zona (por defecto Cordoba)
   const [zonaActual, setZonaActual] = useState({
-    nieve: "0",
-    viento: "0",
+    nieve: 0,
+    viento: 0,
   });
 
   //se toma el valor maximo entre la carga vertical (kgTotales) y las cargas verticales (precion y succion)
@@ -42,9 +42,9 @@ const FormData = ({ data, zonas }) => {
 
   useEffect(() => {
     //se modifica la sobrecarga si existe entrepiso
-    dataForm.kgEntrepiso > "0"
-      ? (dataForm.kgSobrecarga = "200")
-      : (dataForm.kgSobrecarga = "96");
+    dataForm.kgEntrepiso > 0
+      ? (dataForm.kgSobrecarga = 200)
+      : (dataForm.kgSobrecarga = 96);
   }, [dataForm.kgEntrepiso]);
 
   useEffect(() => {
@@ -59,13 +59,13 @@ const FormData = ({ data, zonas }) => {
     //se modifica la exposicion
     dataForm.exposicion === "C" &&
       setExposicionViento({
-        wp: "2.74",
-        ws: "8.72",
+        wp: 2.74,
+        ws: 8.72,
       });
     dataForm.exposicion === "D" &&
       setExposicionViento({
-        wp: "3.27",
-        ws: "10.39",
+        wp: 3.27,
+        ws: 10.39,
       });
   }, [dataForm.exposicion, dataForm.ubicacion]);
 
@@ -73,33 +73,26 @@ const FormData = ({ data, zonas }) => {
     //se calcula la carga de precion y succion segun la zona y la expocicion
     setCargaViento({
       wp: Math.round(
-        (parseInt(Math.pow(zonaActual.viento, 2)) / 100) *
-          parseInt(exposicionViento.wp) +
-          parseInt(dataForm.kgCubierta)
+        (Number(Math.pow(zonaActual.viento, 2)) / 100) *
+          Number(exposicionViento.wp) +
+          Number(dataForm.kgCubierta)
       ),
       ws: Math.round(
-        (parseInt(Math.pow(zonaActual.viento, 2)) / 100) *
-          parseInt(exposicionViento.ws) -
-          parseInt(dataForm.kgCubierta)
+        (Number(Math.pow(zonaActual.viento, 2)) / 100) *
+          Number(exposicionViento.ws) -
+          Number(dataForm.kgCubierta)
       ),
     });
-    
-    console.log((parseInt(Math.pow(zonaActual.viento, 2)) / 100));
-    
-    console.log((parseInt(Math.pow(zonaActual.viento, 2)) / 100)*
-    parseInt(exposicionViento.wp));
-
-
   }, [zonaActual, exposicionViento, dataForm.kgCubierta]);
 
   useEffect(() => {
     //se suma los kg de la cubierta, entrepiso, sobregarga y nieve
     setKgTotales(
       Math.round(
-        parseInt(dataForm.kgSobrecarga) +
-          parseInt(dataForm.kgCubierta) +
-          parseInt(dataForm.kgEntrepiso) +
-          parseInt(zonaActual.nieve)
+        Number(dataForm.kgSobrecarga) +
+          Number(dataForm.kgCubierta) +
+          Number(dataForm.kgEntrepiso) +
+          Number(zonaActual.nieve)
       )
     );
   }, [
@@ -122,7 +115,7 @@ const FormData = ({ data, zonas }) => {
     data.map((item) => {
       if (item.largo == luzRounded) {
         //separacion cada 40cm
-        if (dataForm.separacion == "40") {
+        if (dataForm.separacion == 40) {
           item.s40.map((perfil) => {
             if (
               perfil.resistencia > valorMaximo / 100 &&
@@ -133,7 +126,7 @@ const FormData = ({ data, zonas }) => {
           });
         }
         //separacion cada 60cm
-        if (dataForm.separacion == "60") {
+        if (dataForm.separacion == 60) {
           item.s60.map((perfil) => {
             if (
               perfil.resistencia > valorMaximo / 100 &&
@@ -174,9 +167,9 @@ const FormData = ({ data, zonas }) => {
   };
 
   return (
-    <>
+    <div className="">
       <form
-        className="m-10 grid max-w-3xl  grid-cols-12 gap-1 text-gray md:w-8/12"
+        className="m-10 grid max-w-2xl  grid-cols-12 gap-x-4 gap-y-1 text-sm  text-gray"
         onSubmit={handelSubmit}
       >
         <label className="col-span-8">
@@ -187,10 +180,10 @@ const FormData = ({ data, zonas }) => {
           name="kgCubierta"
           onChange={handelChange}
         >
-          <option value="35">Chapa</option>
-          <option value="85">Teja</option>
-          <option value="180">Cubierta plana</option>
-          <option value="0">No</option>
+          <option value={35}>Chapa</option>
+          <option value={85}>Teja</option>
+          <option value={180}>Cubierta plana</option>
+          <option value={0}>No</option>
         </select>
 
         <label className="col-span-8">
@@ -201,10 +194,10 @@ const FormData = ({ data, zonas }) => {
           name="kgEntrepiso"
           onChange={handelChange}
         >
-          <option value="0">No</option>
-          <option value="50">Seco s/placa cementicia</option>
-          <option value="90">Seco c/placa cementicia</option>
-          <option value="160">Humedo</option>
+          <option value={0}>No</option>
+          <option value={50}>Seco s/placa cementicia</option>
+          <option value={90}>Seco c/placa cementicia</option>
+          <option value={160}>Humedo</option>
         </select>
 
         <label className="col-span-8">
@@ -301,40 +294,46 @@ const FormData = ({ data, zonas }) => {
           name="separacion"
           onChange={handelChange}
         >
-          <option value="40">Cada 40cm</option>
-          <option value="60">Cada 60cm</option>
+          <option value={40}>Cada 40cm</option>
+          <option value={60}>Cada 60cm</option>
         </select>
 
-        <p className="col-span-full p-2 text-right">
-          Total: <b>{kgTotales} kg/m2</b>
-        </p>
-        <p className="col-span-full p-2 text-right">
-          Carga de viento presion: <b>{cargaViento.wp} kg/m2</b>
-        </p>
-        <p className="col-span-full p-2 text-right">
-          Carga de viento succion: <b>{cargaViento.ws} kg/m2</b>
-        </p>
+        <div className="col-span-full p-2 text-right">
+          <p>
+            Total: <b>{kgTotales} kg/m2</b>
+          </p>
+          <p>
+            Carga de viento presion: <b>{cargaViento.wp} kg/m2</b>
+          </p>
+          <p>
+            Carga de viento succion: <b>{cargaViento.ws} kg/m2</b>
+          </p>
+        </div>
 
         <button className="col-span-full rounded bg-barbieriBlue p-2 text-white">
           Calcular
         </button>
       </form>
-      {posiblesPerfiles.length > 0 && (
-        <>
-          <h2 className="mx-10 text-xl font-bold text-barbieriBlue md:w-6/12">
-            {posiblesPerfiles[0].perfil}
-          </h2>
-          <p className="text-gray-600 mx-10 md:w-6/12">
-            Para una luz de {dataForm.luz}m y una carga de {valorMaximo}kg/m2 se
-            necesita un perfil de{" "}
-            <b className="text-barbieriBlue">{posiblesPerfiles[0].perfil} mm</b>{" "}
-            que tiene una deformacion de {posiblesPerfiles[0].deformacion} y una
-            resistencia de {posiblesPerfiles[0].resistencia} segun la tabla del
-            cirsoc para vigas
-          </p>
-        </>
-      )}
-    </>
+      <div>
+        {posiblesPerfiles.length > 0 && (
+          <>
+            <h2 className="mx-10 text-xl font-bold text-barbieriBlue md:w-6/12">
+              {posiblesPerfiles[0].perfil} mm
+            </h2>
+            <p className="text-gray-600 mx-10 md:w-6/12">
+              Para una luz de {dataForm.luz}m y una carga de {valorMaximo}kg/m2
+              se necesita un perfil de{" "}
+              <b className="text-barbieriBlue">
+                {posiblesPerfiles[0].perfil} mm
+              </b>{" "}
+              que tiene una deformacion de {posiblesPerfiles[0].deformacion} y
+              una resistencia de {posiblesPerfiles[0].resistencia} segun la
+              tabla del cirsoc para vigas
+            </p>
+          </>
+        )}
+      </div>
+    </div>
   );
 };
 export default FormData;

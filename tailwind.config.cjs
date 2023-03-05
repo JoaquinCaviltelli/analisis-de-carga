@@ -5,10 +5,10 @@ module.exports = {
     extend: {},
     colors: {
       barbieriBlue: "#022a3a",
+      barbieriRed: "#e2231a",
       gray: "#666666",
-      white: "#ffffff"
-
-    }
+      white: "#ffffff",
+    },
   },
   plugins: [],
 };
