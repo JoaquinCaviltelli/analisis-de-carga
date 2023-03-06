@@ -8,6 +8,7 @@ module.exports = {
       barbieriRed: "#e2231a",
       gray: "#666666",
       white: "#ffffff",
+      ligthGray: "#eeeeee",
     },
   },
   plugins: [],
