@@ -23,7 +23,7 @@ const Header = () => {
       </nav> */}
       <span
         onClick={() => setNavBarActive(true)}
-        className="material-symbols-outlined py-3 pl-3 text-4xl font-black text-white"
+        className="material-symbols-outlined py-3 pl-3 text-4xl font-black text-white cursor-pointer"
       >
         menu
       </span>

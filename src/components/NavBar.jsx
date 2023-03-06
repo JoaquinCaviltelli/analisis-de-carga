@@ -4,7 +4,7 @@ const NavBar = ({ setNavBarActive }) => {
   return (
     <div className="fixed top-0 left-0 z-50 flex h-screen w-full flex-col items-center justify-center gap-3 bg-[#000000ec] text-3xl font-light text-ligthGray">
       <NavLink onClick={() => setNavBarActive(false)} to="/">
-        <span class="material-symbols-outlined absolute top-10 right-10 p-2 text-4xl font-black">
+        <span className="material-symbols-outlined absolute top-10 right-10 p-2 text-4xl font-black">
           close
         </span>
       </NavLink>

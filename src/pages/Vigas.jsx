@@ -1,47 +1,13 @@
 import Swal from "sweetalert2";
+import tabla from "../tabla.json"
+import zonas from "../zonas.json"
 
 import { useEffect, useState } from "react";
 import Result from "../components/Result";
 const Vigas = () => {
-  const [data, setData] = useState([]);
-  const [zonas, setZonas] = useState([]);
 
-  const fetchZonas = async () => {
-    try {
-      const response = await fetch(
-        "https://joaquincaviltelli.github.io/base-de-datos/zonas.json"
-      );
-      if (!response.ok) {
-        throw "Error al conectar la API";
-      }
-      const data = await response.json();
-      setZonas(data);
-    } catch (error) {
-      console.log(error);
-      setZonas([]);
-    }
-  };
+ 
 
-  const fetchTabla = async () => {
-    try {
-      const response = await fetch(
-        "https://joaquincaviltelli.github.io/base-de-datos/tabla.json"
-      );
-      if (!response.ok) {
-        throw "Error al conectar la API";
-      }
-      const data = await response.json();
-      setData(data);
-    } catch (error) {
-      console.log(error);
-      setData([]);
-    }
-  };
-
-  useEffect(() => {
-    fetchTabla();
-    fetchZonas();
-  }, []);
 
   //datos del formulario
   const [dataForm, setDataForm] = useState({
@@ -93,7 +59,7 @@ const Vigas = () => {
 
   useEffect(() => {
     //se modifica la sobrecarga si existe entrepiso
-    kgEntrepiso > 0 ? (kgSobrecarga = 200) : (kgSobrecarga = 96);
+    Number(kgEntrepiso) > 0 ? (kgSobrecarga = 200) : (kgSobrecarga = 96);
   }, [kgEntrepiso]);
 
   useEffect(() => {
@@ -156,7 +122,7 @@ const Vigas = () => {
     //se redonde hacia arriba la luz de apoyo para que sea igual al de la tabla
     var luzRounded = luz < 2.5 ? 2.5 : Math.ceil(luz * 2) / 2;
 
-    data.map((item) => {
+    tabla.map((item) => {
       if (item.largo == luzRounded) {
         //separacion cada 40cm
         if (separacion == 40) {
@@ -216,6 +182,7 @@ const Vigas = () => {
     e.preventDefault();
 
     calcularPerfil();
+    console.log(tabla);
   };
   const handelChange = (e) => {
     setPosiblesPerfiles([]);
