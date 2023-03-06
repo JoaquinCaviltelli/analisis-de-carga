@@ -1,14 +1,19 @@
-import { Outlet, useNavigation } from "react-router-dom";
+import { Outlet, useLocation, useNavigation } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 const LayoutPublic = () => {
   const navigation = useNavigation();
+  let location = useLocation();
 
   return (
-    <div className="min-h-screen relative pt-[70px]">
+    <div className="">
       <Header />
-      <main className="pb-32">
+      <main
+        className={`${
+          location.pathname != "/" && "min-h-screen pt-[70px]"
+        } "min-h-screen"`}
+      >
         {navigation.state === "loading" && <div className="">Loading...</div>}
         <Outlet />
       </main>

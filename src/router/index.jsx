@@ -1,14 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
 import LayoutPublic from "../Layout/LayoutPublic";
 import Home from "../pages/Home";
+import Montantes from "../pages/Montantes";
 import NotFound from "../pages/NotFound";
 
 import Vigas from "../pages/Vigas";
+import VigasTubo from "../pages/VigasTubo";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <LayoutPublic/>,
+    element: <LayoutPublic />,
     errorElement: <NotFound />,
     children: [
       {
@@ -21,6 +23,14 @@ export const router = createBrowserRouter([
           {
             path: "/vigas",
             element: <Vigas />,
+          },
+          {
+            path: "/vigas-tubo",
+            element: <VigasTubo />,
+          },
+          {
+            path: "/montantes",
+            element: <Montantes />,
           },
         ],
       },

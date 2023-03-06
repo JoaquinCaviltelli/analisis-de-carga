@@ -1,7 +1,9 @@
+import { Link, NavLink } from "react-router-dom";
+
 const Footer = () => {
   return (
-    <div className="absolute bottom-0 left-0 h-32 w-full items-center bg-barbieriBlue p-10 text-white">
-      <h1>foooooooter</h1>
+    <div className=" flex w-full flex-col justify-center bg-barbieriBlue p-10 font-extralight text-white">
+     
     </div>
   );
 };

@@ -226,7 +226,7 @@ const Vigas = () => {
   };
 
   return (
-    <div className="m-10  flex flex-wrap gap-10 text-gray">
+    <div className="m-10 flex flex-wrap gap-10 text-gray">
       <h1 className=" w-full text-2xl font-bold">Analisis de cargas (vigas)</h1>
       <form
         className=" grid w-full max-w-3xl  grid-cols-12 items-center gap-x-4 gap-y-1 text-sm md:w-8/12  "
