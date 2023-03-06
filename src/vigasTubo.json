@@ -1,0 +1,458 @@
+[
+  {
+    "largo": 1.5,
+    "carga": [
+      {
+        "q": 200,
+        "perfil": "pgc 100x0.9"
+      },
+      {
+        "q": 300,
+        "perfil": "pgc 100x0.9"
+      },
+      {
+        "q": 400,
+        "perfil": "pgc 100x0.9"
+      },
+      {
+        "q": 500,
+        "perfil": "pgc 100x0.9"
+      },
+      {
+        "q": 600,
+        "perfil": "pgc 100x0.9"
+      },
+      {
+        "q": 700,
+        "perfil": "pgc 100x0.9"
+      },
+      {
+        "q": 800,
+        "perfil": "pgc 100x0.9"
+      },
+      {
+        "q": 900,
+        "perfil": "pgc 100x0.9"
+      },
+      {
+        "q": 1000,
+        "perfil": "pgc 150x0.9"
+      },
+      {
+        "q": 1200,
+        "perfil": "pgc 150x0.9"
+      },
+      {
+        "q": 1400,
+        "perfil": "pgc 150x0.9"
+      }
+    ]
+  },
+  {
+    "largo": 2,
+    "carga": [
+      {
+        "q": 200,
+        "perfil": "pgc 100x0.9"
+      },
+      {
+        "q": 300,
+        "perfil": "pgc 100x0.9"
+      },
+      {
+        "q": 400,
+        "perfil": "pgc 100x0.9"
+      },
+      {
+        "q": 500,
+        "perfil": "pgc 100x0.9"
+      },
+      {
+        "q": 600,
+        "perfil": "pgc 150x0.9"
+      },
+      {
+        "q": 700,
+        "perfil": "pgc 150x0.9"
+      },
+      {
+        "q": 800,
+        "perfil": "pgc 150x0.9"
+      },
+      {
+        "q": 900,
+        "perfil": "pgc 150x0.9"
+      },
+      {
+        "q": 1000,
+        "perfil": "pgc 150x0.9"
+      },
+      {
+        "q": 1200,
+        "perfil": "pgc 150x1.2"
+      },
+      {
+        "q": 1400,
+        "perfil": "pgc 150x1.2"
+      }
+    ]
+  },
+  {
+    "largo": 2.5,
+    "carga": [
+      {
+        "q": 200,
+        "perfil": "pgc 100x0.9"
+      },
+      {
+        "q": 300,
+        "perfil": "pgc 100x0.9"
+      },
+      {
+        "q": 400,
+        "perfil": "pgc 150x0.9"
+      },
+      {
+        "q": 500,
+        "perfil": "pgc 150x0.9"
+      },
+      {
+        "q": 600,
+        "perfil": "pgc 150x0.9"
+      },
+      {
+        "q": 700,
+        "perfil": "pgc 150x1.2"
+      },
+      {
+        "q": 800,
+        "perfil": "pgc 150x1.2"
+      },
+      {
+        "q": 900,
+        "perfil": "pgc 200x1.2"
+      },
+      {
+        "q": 1000,
+        "perfil": "pgc 200x1.2"
+      },
+      {
+        "q": 1200,
+        "perfil": "pgc 200x1.6"
+      },
+      {
+        "q": 1400,
+        "perfil": "pgc 200x1.6"
+      }
+    ]
+  },
+  {
+    "largo": 3,
+    "carga": [
+      {
+        "q": 200,
+        "perfil": "pgc 150x0.9"
+      },
+      {
+        "q": 300,
+        "perfil": "pgc 150x0.9"
+      },
+      {
+        "q": 400,
+        "perfil": "pgc 150x0.9"
+      },
+      {
+        "q": 500,
+        "perfil": "pgc 150x1.2"
+      },
+      {
+        "q": 600,
+        "perfil": "pgc 200x1.2"
+      },
+      {
+        "q": 700,
+        "perfil": "pgc 200x1.2"
+      },
+      {
+        "q": 800,
+        "perfil": "pgc 200x1.6"
+      },
+      {
+        "q": 900,
+        "perfil": "pgc 200x1.6"
+      },
+      {
+        "q": 1000,
+        "perfil": "pgc 200x1.6"
+      },
+      {
+        "q": 1200,
+        "perfil": "pgc 250x1.6"
+      },
+      {
+        "q": 1400,
+        "perfil": "pgc 250x1.6"
+      }
+    ]
+  },
+  {
+    "largo": 3.5,
+    "carga": [
+      {
+        "q": 200,
+        "perfil": "pgc 150x0.9"
+      },
+      {
+        "q": 300,
+        "perfil": "pgc 150x0.9"
+      },
+      {
+        "q": 400,
+        "perfil": "pgc 150x1.2"
+      },
+      {
+        "q": 500,
+        "perfil": "pgc 200x1.2"
+      },
+      {
+        "q": 600,
+        "perfil": "pgc 200x1.6"
+      },
+      {
+        "q": 700,
+        "perfil": "pgc 200x1.6"
+      },
+      {
+        "q": 800,
+        "perfil": "pgc 250x1.6"
+      },
+      {
+        "q": 900,
+        "perfil": "pgc 250x1.6"
+      },
+      {
+        "q": 1000,
+        "perfil": "pgc 300x1.6"
+      },
+      {
+        "q": 1200,
+        "perfil": "pgc 300x1.6"
+      },
+      {
+        "q": 1400,
+        "perfil": "pgc 300x2"
+      }
+    ]
+  },
+  {
+    "largo": 4,
+    "carga": [
+      {
+        "q": 200,
+        "perfil": "pgc 150x0.9"
+      },
+      {
+        "q": 300,
+        "perfil": "pgc 150x1.2"
+      },
+      {
+        "q": 400,
+        "perfil": "pgc 200x1.2"
+      },
+      {
+        "q": 500,
+        "perfil": "pgc 200x1.6"
+      },
+      {
+        "q": 600,
+        "perfil": "pgc 250x1.6"
+      },
+      {
+        "q": 700,
+        "perfil": "pgc 250x1.6"
+      },
+      {
+        "q": 800,
+        "perfil": "pgc 300x1.6"
+      },
+      {
+        "q": 900,
+        "perfil": "pgc 300x1.6"
+      },
+      {
+        "q": 1000,
+        "perfil": "pgc 300x2"
+      },
+      {
+        "q": 1200,
+        "perfil": "pgc 300x2"
+      },
+      {
+        "q": 1400,
+        "perfil": "pgc 300x2.5"
+      }
+    ]
+  },
+  {
+    "largo": 4.5,
+    "carga": [
+      {
+        "q": 200,
+        "perfil": "pgc 150x1.2"
+      },
+      {
+        "q": 300,
+        "perfil": "pgc 200x1.2"
+      },
+      {
+        "q": 400,
+        "perfil": "pgc 200x1.6"
+      },
+      {
+        "q": 500,
+        "perfil": "pgc 250x1.6"
+      },
+      {
+        "q": 600,
+        "perfil": "300x1.6"
+      },
+      {
+        "q": 700,
+        "perfil": "pgc 300x2"
+      },
+      {
+        "q": 800,
+        "perfil": "pgc 300x2"
+      },
+      {
+        "q": 900,
+        "perfil": "pgc 300x2"
+      },
+      {
+        "q": 1000,
+        "perfil": "pgc 300x2.5"
+      },
+      {
+        "q": 1200,
+        "perfil": "pgc 300x2.5"
+      }
+    ]
+  },
+  {
+    "largo": 5,
+    "carga": [
+      {
+        "q": 200,
+        "perfil": "pgc 200x1.2"
+      },
+      {
+        "q": 300,
+        "perfil": "pgc 200x1.6"
+      },
+      {
+        "q": 400,
+        "perfil": "pgc 250x1.6"
+      },
+      {
+        "q": 500,
+        "perfil": "pgc 300x1.6"
+      },
+      {
+        "q": 600,
+        "perfil": "pgc 300x2"
+      },
+      {
+        "q": 700,
+        "perfil": "pgc 300x2"
+      },
+      {
+        "q": 800,
+        "perfil": "pgc 300x2.5"
+      },
+      {
+        "q": 900,
+        "perfil": "pgc 300x2.5"
+      }
+    ]
+  },
+  {
+    "largo": 5.5,
+    "carga": [
+      {
+        "q": 200,
+        "perfil": "pgc 200x1.6"
+      },
+      {
+        "q": 300,
+        "perfil": "pgc 250x1.6"
+      },
+      {
+        "q": 400,
+        "perfil": "pgc 300x1.6"
+      },
+      {
+        "q": 500,
+        "perfil": "pgc 300x2"
+      },
+      {
+        "q": 600,
+        "perfil": "pgc 300x2.5"
+      },
+      {
+        "q": 700,
+        "perfil": "pgc 300x2.5"
+      }
+    ]
+  },
+  {
+    "largo": 6,
+    "carga": [
+      {
+        "q": 200,
+        "perfil": "pgc 250x1.6"
+      },
+      {
+        "q": 300,
+        "perfil": "pgc 300x1.6"
+      },
+      {
+        "q": 400,
+        "perfil": "pgc 300x2"
+      },
+      {
+        "q": 500,
+        "perfil": "pgc 300x2.5"
+      }
+    ]
+  },
+  {
+    "largo": 6.5,
+    "carga": [
+      {
+        "q": 200,
+        "perfil": "pgc 300x1.6"
+      },
+      {
+        "q": 300,
+        "perfil": "pgc 300x2"
+      },
+      {
+        "q": 400,
+        "perfil": "pgc 300x2.5"
+      }
+    ]
+  },
+  {
+    "largo": 7,
+    "carga": [
+      {
+        "q": 200,
+        "perfil": "pgc 300x2"
+      },
+      {
+        "q": 300,
+        "perfil": "pgc 300x2.5"
+      }
+    ]
+  }
+]
