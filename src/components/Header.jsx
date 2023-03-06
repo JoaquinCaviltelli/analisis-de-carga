@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import NavBar from "./NavBar";
 
 const Header = () => {
   let location = useLocation();
+  const [navBarActive, setNavBarActive] = useState(false);
 
   return (
     <div
@@ -12,12 +15,19 @@ const Header = () => {
       <Link to="/">
         <img className="" src="logo.png" alt="" />
       </Link>
-      <nav className="flex gap-5 text-white">
+      {/* <nav className="flex gap-5 text-white">
         <NavLink to="/">Inicio</NavLink>
         <NavLink to="/vigas">Vigas</NavLink>
         <NavLink to="/vigas-tubo">Vigas tubo</NavLink>
         <NavLink to="/montantes">Montantes</NavLink>
-      </nav>
+      </nav> */}
+      <span
+        onClick={() => setNavBarActive(true)}
+        className="material-symbols-outlined text-white"
+      >
+        menu
+      </span>
+      {navBarActive && <NavBar setNavBarActive={setNavBarActive} />}
     </div>
   );
 };

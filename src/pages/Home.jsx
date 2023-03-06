@@ -5,9 +5,10 @@ const Home = () => {
       <h3 className="mx-10 my-3 inline-block bg-barbieriBlue p-1 text-2xl font-light uppercase text-white ">
         Analisis de carga
       </h3>
-      <p className="mx-10 py-2 text-6xl font-black uppercase text-barbieriBlue">
+      <p className="mx-10 py-2 text-6xl font-black uppercase text-white">
         Steel Frame
-      </p>
+          </p>
+          
     </div>
   );
 };

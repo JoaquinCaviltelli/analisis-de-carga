@@ -17,7 +17,7 @@ const LayoutPublic = () => {
         {navigation.state === "loading" && <div className="">Loading...</div>}
         <Outlet />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
