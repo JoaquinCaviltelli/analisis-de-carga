@@ -1,19 +1,16 @@
 import Swal from "sweetalert2";
-import tabla from "../tabla.json"
-import zonas from "../zonas.json"
+import tabla from "../tabla.json";
+import zonas from "../zonas.json";
 
 import { useEffect, useState } from "react";
 import Result from "../components/Result";
 import { Link } from "react-router-dom";
-import imgPerfil from "/public/perfil.png"
-import imgLuzDeApoyo from "/public/luz-de-apoyo.png"
-import imgSobrecarga from "/public/sobrecarga.png"
-import imgViento from "/public/viento.png"
+import imgPerfil from "/public/perfil.png";
+import imgLuzDeApoyo from "/public/luz-de-apoyo.png";
+import imgSobrecarga from "/public/sobrecarga.png";
+import imgViento from "/public/viento.png";
 
 const Vigas = () => {
-
-
-
   //datos del formulario
   const [dataForm, setDataForm] = useState({
     kgCubierta: 35,
@@ -23,10 +20,12 @@ const Vigas = () => {
     separacion: 40,
     ubicacion: "Seleccionar",
     exposicion: "C",
+    margen: 1,
   });
 
   var {
     kgCubierta,
+    margen,
     kgEntrepiso,
     kgSobrecarga,
     luz,
@@ -64,7 +63,9 @@ const Vigas = () => {
 
   useEffect(() => {
     //se modifica la sobrecarga si existe entrepiso
-    Number(kgEntrepiso) > 0 ? (dataForm.kgSobrecarga = 200) : (dataForm.kgSobrecarga = 96);
+    Number(kgEntrepiso) > 0
+      ? (dataForm.kgSobrecarga = 200)
+      : (dataForm.kgSobrecarga = 96);
   }, [kgEntrepiso]);
 
   useEffect(() => {
@@ -109,13 +110,14 @@ const Vigas = () => {
     //se suma los kg de la cubierta, entrepiso, sobregarga y nieve
     setKgTotales(
       Math.round(
-        Number(kgSobrecarga) +
+        (Number(kgSobrecarga) +
           Number(kgCubierta) +
           Number(kgEntrepiso) +
-          Number(zonaActual.nieve)
+          Number(zonaActual.nieve)) *
+          margen
       )
     );
-  }, [kgSobrecarga, kgCubierta, kgEntrepiso, zonaActual.nieve]);
+  }, [kgSobrecarga, kgCubierta, kgEntrepiso, zonaActual.nieve, margen]);
 
   useEffect(() => {
     setValorMaximo(Math.max(kgTotales, cargaViento.wp, cargaViento.ws));
@@ -162,7 +164,7 @@ const Vigas = () => {
       text: text,
       imageUrl: img,
       imageAlt: "Custom image",
-      showConfirmButton: false
+      showConfirmButton: false,
     });
   };
 
@@ -171,15 +173,16 @@ const Vigas = () => {
       Swal.fire({
         title: `${posiblesPerfiles[0].perfil} mm`,
         text: `Para una luz de ${dataForm.luz}m y una carga de ${valorMaximo}kg/m2 se
-            necesita un perfil de${posiblesPerfiles[0].perfil} mm
+            necesita un perfil de ${posiblesPerfiles[0].perfil} mm
             que tiene una deformacion de ${posiblesPerfiles[0].deformacion} y una
             resistencia de ${posiblesPerfiles[0].resistencia} segun la tabla del
-            cirsoc para vigas`,
-        imageUrl:
-          imgPerfil,
+            cirsoc para vigas.`,
+        footer: `Otros perfiles que verifican son: ${posiblesPerfiles[1].perfil} - ${posiblesPerfiles[2].perfil} - ${posiblesPerfiles[3].perfil}`,
+        showCloseButton: true,
+        imageUrl: imgPerfil,
         imageHeight: 200,
         imageAlt: "Custom image",
-        showConfirmButton: false
+        showConfirmButton: false,
       });
     }
   }, [posiblesPerfiles]);
@@ -197,10 +200,12 @@ const Vigas = () => {
   };
 
   return (
-    <div className="my-10 mx-10 lg:mx-48 max-w-5xl  text-gray">
-      <h2 className="text-3xl font-black text-barbieriBlue border-b pb-4 border-ligthGray">Analisis de cargas (vigas)</h2>
+    <div className="my-10 mx-10 max-w-5xl text-gray  lg:mx-48">
+      <h2 className="border-b border-ligthGray pb-4 text-3xl font-black text-barbieriBlue">
+        Analisis de cargas (vigas)
+      </h2>
       <form
-        className="mt-10 grid w-full grid-cols-12 items-center gap-x-5 gap-y-1 text-sm max-w-2xl "
+        className="mt-10 grid w-full max-w-2xl grid-cols-12 items-center gap-x-5 gap-y-1 text-sm "
         onSubmit={handelSubmit}
       >
         <label className="col-span-8">
@@ -234,13 +239,7 @@ const Vigas = () => {
         <label className="col-span-8">
           Sobrecarga <b>({kgSobrecarga} kg/m2)</b>
           <span
-            onClick={() =>
-              info(
-                "",
-                "",
-                imgSobrecarga
-              )
-            }
+            onClick={() => info("", "", imgSobrecarga)}
             className="material-symbols-outlined cursor-pointer text-lg "
           >
             info
@@ -275,13 +274,7 @@ const Vigas = () => {
             (Wp: {exposicionViento.wp} Ws: {exposicionViento.ws})
           </b>
           <span
-            onClick={() =>
-              info(
-                "",
-                "",
-                imgViento
-              )
-            }
+            onClick={() => info("", "", imgViento)}
             className="material-symbols-outlined cursor-pointer text-lg"
           >
             info
@@ -329,6 +322,18 @@ const Vigas = () => {
           <option value={40}>Cada 40cm</option>
           <option value={60}>Cada 60cm</option>
         </select>
+        <label className="col-span-8">Margen de calculo</label>
+        <select
+          className="col-span-4 rounded border border-gray p-2 outline-none"
+          name="margen"
+          onChange={handelChange}
+        >
+          <option value={1}>0%</option>
+          <option value={1.05}>5%</option>
+          <option value={1.1}>10%</option>
+          <option value={1.15}>15%</option>
+          <option value={1.2}>20%</option>
+        </select>
 
         <div className="col-span-full p-2 text-right">
           <p>
@@ -342,10 +347,11 @@ const Vigas = () => {
           </p>
         </div>
 
-        <Link className="col-span-6 rounded border border-barbieriBlue p-2 text-barbieriBlue text-center" to="/tipo-de-analisis">
-        <button >
-          Atras
-        </button>
+        <Link
+          className="col-span-6 rounded border border-barbieriBlue p-2 text-center text-barbieriBlue"
+          to="/tipo-de-analisis"
+        >
+          <button>Atras</button>
         </Link>
         <button className="col-span-6 rounded bg-barbieriBlue p-2 text-white">
           Calcular
