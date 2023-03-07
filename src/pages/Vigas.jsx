@@ -4,9 +4,14 @@ import zonas from "../zonas.json"
 
 import { useEffect, useState } from "react";
 import Result from "../components/Result";
+import { Link } from "react-router-dom";
+import imgPerfil from "/public/perfil.png"
+import imgLuzDeApoyo from "/public/luz-de-apoyo.png"
+import imgSobrecarga from "/public/sobrecarga.png"
+import imgViento from "/public/viento.png"
+
 const Vigas = () => {
 
- 
 
 
   //datos del formulario
@@ -59,7 +64,7 @@ const Vigas = () => {
 
   useEffect(() => {
     //se modifica la sobrecarga si existe entrepiso
-    Number(kgEntrepiso) > 0 ? (kgSobrecarga = 200) : (kgSobrecarga = 96);
+    Number(kgEntrepiso) > 0 ? (dataForm.kgSobrecarga = 200) : (dataForm.kgSobrecarga = 96);
   }, [kgEntrepiso]);
 
   useEffect(() => {
@@ -157,7 +162,7 @@ const Vigas = () => {
       text: text,
       imageUrl: img,
       imageAlt: "Custom image",
-      confirmButtonColor: "#022a3a",
+      showConfirmButton: false
     });
   };
 
@@ -171,18 +176,17 @@ const Vigas = () => {
             resistencia de ${posiblesPerfiles[0].resistencia} segun la tabla del
             cirsoc para vigas`,
         imageUrl:
-          "https://btoc.ferreteriaargentina.com.ar/1313-large_default/perfil-pgc200-e129-x-6m-barbieri.jpg",
+          imgPerfil,
         imageHeight: 200,
         imageAlt: "Custom image",
+        showConfirmButton: false
       });
     }
   }, [posiblesPerfiles]);
 
   const handelSubmit = (e) => {
     e.preventDefault();
-
     calcularPerfil();
-    console.log(tabla);
   };
   const handelChange = (e) => {
     setPosiblesPerfiles([]);
@@ -193,10 +197,10 @@ const Vigas = () => {
   };
 
   return (
-    <div className="m-10 flex flex-wrap gap-10 text-gray">
-      <h1 className=" w-full text-2xl font-bold">Analisis de cargas (vigas)</h1>
+    <div className="my-10 mx-10 lg:mx-48 max-w-5xl  text-gray">
+      <h2 className="text-3xl font-black text-barbieriBlue border-b pb-4 border-ligthGray">Analisis de cargas (vigas)</h2>
       <form
-        className=" grid w-full max-w-3xl  grid-cols-12 items-center gap-x-4 gap-y-1 text-sm md:w-8/12  "
+        className="mt-10 grid w-full grid-cols-12 items-center gap-x-5 gap-y-1 text-sm max-w-2xl "
         onSubmit={handelSubmit}
       >
         <label className="col-span-8">
@@ -234,7 +238,7 @@ const Vigas = () => {
               info(
                 "",
                 "",
-                "https://joaquincaviltelli.github.io/base-de-datos/sobrecarga.PNG"
+                imgSobrecarga
               )
             }
             className="material-symbols-outlined cursor-pointer text-lg "
@@ -273,9 +277,9 @@ const Vigas = () => {
           <span
             onClick={() =>
               info(
-                "Exposicion del viento",
                 "",
-                "https://joaquincaviltelli.github.io/base-de-datos/exposicion-viento.PNG"
+                "",
+                imgViento
               )
             }
             className="material-symbols-outlined cursor-pointer text-lg"
@@ -299,7 +303,7 @@ const Vigas = () => {
               info(
                 "Luz de apoyo",
                 "En este caso la distancia total es de 8m, pero la luz de apoyo es de 5m ya que hay una viga que divide las luces",
-                "https://joaquincaviltelli.github.io/base-de-datos/luz-de-apoyo.jpeg"
+                imgLuzDeApoyo
               )
             }
             className="material-symbols-outlined cursor-pointer text-lg"
@@ -328,17 +332,22 @@ const Vigas = () => {
 
         <div className="col-span-full p-2 text-right">
           <p>
-            Total: <b>{kgTotales} kg/m2</b>
+            Total kg (D+Lr+S): <b>{kgTotales} kg/m2</b>
           </p>
           <p>
-            Carga de viento presion: <b>{cargaViento.wp} kg/m2</b>
+            Carga de viento presion (D+Wp): <b>{cargaViento.wp} kg/m2</b>
           </p>
           <p>
-            Carga de viento succion: <b>{cargaViento.ws} kg/m2</b>
+            Carga de viento succion (D-Ws): <b>{cargaViento.ws} kg/m2</b>
           </p>
         </div>
 
-        <button className="col-span-full rounded bg-barbieriBlue p-2 text-white">
+        <Link className="col-span-6 rounded border border-barbieriBlue p-2 text-barbieriBlue text-center" to="/tipo-de-analisis">
+        <button >
+          Atras
+        </button>
+        </Link>
+        <button className="col-span-6 rounded bg-barbieriBlue p-2 text-white">
           Calcular
         </button>
       </form>
