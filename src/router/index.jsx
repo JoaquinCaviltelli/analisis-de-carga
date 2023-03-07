@@ -3,6 +3,7 @@ import LayoutPublic from "../Layout/LayoutPublic";
 import Home from "../pages/Home";
 import Montantes from "../pages/Montantes";
 import NotFound from "../pages/NotFound";
+import TipoDeAnalisis from "../pages/TipoDeAnalisis";
 
 import Vigas from "../pages/Vigas";
 import VigasTubo from "../pages/VigasTubo";
@@ -21,15 +22,19 @@ export const router = createBrowserRouter([
             element: <Home />,
           },
           {
-            path: "/vigas",
+            path: "/tipo-de-analisis",
+            element: <TipoDeAnalisis />,
+          },
+          {
+            path: "/tipo-de-analisis/vigas",
             element: <Vigas />,
           },
           {
-            path: "/vigas-tubo",
+            path: "/tipo-de-analisis/vigas-tubo",
             element: <VigasTubo />,
           },
           {
-            path: "/montantes",
+            path: "/tipo-de-analisis/montantes",
             element: <Montantes />,
           },
         ],

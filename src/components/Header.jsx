@@ -8,9 +8,7 @@ const Header = () => {
 
   return (
     <div
-      className={`${
-        location.pathname != "/" ? "bg-barbieriRed" : "bg-[#0000004a]"
-      } fixed top-0 left-0 flex h-[70px] w-full items-center justify-between  px-10`}
+      className=" fixed top-0 left-0 flex h-[70px] w-full items-center justify-between  px-10 bg-barbieriRed"
     >
       <Link to="/">
         <img className="" src="logo.png" alt="" />
