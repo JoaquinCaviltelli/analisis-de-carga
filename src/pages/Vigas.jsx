@@ -1,9 +1,9 @@
 import Swal from "sweetalert2";
 import tabla from "../tabla.json";
 import zonas from "../zonas.json";
+import { Toast } from "../components/Toast";
 
 import { useEffect, useState } from "react";
-import Result from "../components/Result";
 import { Link } from "react-router-dom";
 import imgPerfil from "/public/perfil.png";
 import imgLuzDeApoyo from "/public/luz-de-apoyo.png";
@@ -129,6 +129,13 @@ const Vigas = () => {
     //se redonde hacia arriba la luz de apoyo para que sea igual al de la tabla
     var luzRounded = luz < 2.5 ? 2.5 : Math.ceil(luz * 2) / 2;
 
+    if (luz > 9) {
+      return Toast.fire({
+        icon: "error",
+        title: "El largo maximo que verifica la tabla es de 9m",
+      });
+    }
+
     tabla.map((item) => {
       if (item.largo == luzRounded) {
         //separacion cada 40cm
@@ -139,6 +146,11 @@ const Vigas = () => {
               perfil.deformacion > valorMaximo / 100
             ) {
               setPosiblesPerfiles((prev) => [...prev, perfil]);
+            } else {
+              Toast.fire({
+                icon: "error",
+                title: `Se ha superado los kg en una luz de ${luz}m`,
+              });
             }
           });
         }
@@ -150,6 +162,11 @@ const Vigas = () => {
               perfil.deformacion > valorMaximo / 100
             ) {
               setPosiblesPerfiles((prev) => [...prev, perfil]);
+            } else {
+              Toast.fire({
+                icon: "error",
+                title: `Se ha superado los kg en una luz de ${luz}m`,
+              });
             }
           });
         }
@@ -184,7 +201,7 @@ const Vigas = () => {
         imageHeight: 200,
         imageAlt: "Custom image",
         showConfirmButton: false,
-      });
+      })
     }
   }, [posiblesPerfiles]);
 
@@ -338,32 +355,29 @@ const Vigas = () => {
 
         <div className="col-span-full p-2 text-right">
           <p>
-            Total kg (D+Lr+S): <b>{kgTotales} kg/m2</b>
+            <b>Carga vertical</b> (D+Lr+S): {kgTotales} kg/m2
           </p>
           <p>
-            Carga de viento presion (D+Wp): <b>{cargaViento.wp} kg/m2</b>
+            <b>Carga de viento presion</b> (D+Wp): {cargaViento.wp} kg/m2
           </p>
           <p>
-            Carga de viento succion (D-Ws): <b>{cargaViento.ws} kg/m2</b>
+            <b>Carga de viento succion</b> (D-Ws): {cargaViento.ws} kg/m2
           </p>
         </div>
 
         <Link
-          className="col-span-6 rounded border border-barbieriBlue p-2 text-center text-barbieriBlue"
+          className="col-span-6 rounded border border-barbieriBlue p-2 text-center text-barbieriBlue "
           to="/tipo-de-analisis"
         >
-          <button>Atras</button>
+          <button type="button">Atras</button>
         </Link>
-        <button className="col-span-6 rounded bg-barbieriBlue p-2 text-white">
+        <button
+          type="submit"
+          className="col-span-6 rounded bg-barbieriBlue p-2 text-white hover:bg-barbieriBlueFocus"
+        >
           Calcular
         </button>
       </form>
-
-      {/* <Result
-        posiblesPerfiles={posiblesPerfiles}
-        dataForm={dataForm}
-        valorMaximo={valorMaximo}
-      /> */}
     </div>
   );
 };
