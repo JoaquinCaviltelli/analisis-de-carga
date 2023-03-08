@@ -24,8 +24,6 @@ const VigasTubo = () => {
   var { kgCubierta, margen, aInf, kgEntrepiso, kgSobrecarga, luz, ubicacion } =
     dataForm;
 
-    const [perfil, setPerfil] = useState("")
-
   // suma los kg de la cubierta, entrepiso, sobregarga y nieve
   const [kgTotales, setKgTotales] = useState(0);
 
@@ -68,9 +66,8 @@ const VigasTubo = () => {
   }, [kgSobrecarga, kgCubierta, kgEntrepiso, zonaActual.nieve, margen, aInf]);
 
   const calcularPerfil = () => {
-    setPerfil("")
     //se redonde hacia arriba la luz de apoyo para que sea igual al de la tabla
-    var luzRounded = luz < 2.5 ? 2.5 : Math.ceil(luz * 2) / 2;
+    var luzRounded = luz < 1.5 ? 1.5 : Math.ceil(luz * 2) / 2;
     var kgRounded = Math.ceil(kgTotales / 100) * 100;
 
     if (luz > 7) {
@@ -84,8 +81,7 @@ const VigasTubo = () => {
       if (item.largo == luzRounded) {
         item.carga.map((carga) => {
           if (carga.q === kgRounded) {
-            setPerfil(carga.perfil)
-           Swal.fire({
+            Swal.fire({
               title: `Viga Tubo: ${carga.perfil}`,
               text: `2 ${carga.perfil} mm y 2 pgu de 100x0.9`,
               showCloseButton: true,
@@ -94,18 +90,15 @@ const VigasTubo = () => {
               imageAlt: "Custom image",
               showConfirmButton: false,
             });
+          } else if (kgRounded > carga.q) {
+            return Toast.fire({
+              icon: "error",
+              title: `Se ha superado los kg en una luz de ${luz}m`,
+            });
           }
-        })
+        });
       }
     });
-
-    if(perfil !== ""){
-      Toast.fire({
-        icon: "error",
-        title: `Se ha superado los kg en una luz de ${luz}m`,
-      });
-    }
-
   };
 
   //modal con la informacion
@@ -225,7 +218,7 @@ const VigasTubo = () => {
         />
 
         <label className="col-span-8">
-          <b> Area de influencia</b>
+          <b> Ancho de influencia</b>
           <span
             onClick={() =>
               info(
@@ -241,7 +234,6 @@ const VigasTubo = () => {
         </label>
         <input
           defaultValue={1}
-          min={1}
           autoComplete="off"
           required
           step="0.01"
