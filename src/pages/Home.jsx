@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import bgHome from "/public/bg-home.jpg";
 
 const Home = () => {
   return (

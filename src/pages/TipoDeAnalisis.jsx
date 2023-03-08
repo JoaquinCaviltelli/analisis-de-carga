@@ -1,22 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import imgBase from "/public/base.png";
 import imgVigas from "/public/vigas.png";
 import imgVigasTubo from "/public/vigas-tubo.png";
-import Swal from "sweetalert2";
+
 
 const TipoDeAnalisis = () => {
   const [urlImg, setUrlImg] = useState(imgBase);
 
 
-  useEffect(() => {
-      Swal.fire({
-        text: "Se recomienda verificar las cargas con un profecional, el resultado de este calculo es a modo de referencia.",
-        showConfirmButton: false,
-        showCloseButton: true,
-      });
- 
-   },[])
 
   return (
     <div className="my-10 mx-10 max-w-5xl lg:mx-48 ">

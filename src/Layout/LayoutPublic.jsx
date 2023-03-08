@@ -1,5 +1,5 @@
 import { Outlet, useLocation, useNavigation } from "react-router-dom";
-import Footer from "../components/Footer";
+
 import Header from "../components/Header";
 
 const LayoutPublic = () => {
@@ -17,7 +17,7 @@ const LayoutPublic = () => {
         {navigation.state === "loading" && <div className="">Loading...</div>}
         <Outlet />
       </main>
-      {/* <Footer /> */}
+     
     </div>
   );
 };

@@ -1,14 +1,13 @@
 import Swal from "sweetalert2";
-import tabla from "../tabla.json";
+import vigasTubo from "../vigasTubo.json";
 import zonas from "../zonas.json";
 import { Toast } from "../components/Toast";
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import imgPerfil from "/public/perfil.png";
+import imgPerfil from "/public/viga-tubo.jpeg";
 import imgLuzDeApoyo from "/public/luz-de-apoyo.png";
 import imgSobrecarga from "/public/sobrecarga.png";
-import imgViento from "/public/viento.png";
 
 const VigasTubo = () => {
   //datos del formulario
@@ -17,39 +16,24 @@ const VigasTubo = () => {
     kgEntrepiso: 0,
     kgSobrecarga: 96,
     luz: 0,
-    separacion: 40,
     ubicacion: "Seleccionar",
-    exposicion: "C",
     margen: 1,
-    aInf: 0,
+    aInf: 1,
   });
 
-  var {
-    kgCubierta,
-    margen,
-    aInf,
-    kgEntrepiso,
-    kgSobrecarga,
-    luz,
-    separacion,
-    ubicacion,
-    exposicion,
-  } = dataForm;
+  var { kgCubierta, margen, aInf, kgEntrepiso, kgSobrecarga, luz, ubicacion } =
+    dataForm;
+
+    const [perfil, setPerfil] = useState("")
 
   // suma los kg de la cubierta, entrepiso, sobregarga y nieve
   const [kgTotales, setKgTotales] = useState(0);
-
 
   //cargas de viento y nieve segun la zona (por defecto Cordoba)
   const [zonaActual, setZonaActual] = useState({
     nieve: 0,
     viento: 0,
   });
-
-
-
-  //si el perfil verifica entra en esta constante
-  const [posiblesPerfiles, setPosiblesPerfiles] = useState([]);
 
   useEffect(() => {
     //se modifica la sobrecarga si existe entrepiso
@@ -67,10 +51,7 @@ const VigasTubo = () => {
           viento: zona.cargas.viento,
         });
     });
-    
   }, [ubicacion]);
-
-
 
   useEffect(() => {
     //se suma los kg de la cubierta, entrepiso, sobregarga y nieve
@@ -80,62 +61,51 @@ const VigasTubo = () => {
           Number(kgCubierta) +
           Number(kgEntrepiso) +
           Number(zonaActual.nieve)) *
+          aInf *
           margen
       )
     );
-  }, [kgSobrecarga, kgCubierta, kgEntrepiso, zonaActual.nieve, margen]);
-
-
+  }, [kgSobrecarga, kgCubierta, kgEntrepiso, zonaActual.nieve, margen, aInf]);
 
   const calcularPerfil = () => {
-    setPosiblesPerfiles([]);
-
+    setPerfil("")
     //se redonde hacia arriba la luz de apoyo para que sea igual al de la tabla
     var luzRounded = luz < 2.5 ? 2.5 : Math.ceil(luz * 2) / 2;
+    var kgRounded = Math.ceil(kgTotales / 100) * 100;
 
-    if (luz > 9) {
+    if (luz > 7) {
       return Toast.fire({
         icon: "error",
-        title: "El largo maximo que verifica la tabla es de 9m",
+        title: "El largo maximo que verifica la tabla es de 7m",
       });
     }
 
-    tabla.map((item) => {
+    vigasTubo.map((item) => {
       if (item.largo == luzRounded) {
-        //separacion cada 40cm
-        if (separacion == 40) {
-          item.s40.map((perfil) => {
-            if (
-              perfil.resistencia > kgTotales / 100 &&
-              perfil.deformacion > kgTotales / 100
-            ) {
-              setPosiblesPerfiles((prev) => [...prev, perfil]);
-            } else {
-              Toast.fire({
-                icon: "error",
-                title: `Se ha superado los kg en una luz de ${luz}m`,
-              });
-            }
-          });
-        }
-        //separacion cada 60cm
-        if (separacion == 60) {
-          item.s60.map((perfil) => {
-            if (
-              perfil.resistencia > kgTotales / 100 &&
-              perfil.deformacion > kgTotales / 100
-            ) {
-              setPosiblesPerfiles((prev) => [...prev, perfil]);
-            } else {
-              Toast.fire({
-                icon: "error",
-                title: `Se ha superado los kg en una luz de ${luz}m`,
-              });
-            }
-          });
-        }
+        item.carga.map((carga) => {
+          if (carga.q === kgRounded) {
+            setPerfil(carga.perfil)
+           Swal.fire({
+              title: `Viga Tubo: ${carga.perfil}`,
+              text: `2 ${carga.perfil} mm y 2 pgu de 100x0.9`,
+              showCloseButton: true,
+              imageUrl: imgPerfil,
+              imageHeight: 200,
+              imageAlt: "Custom image",
+              showConfirmButton: false,
+            });
+          }
+        })
       }
     });
+
+    if(perfil !== ""){
+      Toast.fire({
+        icon: "error",
+        title: `Se ha superado los kg en una luz de ${luz}m`,
+      });
+    }
+
   };
 
   //modal con la informacion
@@ -150,31 +120,11 @@ const VigasTubo = () => {
     });
   };
 
-  useEffect(() => {
-    if (posiblesPerfiles.length > 0) {
-      Swal.fire({
-        title: `${posiblesPerfiles[0].perfil} mm`,
-        text: `Para una luz de ${dataForm.luz}m y una carga de ${kgTotales}kg/m2 se
-            necesita un perfil de ${posiblesPerfiles[0].perfil} mm
-            que tiene una deformacion de ${posiblesPerfiles[0].deformacion} y una
-            resistencia de ${posiblesPerfiles[0].resistencia} segun la tabla del
-            cirsoc para vigas.`,
-        footer: `Otros perfiles que verifican son: ${posiblesPerfiles[1].perfil} - ${posiblesPerfiles[2].perfil} - ${posiblesPerfiles[3].perfil}`,
-        showCloseButton: true,
-        imageUrl: imgPerfil,
-        imageHeight: 200,
-        imageAlt: "Custom image",
-        showConfirmButton: false,
-      });
-    }
-  }, [posiblesPerfiles]);
-
   const handelSubmit = (e) => {
     e.preventDefault();
     calcularPerfil();
   };
   const handelChange = (e) => {
-    setPosiblesPerfiles([]);
     setDataForm({
       ...dataForm,
       [e.target.name]: e.target.value,
@@ -290,6 +240,8 @@ const VigasTubo = () => {
           </span>
         </label>
         <input
+          defaultValue={1}
+          min={1}
           autoComplete="off"
           required
           step="0.01"
@@ -333,6 +285,10 @@ const VigasTubo = () => {
           Calcular
         </button>
       </form>
+      <p className="mt-6 text-xs">
+        *El calculo realizado es a modo de referencia, recomendamos verificarlo
+        con un profesional
+      </p>
     </div>
   );
 };

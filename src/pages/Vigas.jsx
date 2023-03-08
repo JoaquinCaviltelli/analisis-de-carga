@@ -146,11 +146,6 @@ const Vigas = () => {
               perfil.deformacion > valorMaximo / 100
             ) {
               setPosiblesPerfiles((prev) => [...prev, perfil]);
-            } else {
-              Toast.fire({
-                icon: "error",
-                title: `Se ha superado los kg en una luz de ${luz}m`,
-              });
             }
           });
         }
@@ -162,16 +157,18 @@ const Vigas = () => {
               perfil.deformacion > valorMaximo / 100
             ) {
               setPosiblesPerfiles((prev) => [...prev, perfil]);
-            } else {
-              Toast.fire({
-                icon: "error",
-                title: `Se ha superado los kg en una luz de ${luz}m`,
-              });
-            }
+            } 
           });
         }
       }
     });
+
+    if(posiblesPerfiles !== []){
+      Toast.fire({
+        icon: "error",
+        title: `Se ha superado los kg en una luz de ${luz}m`,
+      });
+    }
   };
 
   //modal con la informacion
@@ -380,6 +377,10 @@ const Vigas = () => {
           Calcular
         </button>
       </form>
+      <p className="mt-6 text-xs">
+        *El calculo realizado es a modo de referencia, recomendamos verificarlo
+        con un profesional
+      </p>
     </div>
   );
 };
