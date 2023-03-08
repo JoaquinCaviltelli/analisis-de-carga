@@ -8,7 +8,7 @@ const Home = () => {
         <p className="inline-block bg-barbieriBlue p-1 text-2xl font-light uppercase text-white ">
           Analisis de carga
         </p>
-        <p className="text-8xl font-extrabold uppercase text-white backdrop-grayscale">
+        <p className="text-8xl font-extrabold uppercase text-white">
           Steel Frame
         </p>
         <Link to="/tipo-de-analisis">
