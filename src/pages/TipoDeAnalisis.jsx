@@ -3,12 +3,11 @@ import { Link } from "react-router-dom";
 import imgBase from "/public/base.png";
 import imgVigas from "/public/vigas.png";
 import imgVigasTubo from "/public/vigas-tubo.png";
-
+import imgMontantes from "/public/montantes.png";
+import imgColumnas from "/public/columnas.png";
 
 const TipoDeAnalisis = () => {
   const [urlImg, setUrlImg] = useState(imgBase);
-
-
 
   return (
     <div className="my-10 mx-10 max-w-5xl lg:mx-48 ">
@@ -19,7 +18,7 @@ const TipoDeAnalisis = () => {
         <ul className="mt-10 flex w-full flex-col items-start gap-1 md:w-6/12">
           <div className="flex items-center gap-1">
             <span
-              onClick={(e) => setUrlImg(imgVigas)}
+              onClick={() => setUrlImg(imgVigas)}
               className="material-symbols-outlined cursor-pointer p-1 text-lg leading-none"
             >
               info
@@ -27,8 +26,8 @@ const TipoDeAnalisis = () => {
             <Link to="/tipo-de-analisis/vigas">
               <li
                 className="cursor-pointer p-1 text-xl hover:font-semibold"
-                onMouseOver={(e) => setUrlImg(imgVigas)}
-                onMouseOut={(e) => setUrlImg(imgBase)}
+                onMouseOver={() => setUrlImg(imgVigas)}
+                onMouseOut={() => setUrlImg(imgBase)}
               >
                 Vigas
               </li>
@@ -36,7 +35,7 @@ const TipoDeAnalisis = () => {
           </div>
           <div className="flex items-center gap-1">
             <span
-              onClick={(e) => setUrlImg(imgVigasTubo)}
+              onClick={() => setUrlImg(imgVigasTubo)}
               className="material-symbols-outlined cursor-pointer p-1 text-lg leading-none"
             >
               info
@@ -44,34 +43,48 @@ const TipoDeAnalisis = () => {
             <Link to="/tipo-de-analisis/vigas-tubo">
               <li
                 className="cursor-pointer p-1 text-xl hover:font-semibold"
-                onMouseOver={(e) => setUrlImg(imgVigasTubo)}
-                onMouseOut={(e) => setUrlImg(imgBase)}
+                onMouseOver={() => setUrlImg(imgVigasTubo)}
+                onMouseOut={() => setUrlImg(imgBase)}
               >
                 Vigas Tubo y dinteles
               </li>
             </Link>
           </div>
-
           <div className="flex items-center gap-1">
-            <span className="material-symbols-outlined cursor-pointer p-1 text-lg leading-none">
+            <span
+              onClick={() => setUrlImg(imgColumnas)}
+              className="material-symbols-outlined cursor-pointer p-1 text-lg leading-none"
+            >
               info
             </span>
             <Link to="/tipo-de-analisis/">
-              <li className="cursor-pointer p-1 text-xl hover:font-semibold">
-                Montantes
-              </li>
-            </Link>
-          </div>
-          <div className="flex items-center gap-1">
-            <span className="material-symbols-outlined cursor-pointer p-1 text-lg leading-none">
-              info
-            </span>
-            <Link to="/tipo-de-analisis/">
-              <li className="cursor-pointer p-1 text-xl hover:font-semibold">
+              <li
+                className="cursor-pointer p-1 text-xl hover:font-semibold"
+                onMouseOver={() => setUrlImg(imgColumnas)}
+                onMouseOut={() => setUrlImg(imgBase)}
+              >
                 Columnas compuestas
               </li>
             </Link>
           </div>
+          <div className="flex items-center gap-1">
+            <span
+              onClick={() => setUrlImg(imgMontantes)}
+              className="material-symbols-outlined cursor-pointer p-1 text-lg leading-none"
+            >
+              info
+            </span>
+            <Link to="/tipo-de-analisis/">
+              <li
+                className="cursor-pointer p-1 text-xl hover:font-semibold"
+                onMouseOver={() => setUrlImg(imgMontantes)}
+                onMouseOut={() => setUrlImg(imgBase)}
+              >
+                Montantes
+              </li>
+            </Link>
+          </div>
+          
           <Link to="/">
             <button className="mt-5 rounded border border-barbieriBlue py-2 px-10 text-center text-sm text-barbieriBlue hover:border-barbieriRed hover:bg-barbieriRed hover:text-white">
               Atras

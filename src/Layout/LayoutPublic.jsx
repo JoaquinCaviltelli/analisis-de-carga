@@ -7,7 +7,7 @@ const LayoutPublic = () => {
   let location = useLocation();
 
   return (
-    <div className="">
+    <div className="relative min-h-full">
       <Header />
       <main
         className={`${
