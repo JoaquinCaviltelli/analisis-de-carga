@@ -195,7 +195,9 @@ const Vigas = () => {
             que tiene una deformacion de ${posiblesPerfiles[0].deformacion} y una
             resistencia de ${posiblesPerfiles[0].resistencia} segun la tabla del
             cirsoc para vigas.`,
-        footer: `Otros perfiles que verifican son: ${posiblesPerfiles[1].perfil} - ${posiblesPerfiles[2].perfil} - ${posiblesPerfiles[3].perfil}`,
+        footer: `Los perfiles que verifican son: ${posiblesPerfiles.map((p) => {
+          return ` ${p.perfil} `
+        })}`,
         showCloseButton: true,
         imageUrl: imgPerfil,
         imageHeight: 200,
