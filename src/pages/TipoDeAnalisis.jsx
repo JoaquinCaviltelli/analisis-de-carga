@@ -70,7 +70,7 @@ const TipoDeAnalisis = () => {
             </Link>
           </div>
           <Link to="/">
-            <button className="mt-5 rounded border border-barbieriBlue py-2 px-10 text-center text-sm text-barbieriBlue hover:bg-gray hover:text-white">
+            <button className="mt-5 rounded border border-barbieriBlue py-2 px-10 text-center text-sm text-barbieriBlue hover:border-barbieriRed hover:bg-barbieriRed hover:text-white">
               Atras
             </button>
           </Link>
