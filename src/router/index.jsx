@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import LayoutPublic from "../Layout/LayoutPublic";
+import Columnas from "../pages/Columnas";
 import Home from "../pages/Home";
 import Montantes from "../pages/Montantes";
 import NotFound from "../pages/NotFound";
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
           {
             path: "/tipo-de-analisis/vigas-tubo",
             element: <VigasTubo />,
+          },
+          {
+            path: "/tipo-de-analisis/columnas",
+            element: <Columnas />,
           },
           {
             path: "/tipo-de-analisis/montantes",

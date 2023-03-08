@@ -8,6 +8,7 @@ import imgColumnas from "/public/columnas.png";
 
 const TipoDeAnalisis = () => {
   const [urlImg, setUrlImg] = useState(imgBase);
+  const [urlTo, setUrlTo] = useState("");
 
   return (
     <div className="my-10 mx-10 max-w-5xl lg:mx-48 ">
@@ -16,80 +17,72 @@ const TipoDeAnalisis = () => {
       </h2>
       <div className="flex w-full max-w-2xl flex-wrap gap-10  text-xl text-barbieriBlue md:flex-nowrap md:justify-center md:gap-2">
         <ul className="mt-10 flex w-full flex-col items-start gap-1 md:w-6/12">
-          <div className="flex items-center gap-1">
-            <span
-              onClick={() => setUrlImg(imgVigas)}
-              className="material-symbols-outlined cursor-pointer p-1 text-lg leading-none"
-            >
-              info
-            </span>
-            <Link to="/tipo-de-analisis/vigas">
-              <li
-                className="cursor-pointer p-1 text-xl hover:font-semibold"
-                onMouseOver={() => setUrlImg(imgVigas)}
-                onMouseOut={() => setUrlImg(imgBase)}
+          <li
+            className={`${
+              urlTo == "/tipo-de-analisis/vigas" && "font-semibold"
+            } cursor-pointer p-1 text-xl hover:font-semibold`}
+            onClick={() => {
+              setUrlImg(imgVigas);
+              setUrlTo("/tipo-de-analisis/vigas");
+            }}
+          >
+            Vigas
+          </li>
+
+          <li
+            className={`${
+              urlTo == "/tipo-de-analisis/vigas-tubo" && "font-semibold"
+            } cursor-pointer p-1 text-xl hover:font-semibold`}
+            onClick={() => {
+              setUrlImg(imgVigasTubo);
+              setUrlTo("/tipo-de-analisis/vigas-tubo");
+            }}
+          >
+            Vigas Tubo y dinteles
+          </li>
+
+          <li
+            className={`${
+              urlTo == "/tipo-de-analisis/columnas" && "font-semibold"
+            } cursor-pointer p-1 text-xl hover:font-semibold`}
+            onClick={() => {
+              setUrlImg(imgColumnas);
+              setUrlTo("/tipo-de-analisis/columnas");
+            }}
+          >
+            Columnas compuestas
+          </li>
+
+          <li
+            className={`${
+              urlTo == "/tipo-de-analisis/montantes" && "font-semibold"
+            } cursor-pointer p-1 text-xl hover:font-semibold`}
+            onClick={() => {
+              setUrlImg(imgMontantes);
+              setUrlTo("/tipo-de-analisis/montantes");
+            }}
+          >
+            Montantes
+          </li>
+
+          <div className="flex gap-4">
+            <Link to="/">
+              <button className="mt-5 rounded border border-barbieriBlue py-2 px-10 text-center text-sm text-barbieriBlue hover:border-barbieriRed hover:bg-barbieriRed hover:text-white">
+                Salir
+              </button>
+            </Link>
+            <Link to={urlTo}>
+              <button
+                className={` ${
+                  urlTo === ""
+                    ? " bg-ligthGray text-gray"
+                    : " bg-barbieriBlue text-white hover:bg-barbieriBlueFocus"
+                } mt-5 rounded py-2 px-10 text-center text-sm`}
               >
-                Vigas
-              </li>
+                Calcular
+              </button>
             </Link>
           </div>
-          <div className="flex items-center gap-1">
-            <span
-              onClick={() => setUrlImg(imgVigasTubo)}
-              className="material-symbols-outlined cursor-pointer p-1 text-lg leading-none"
-            >
-              info
-            </span>
-            <Link to="/tipo-de-analisis/vigas-tubo">
-              <li
-                className="cursor-pointer p-1 text-xl hover:font-semibold"
-                onMouseOver={() => setUrlImg(imgVigasTubo)}
-                onMouseOut={() => setUrlImg(imgBase)}
-              >
-                Vigas Tubo y dinteles
-              </li>
-            </Link>
-          </div>
-          <div className="flex items-center gap-1">
-            <span
-              onClick={() => setUrlImg(imgColumnas)}
-              className="material-symbols-outlined cursor-pointer p-1 text-lg leading-none"
-            >
-              info
-            </span>
-            <Link to="/tipo-de-analisis/">
-              <li
-                className="cursor-pointer p-1 text-xl hover:font-semibold"
-                onMouseOver={() => setUrlImg(imgColumnas)}
-                onMouseOut={() => setUrlImg(imgBase)}
-              >
-                Columnas compuestas
-              </li>
-            </Link>
-          </div>
-          <div className="flex items-center gap-1">
-            <span
-              onClick={() => setUrlImg(imgMontantes)}
-              className="material-symbols-outlined cursor-pointer p-1 text-lg leading-none"
-            >
-              info
-            </span>
-            <Link to="/tipo-de-analisis/">
-              <li
-                className="cursor-pointer p-1 text-xl hover:font-semibold"
-                onMouseOver={() => setUrlImg(imgMontantes)}
-                onMouseOut={() => setUrlImg(imgBase)}
-              >
-                Montantes
-              </li>
-            </Link>
-          </div>
-          
-          <Link to="/">
-            <button className="mt-5 rounded border border-barbieriBlue py-2 px-10 text-center text-sm text-barbieriBlue hover:border-barbieriRed hover:bg-barbieriRed hover:text-white">
-              Atras
-            </button>
-          </Link>
         </ul>
         <div className="w-full md:w-6/12">
           <img src={urlImg} alt="" />
