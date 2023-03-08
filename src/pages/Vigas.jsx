@@ -165,6 +165,7 @@ const Vigas = () => {
       imageUrl: img,
       imageAlt: "Custom image",
       showConfirmButton: false,
+      showCloseButton: true,
     });
   };
 
@@ -200,19 +201,19 @@ const Vigas = () => {
   };
 
   return (
-    <div className="my-10 mx-10 max-w-5xl text-gray  lg:mx-48">
+    <div className="my-10 mx-10 max-w-5xl text-gray lg:mx-48">
       <h2 className="border-b border-ligthGray pb-4 text-3xl font-black text-barbieriBlue">
         Analisis de cargas (vigas)
       </h2>
       <form
-        className="mt-10 grid w-full max-w-2xl grid-cols-12 items-center gap-x-5 gap-y-1 text-sm "
+        className="mt-10 grid w-full max-w-2xl grid-cols-12  items-center gap-x-5 gap-y-1 text-sm "
         onSubmit={handelSubmit}
       >
         <label className="col-span-8">
-          Tipo de cubierta <b>({kgCubierta} kg/m2) </b>
+          <b>Tipo de cubierta </b>({kgCubierta} kg/m2)
         </label>
         <select
-          className=" col-span-4 rounded border border-gray p-2 outline-none"
+          className=" col-span-4 h-full rounded border border-gray p-2 outline-none"
           name="kgCubierta"
           onChange={handelChange}
         >
@@ -223,10 +224,10 @@ const Vigas = () => {
         </select>
 
         <label className="col-span-8">
-          Entrepiso <b>({kgEntrepiso} kg/m2)</b>
+          <b> Entrepiso </b>({kgEntrepiso} kg/m2)
         </label>
         <select
-          className=" col-span-4 rounded border border-gray p-2 outline-none"
+          className=" col-span-4 h-full rounded border border-gray p-2 outline-none"
           name="kgEntrepiso"
           onChange={handelChange}
         >
@@ -237,30 +238,28 @@ const Vigas = () => {
         </select>
 
         <label className="col-span-8">
-          Sobrecarga <b>({kgSobrecarga} kg/m2)</b>
+          <b> Sobrecarga </b>({kgSobrecarga} kg/m2)
           <span
             onClick={() => info("", "", imgSobrecarga)}
-            className="material-symbols-outlined cursor-pointer text-lg "
+            className="material-symbols-outlined cursor-pointer text-lg leading-none "
           >
             info
           </span>
         </label>
         <input
           min="0"
-          className="col-span-4 rounded border border-gray p-2 outline-none"
+          className="col-span-4 h-full rounded border border-gray p-2 outline-none"
           type="number"
           name="kgSobrecarga"
           onChange={handelChange}
           value={kgSobrecarga}
         />
         <label className="col-span-8">
-          Ubicacion{" "}
-          <b>
-            (Nieve:{zonaActual.nieve} kg/m2 - Viento {zonaActual.viento} v/ms)
-          </b>
+          <b>Ubicacion </b>
+          (Nieve:{zonaActual.nieve} kg/m2 - Viento {zonaActual.viento} v/ms)
         </label>
         <select
-          className=" col-span-4 rounded border border-gray p-2 outline-none"
+          className=" col-span-4 h-full rounded border border-gray p-2 outline-none"
           onChange={handelChange}
           name="ubicacion"
         >
@@ -269,19 +268,17 @@ const Vigas = () => {
           })}
         </select>
         <label className="col-span-8">
-          Exposicion del viento{" "}
-          <b>
-            (Wp: {exposicionViento.wp} Ws: {exposicionViento.ws})
-          </b>
+          <b> Exposicion del viento </b>
+          (Wp: {exposicionViento.wp} Ws: {exposicionViento.ws})
           <span
             onClick={() => info("", "", imgViento)}
-            className="material-symbols-outlined cursor-pointer text-lg"
+            className="material-symbols-outlined cursor-pointer text-lg leading-none"
           >
             info
           </span>
         </label>
         <select
-          className=" col-span-4 rounded border border-gray p-2 outline-none"
+          className=" col-span-4 h-full rounded border border-gray p-2 outline-none"
           onChange={handelChange}
           name="exposicion"
         >
@@ -290,7 +287,7 @@ const Vigas = () => {
         </select>
 
         <label className="col-span-8">
-          Luz de apoyo
+          <b> Luz de apoyo</b>
           <span
             onClick={() =>
               info(
@@ -299,7 +296,7 @@ const Vigas = () => {
                 imgLuzDeApoyo
               )
             }
-            className="material-symbols-outlined cursor-pointer text-lg"
+            className="material-symbols-outlined cursor-pointer text-lg leading-none"
           >
             info
           </span>
@@ -308,23 +305,27 @@ const Vigas = () => {
           autoComplete="off"
           required
           step="0.01"
-          className="col-span-4 rounded border border-gray p-2 outline-none"
+          className="col-span-4 h-full rounded border border-gray p-2 outline-none"
           type="number"
           name="luz"
           onChange={handelChange}
         />
-        <label className="col-span-8">Separacion entre perfiles: </label>
+        <label className="col-span-8">
+          <b>Separacion entre perfiles:</b>{" "}
+        </label>
         <select
-          className="col-span-4 rounded border border-gray p-2 outline-none"
+          className="col-span-4 h-full rounded border border-gray p-2 outline-none"
           name="separacion"
           onChange={handelChange}
         >
           <option value={40}>Cada 40cm</option>
           <option value={60}>Cada 60cm</option>
         </select>
-        <label className="col-span-8">Margen de calculo</label>
+        <label className="col-span-8">
+          <b>Margen de calculo</b>
+        </label>
         <select
-          className="col-span-4 rounded border border-gray p-2 outline-none"
+          className="col-span-4 h-full rounded border border-gray p-2 outline-none"
           name="margen"
           onChange={handelChange}
         >

@@ -10,3 +10,7 @@
 *{
     font-family: 'Montserrat', sans-serif;
 }
+.swal2-close:focus {
+    outline: none;
+   box-shadow: none !important;
+}
