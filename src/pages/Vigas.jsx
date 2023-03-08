@@ -366,7 +366,7 @@ const Vigas = () => {
         </div>
 
         <Link
-          className="col-span-6 rounded border border-barbieriBlue p-2 text-center text-barbieriBlue "
+          className="col-span-6 rounded border border-barbieriBlue p-2 text-center text-barbieriBlue hover:bg-gray hover:text-white"
           to="/tipo-de-analisis"
         >
           <button type="button">Atras</button>
