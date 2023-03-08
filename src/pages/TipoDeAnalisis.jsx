@@ -14,25 +14,34 @@ const TipoDeAnalisis = () => {
       </h2>
       <div className="flex w-full max-w-2xl flex-wrap gap-10  text-xl text-barbieriBlue md:flex-nowrap md:justify-center md:gap-2">
         <ul className="mt-10 flex w-6/12 flex-col gap-1">
-          <Link to="/tipo-de-analisis/vigas">
-            <li
-              className="cursor-pointer py-1 text-xl hover:font-semibold"
-              onMouseOver={(e) => setUrlImg(imgVigas)}
-              onMouseOut={(e) => setUrlImg(imgBase)}
+          <div className="flex items-center gap-1">
+            <span
+              onClick={(e) => setUrlImg(imgVigas)}
+              className="material-symbols-outlined cursor-pointer p-1 text-lg leading-none"
             >
-              Vigas
-            </li>
-          </Link>
+              info
+            </span>
+            <Link to="/tipo-de-analisis/vigas">
+              <li
+                className="cursor-pointer p-1 text-xl hover:font-semibold"
+                onMouseOver={(e) => setUrlImg(imgVigas)}
+                onMouseOut={(e) => setUrlImg(imgBase)}
+              >
+                Vigas
+              </li>
+            </Link>
+          </div>
+
           <Link to="/tipo-de-analisis/vigas-tubo">
             <li
-              className="cursor-pointer py-1 text-xl hover:font-semibold"
+              className="cursor-pointer p-1 text-xl hover:font-semibold"
               onMouseOver={(e) => setUrlImg(imgVigasTubo)}
               onMouseOut={(e) => setUrlImg(imgBase)}
             >
               Vigas Tubo y dinteles
             </li>
           </Link>
-          <li className="cursor-pointer py-1 text-xl hover:font-semibold">
+          <li className="cursor-pointer p-1 text-xl hover:font-semibold">
             Montantes
           </li>
         </ul>

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div className="h-screen w-full bg-[url(https://www.adbarbieri.com/hs-fs/hubfs/2022/Productos_y_Servicios/Steel_Frame/header-product.jpg?width=2000&name=header-product.jpg)] bg-cover bg-center bg-no-repeat pt-44">
-     
       <div className="flex flex-col items-start gap-5 p-10">
         <p className="inline-block bg-barbieriBlue p-1 text-2xl font-light uppercase text-white ">
           Analisis de carga
