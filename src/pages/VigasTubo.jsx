@@ -68,7 +68,7 @@ const VigasTubo = () => {
   const calcularPerfil = () => {
     //se redonde hacia arriba la luz de apoyo para que sea igual al de la tabla
     var luzRounded = luz < 1.5 ? 1.5 : Math.ceil(luz * 2) / 2;
-    var kgRounded = Math.ceil(kgTotales / 100) * 100;
+    var kgRounded = kgTotales <= 100 ? 200 : Math.ceil(kgTotales / 100) * 100
 
     if (luz > 7) {
       return Toast.fire({
