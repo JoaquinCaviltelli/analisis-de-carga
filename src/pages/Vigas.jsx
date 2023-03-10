@@ -163,7 +163,7 @@ const Vigas = () => {
       }
     });
 
-    if(posiblesPerfiles !== []){
+    if(posiblesPerfiles != []){
       Toast.fire({
         icon: "error",
         title: `Se ha superado los kg en una luz de ${luz}m`,
