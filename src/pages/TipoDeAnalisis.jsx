@@ -10,8 +10,6 @@ const TipoDeAnalisis = () => {
   const [urlImg, setUrlImg] = useState(imgBase);
   const [urlTo, setUrlTo] = useState("");
 
-
-
   return (
     <div className="my-10 mx-10 max-w-5xl lg:mx-48 ">
       <h2 className="border-b border-ligthGray pb-4 text-3xl font-black text-barbieriBlue">

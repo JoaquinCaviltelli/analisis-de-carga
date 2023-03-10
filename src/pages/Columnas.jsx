@@ -4,7 +4,8 @@ import { Toast } from "../components/Toast";
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import imgPerfil from "/public/viga-tubo.jpeg";
+import imgPerfil from "/public/columna.png";
+import { useDatosContext } from "../context/DatosContext";
 
 const Columnas = () => {
   //datos del formulario
@@ -13,6 +14,16 @@ const Columnas = () => {
     altoColumna: 0,
     aInf: 1,
   });
+
+  const { datos, setDatos } = useDatosContext();
+
+  useEffect(() => {
+    setDataForm({
+      ...dataForm,
+      kgCarga: datos.kgCarga,
+      aInf: datos.aInf,
+    });
+  }, [datos]);
 
   var { kgCarga, altoColumna, aInf } = dataForm;
 
@@ -86,7 +97,7 @@ const Columnas = () => {
   return (
     <div className="my-10 mx-10 max-w-5xl text-gray lg:mx-48">
       <h2 className="border-b border-ligthGray pb-4 text-3xl font-black text-barbieriBlue">
-        Analisis de cargas (vigas tubo y dinteles)
+        Analisis de cargas (columnas)
       </h2>
       <form
         className="mt-10 grid w-full max-w-2xl grid-cols-12  items-center gap-x-5 gap-y-1 text-sm "
@@ -103,12 +114,12 @@ const Columnas = () => {
           type="number"
           name="kgCarga"
           onChange={handelChange}
+          value={kgCarga}
         />
         <label className="col-span-8">
           <b>Area de inlfuencia (m)</b>
         </label>
         <input
-          defaultValue={1}
           autoComplete="off"
           required
           step="0.01"
@@ -116,6 +127,7 @@ const Columnas = () => {
           type="number"
           name="aInf"
           onChange={handelChange}
+          value={aInf}
         />
         <label className="col-span-8">
           <b>Alto de la columna (m)</b>

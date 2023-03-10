@@ -4,10 +4,11 @@ import zonas from "../zonas.json";
 import { Toast } from "../components/Toast";
 
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import imgPerfil from "/public/viga-tubo.jpeg";
+import { Link, useNavigate } from "react-router-dom";
+import imgPerfil from "/public/viga-tubo.png";
 import imgLuzDeApoyo from "/public/luz-de-apoyo.png";
 import imgSobrecarga from "/public/sobrecarga.png";
+import { useDatosContext } from "../context/DatosContext";
 
 const VigasTubo = () => {
   //datos del formulario
@@ -20,6 +21,19 @@ const VigasTubo = () => {
     margen: 1,
     aInf: 1,
   });
+
+  const { datos, setDatos } = useDatosContext();
+
+  const navigate = useNavigate();
+
+  const calcularColumna = () => {
+    setDatos({
+      kgCarga: kgTotales,
+      aInf: dataForm.luz / 2,
+    });
+
+    navigate("/tipo-de-analisis/columnas");
+  };
 
   var { kgCubierta, margen, aInf, kgEntrepiso, kgSobrecarga, luz, ubicacion } =
     dataForm;
@@ -68,7 +82,7 @@ const VigasTubo = () => {
   const calcularPerfil = () => {
     //se redonde hacia arriba la luz de apoyo para que sea igual al de la tabla
     var luzRounded = luz < 1.5 ? 1.5 : Math.ceil(luz * 2) / 2;
-    var kgRounded = kgTotales <= 100 ? 200 : Math.ceil(kgTotales / 100) * 100
+    var kgRounded = kgTotales <= 100 ? 200 : Math.ceil(kgTotales / 100) * 100;
 
     if (luz > 7) {
       return Toast.fire({
@@ -89,6 +103,10 @@ const VigasTubo = () => {
               imageHeight: 200,
               imageAlt: "Custom image",
               showConfirmButton: false,
+            }).then((result) => {
+              if (result.isConfirmed) {
+                calcularColumna();
+              }
             });
           } else if (kgRounded > carga.q) {
             return Toast.fire({
@@ -281,6 +299,7 @@ const VigasTubo = () => {
         *El calculo realizado es a modo de referencia, recomendamos verificarlo
         con un profesional
       </p>
+      <button onClick={calcularColumna}>Calcular Columna para esa viga</button>
     </div>
   );
 };
