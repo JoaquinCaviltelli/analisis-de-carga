@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div
-      className={`h-screen w-full bg-[url("/public/bg-home.jpg")] bg-cover bg-center bg-no-repeat pt-44`}
+      className={`h-screen w-full bg-[url("src/assets/bg-home.jpg")] bg-cover bg-center bg-no-repeat pt-44`}
     >
       <div className="flex flex-col items-start gap-2 p-10">
         <p className="inline-block bg-barbieriBlue p-1 text-2xl font-light uppercase text-white ">

@@ -6,8 +6,8 @@ import { Toast } from "../components/Toast";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import imgPerfil from "../assets/viga-tubo.png";
-import imgLuzDeApoyo from "/public/luz-de-apoyo.png";
-import imgSobrecarga from "/public/sobrecarga.png";
+import imgLuzDeApoyo from "/src/assets/luz-de-apoyo.png";
+import imgSobrecarga from "/src/assets/sobrecarga.png";
 import { useDatosContext } from "../context/DatosContext";
 
 const VigasTubo = () => {

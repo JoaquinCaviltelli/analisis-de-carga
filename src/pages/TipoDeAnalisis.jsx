@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import imgBase from "/public/base.png";
-import imgVigas from "/public/vigas.png";
-import imgVigasTubo from "/public/vigas-tubo.png";
-import imgMontantes from "/public/montantes.png";
-import imgColumnas from "/public/columnas.png";
+import imgBase from "/src/assets/base.png";
+import imgVigas from "/src/assets/vigas.png";
+import imgVigasTubo from "/src/assets/vigas-tubo.png";
+import imgMontantes from "/src/assets/montantes.png";
+import imgColumnas from "/src/assets/columnas.png";
 
 const TipoDeAnalisis = () => {
   const [urlImg, setUrlImg] = useState(imgBase);

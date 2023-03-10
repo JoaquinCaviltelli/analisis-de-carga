@@ -4,7 +4,7 @@ import { Toast } from "../components/Toast";
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import imgPerfil from "/public/perfil.png";
+import imgPerfil from "/src/assets/columna.png";
 import { useDatosContext } from "../context/DatosContext";
 
 const Columnas = () => {

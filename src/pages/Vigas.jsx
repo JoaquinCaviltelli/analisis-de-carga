@@ -5,10 +5,10 @@ import { Toast } from "../components/Toast";
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import imgPerfil from "/public/perfil.png";
-import imgLuzDeApoyo from "/public/luz-de-apoyo.png";
-import imgSobrecarga from "/public/sobrecarga.png";
-import imgViento from "/public/viento.png";
+import imgPerfil from "/src/assets/perfil.png";
+import imgLuzDeApoyo from "/src/assets/luz-de-apoyo.png";
+import imgSobrecarga from "/src/assets/sobrecarga.png";
+import imgViento from "/src/assets/viento.png";
 
 const Vigas = () => {
   //datos del formulario
