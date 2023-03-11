@@ -14,6 +14,7 @@ const Montantes = () => {
   //datos del formulario
   const [dataForm, setDataForm] = useState({
     kgCarga: 0,
+    kgTerminacion:28,
     altoColumna: 0,
     aInf: 1,
     ubicacion: "Seleccionar",
@@ -43,8 +44,8 @@ const Montantes = () => {
 
   useEffect(()=>{
     setValores({
-      qc: Number((dataForm.kgCarga * (dataForm.aInf * 0.4)).toFixed(2)),
-      qd: Number((dataForm.altoColumna * 0.4 * 0.28).toFixed(2))
+      qc: Number(kgTotales * (dataForm.aInf * 0.4)) /100,
+      qd: Number(dataForm.altoColumna * 0.4 * 0.28)
     })
   },[dataForm])
 
@@ -92,8 +93,8 @@ const Montantes = () => {
 
   useEffect(() => {
     //se suma los kg de la cubierta, entrepiso, sobregarga y nieve
-    setKgTotales(Math.round(Number(kgCarga) * Number(aInf)));
-  }, [kgCarga, altoColumna, aInf]);
+    setKgTotales(Math.round(Number(kgCarga) + Number(dataForm.kgTerminacion)));
+  }, [kgCarga, dataForm]);
 
   const calcularPerfil = () => {
     //se redonde hacia arriba la luz de apoyo para que sea igual al de la tabla
@@ -188,6 +189,19 @@ const Montantes = () => {
           onChange={handelChange}
           value={kgCarga}
         />
+
+<label className="col-span-8">
+          <b>Tipo de terminacion exterior </b>({dataForm.kgTerminacion} kg/m2)
+        </label>
+        <select
+          className=" col-span-4 h-full rounded border border-gray p-2 outline-none"
+          name="kgTerminacion"
+          onChange={handelChange}
+        >
+          <option value={28}>Eifs</option>
+          <option value={40}>Superboard</option>
+        </select>
+        
         <label className="col-span-8">
           <b>Area de inlfuencia (m)</b>
           <span
@@ -266,17 +280,10 @@ const Montantes = () => {
           <p>
             <b>Carga viento</b>: {cargaViento.wm} kg/m2
           </p>
-          
-          <p>
-            <b>qd</b>: {valores.qd} kg/m2
-          </p>
-          <p>
-            <b>qc</b>: {valores.qc} kg/m2
-          </p>
           <p>
             <b>qm</b>:{" "}
             {(valores.qc + valores.qd).toFixed(2)}{" "}
-            kg/m2
+            kN/m2
           </p>
         </div>
 
