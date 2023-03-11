@@ -5,6 +5,7 @@ import { Toast } from "../components/Toast";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import imgPerfil from "/src/assets/columna.png";
+import imgAinf from "/src/assets/columna-ainf.png";
 import { useDatosContext } from "../context/DatosContext";
 
 const Columnas = () => {
@@ -75,7 +76,7 @@ const Columnas = () => {
   const info = (title, text, img) => {
     Swal.fire({
       title: title,
-      text: text,
+      footer: text,
       imageUrl: img,
       imageAlt: "Custom image",
       showConfirmButton: false,
@@ -105,6 +106,18 @@ const Columnas = () => {
       >
         <label className="col-span-8">
           <b>Carga (kg)</b>
+          <span
+            onClick={() =>
+              info(
+                "Carga Total",
+                `Se puede calcular en el analisis de la viga tubo `,
+                ""
+              )
+            }
+            className="material-symbols-outlined cursor-pointer text-lg leading-none"
+          >
+            info
+          </span>
         </label>
         <input
           autoComplete="off"
@@ -118,6 +131,18 @@ const Columnas = () => {
         />
         <label className="col-span-8">
           <b>Area de inlfuencia (m)</b>
+          <span
+            onClick={() =>
+              info(
+                "Area de influencia",
+                "La mitad de la viga que apoya",
+                imgAinf
+              )
+            }
+            className="material-symbols-outlined cursor-pointer text-lg leading-none"
+          >
+            info
+          </span>
         </label>
         <input
           autoComplete="off"

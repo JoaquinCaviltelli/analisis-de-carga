@@ -20,7 +20,7 @@ const Vigas = () => {
     separacion: 40,
     ubicacion: "Seleccionar",
     exposicion: "C",
-    margen: 1,
+    margen: 1.1,
   });
 
   var {
@@ -335,7 +335,7 @@ const Vigas = () => {
           onChange={handelChange}
         >
           <option value={40}>Cada 40cm</option>
-          <option value={60}>Cada 60cm</option>
+          {/* <option value={60}>Cada 60cm</option> */}
         </select>
         <label className="col-span-8">
           <b>Margen de calculo</b>
@@ -344,6 +344,7 @@ const Vigas = () => {
           className="col-span-4 h-full rounded border border-gray p-2 outline-none"
           name="margen"
           onChange={handelChange}
+          defaultValue={1.1}
         >
           <option value={1}>0%</option>
           <option value={1.05}>5%</option>

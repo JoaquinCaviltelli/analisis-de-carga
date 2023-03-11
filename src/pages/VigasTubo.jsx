@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import imgPerfil from "../assets/viga-tubo.png";
 import imgLuzDeApoyo from "/src/assets/luz-de-apoyo.png";
+import imgAinf from "/src/assets/viga-ainf.png";
 import imgSobrecarga from "/src/assets/sobrecarga.png";
 import { useDatosContext } from "../context/DatosContext";
 
@@ -18,7 +19,7 @@ const VigasTubo = () => {
     kgSobrecarga: 96,
     luz: 0,
     ubicacion: "Seleccionar",
-    margen: 1,
+    margen: 1.1,
     aInf: 1,
   });
 
@@ -216,7 +217,7 @@ const VigasTubo = () => {
             onClick={() =>
               info(
                 "Luz de apoyo",
-                "En este caso la distancia total es de 8m, pero la luz de apoyo es de 5m ya que hay una viga que divide las luces",
+                "En este caso la distancia total es de 6m, pero la luz de apoyo es de 4.5m ya que hay una viga que divide las luces",
                 imgLuzDeApoyo
               )
             }
@@ -240,9 +241,9 @@ const VigasTubo = () => {
           <span
             onClick={() =>
               info(
-                "Luz de apoyo",
-                "En este caso la distancia total es de 8m, pero la luz de apoyo es de 5m ya que hay una viga que divide las luces",
-                imgLuzDeApoyo
+                "Ancho de influencia",
+                "Es el largo de la viga dividido dos",
+                imgAinf
               )
             }
             className="material-symbols-outlined cursor-pointer text-lg leading-none"
@@ -268,6 +269,7 @@ const VigasTubo = () => {
           className="col-span-4 h-full rounded border border-gray p-2 outline-none"
           name="margen"
           onChange={handelChange}
+          defaultValue={1.1}
         >
           <option value={1}>0%</option>
           <option value={1.05}>5%</option>
