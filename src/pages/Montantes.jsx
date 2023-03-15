@@ -14,7 +14,7 @@ const Montantes = () => {
   //datos del formulario
   const [dataForm, setDataForm] = useState({
     kgCarga: 0,
-    kgTerminacion:28,
+    kgTerminacion: 28,
     altoColumna: 0,
     aInf: 1,
     ubicacion: "Seleccionar",
@@ -22,6 +22,14 @@ const Montantes = () => {
   });
 
   const { datos, setDatos } = useDatosContext();
+
+  useEffect(() => {
+    setDataForm({
+      ...dataForm,
+      kgCarga: datos.kgCarga,
+      aInf: datos.aInf,
+    });
+  }, [datos]);
 
   //cargas de viento y nieve segun la zona (por defecto Cordoba)
   const [zonaActual, setZonaActual] = useState({
@@ -39,15 +47,15 @@ const Montantes = () => {
 
   const [valores, setValores] = useState({
     qc: 0,
-    qd:0
-  })
+    qd: 0,
+  });
 
-  useEffect(()=>{
+  useEffect(() => {
     setValores({
-      qc: Number(kgTotales * (dataForm.aInf * 0.4)) /100,
-      qd: Number(dataForm.altoColumna * 0.4 * 0.28)
-    })
-  },[dataForm])
+      qc: Number(kgTotales * (dataForm.aInf * 0.4)) / 100,
+      qd: Number(dataForm.altoColumna * 0.4 * 0.28),
+    });
+  }, [dataForm]);
 
   useEffect(() => {
     //se calcula la carga de precion y succion segun la zona y la expocicion
@@ -156,7 +164,7 @@ const Montantes = () => {
   };
 
   return (
-    <div className="my-10 mx-10 max-w-5xl text-gray lg:mx-48">
+    <div className="my-10 mx-10 max-w-5xl text-gray lg:mx-32">
       <h2 className="border-b border-ligthGray pb-4 text-3xl font-black text-barbieriBlue">
         Analisis de cargas (montantes)
       </h2>
@@ -183,14 +191,16 @@ const Montantes = () => {
           autoComplete="off"
           required
           step="0.01"
-          className="col-span-4 h-full rounded border border-gray p-2 outline-none"
+          className={` ${
+            datos.kgCarga > 0 && "text-barbieriRed"
+          } col-span-4 h-full rounded border border-gray p-2 outline-none`}
           type="number"
           name="kgCarga"
           onChange={handelChange}
           value={kgCarga}
         />
 
-<label className="col-span-8">
+        <label className="col-span-8">
           <b>Tipo de terminacion exterior </b>({dataForm.kgTerminacion} kg/m2)
         </label>
         <select
@@ -201,7 +211,7 @@ const Montantes = () => {
           <option value={28}>Eifs</option>
           <option value={40}>Superboard</option>
         </select>
-        
+
         <label className="col-span-8">
           <b>Area de inlfuencia (m)</b>
           <span
@@ -221,7 +231,9 @@ const Montantes = () => {
           autoComplete="off"
           required
           step="0.01"
-          className="col-span-4 h-full rounded border border-gray p-2 outline-none"
+          className={` ${
+            datos.kgCarga > 0 && "text-barbieriRed"
+          } col-span-4 h-full rounded border border-gray p-2 outline-none`}
           type="number"
           name="aInf"
           onChange={handelChange}
@@ -281,9 +293,7 @@ const Montantes = () => {
             <b>Carga viento</b>: {cargaViento.wm} kg/m2
           </p>
           <p>
-            <b>qm</b>:{" "}
-            {(valores.qc + valores.qd).toFixed(2)}{" "}
-            kN/m2
+            <b>qm</b>: {(valores.qc + valores.qd).toFixed(2)} kN/m2
           </p>
         </div>
 

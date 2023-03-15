@@ -5,13 +5,23 @@ import imgVigas from "/src/assets/vigas.png";
 import imgVigasTubo from "/src/assets/vigas-tubo.png";
 import imgMontantes from "/src/assets/montantes.png";
 import imgColumnas from "/src/assets/columnas.png";
+import { useDatosContext } from "../context/DatosContext";
 
 const TipoDeAnalisis = () => {
   const [urlImg, setUrlImg] = useState(imgBase);
   const [urlTo, setUrlTo] = useState("");
 
+  const { datos, setDatos } = useDatosContext();
+
+  const salir = () => {
+    setDatos({
+      kgCarga: 0,
+      aInf: 1,
+    });
+  };
+
   return (
-    <div className="my-10 mx-10 max-w-5xl lg:mx-48 ">
+    <div className="my-10 mx-10 max-w-5xl lg:mx-32 ">
       <h2 className="border-b border-ligthGray pb-4 text-3xl font-black text-barbieriBlue">
         Analisis de carga
       </h2>
@@ -67,7 +77,10 @@ const TipoDeAnalisis = () => {
 
           <div className="flex gap-4">
             <Link to="/">
-              <button className="mt-5 rounded border border-barbieriBlue py-2 px-10 text-center text-sm text-barbieriBlue hover:border-barbieriRed hover:bg-barbieriRed hover:text-white">
+              <button
+                onClick={salir}
+                className="mt-5 rounded border border-barbieriBlue py-2 px-10 text-center text-sm text-barbieriBlue hover:border-barbieriRed hover:bg-barbieriRed hover:text-white"
+              >
                 Salir
               </button>
             </Link>

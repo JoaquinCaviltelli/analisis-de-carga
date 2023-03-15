@@ -4,13 +4,29 @@ import zonas from "../zonas.json";
 import { Toast } from "../components/Toast";
 
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import imgPerfil from "/src/assets/perfil.png";
 import imgLuzDeApoyo from "/src/assets/luz-de-apoyo.png";
 import imgSobrecarga from "/src/assets/sobrecarga.png";
 import imgViento from "/src/assets/viento.png";
+import { useDatosContext } from "../context/DatosContext";
 
 const Vigas = () => {
+
+    const { datos, setDatos } = useDatosContext();
+
+    const navigate = useNavigate();
+
+    const calcularMontantes = () => {
+      setDatos({
+        kgCarga: kgTotales,
+        aInf: (dataForm.luz / 2 * 0.4).toFixed(2),
+      });
+
+      // navigate("/tipo-de-analisis/montantes");
+    };
+  
+  
   //datos del formulario
   const [dataForm, setDataForm] = useState({
     kgCubierta: 35,
@@ -192,9 +208,9 @@ const Vigas = () => {
             que tiene una deformacion de ${posiblesPerfiles[0].deformacion} y una
             resistencia de ${posiblesPerfiles[0].resistencia} segun la tabla del
             cirsoc para vigas.`,
-        footer: `Los perfiles que verifican son: ${posiblesPerfiles.map((p) => {
-          return ` ${p.perfil} `
-        })}`,
+        // footer: `Los perfiles que verifican son: ${posiblesPerfiles.map((p) => {
+        //   return ` ${p.perfil} `
+        // })}`,
         showCloseButton: true,
         imageUrl: imgPerfil,
         imageHeight: 200,
@@ -207,6 +223,7 @@ const Vigas = () => {
   const handelSubmit = (e) => {
     e.preventDefault();
     calcularPerfil();
+    calcularMontantes()
   };
   const handelChange = (e) => {
     setPosiblesPerfiles([]);
@@ -217,7 +234,7 @@ const Vigas = () => {
   };
 
   return (
-    <div className="my-10 mx-10 max-w-5xl text-gray lg:mx-48">
+    <div className="my-10 mx-10 max-w-5xl text-gray lg:mx-32">
       <h2 className="border-b border-ligthGray pb-4 text-3xl font-black text-barbieriBlue">
         Analisis de cargas (vigas)
       </h2>
@@ -382,6 +399,7 @@ const Vigas = () => {
         *El calculo realizado es a modo de referencia, recomendamos verificarlo
         con un profesional
       </p>
+      
     </div>
   );
 };

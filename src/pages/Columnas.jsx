@@ -96,7 +96,7 @@ const Columnas = () => {
   };
 
   return (
-    <div className="my-10 mx-10 max-w-5xl text-gray lg:mx-48">
+    <div className="my-10 mx-10 max-w-5xl text-gray lg:mx-32">
       <h2 className="border-b border-ligthGray pb-4 text-3xl font-black text-barbieriBlue">
         Analisis de cargas (columnas)
       </h2>
@@ -123,7 +123,9 @@ const Columnas = () => {
           autoComplete="off"
           required
           step="0.01"
-          className="col-span-4 h-full rounded border border-gray p-2 outline-none"
+          className={` ${
+            datos.kgCarga > 0 && "text-barbieriRed"
+          } col-span-4 h-full rounded border border-gray p-2 outline-none`}
           type="number"
           name="kgCarga"
           onChange={handelChange}
@@ -148,7 +150,9 @@ const Columnas = () => {
           autoComplete="off"
           required
           step="0.01"
-          className="col-span-4 h-full rounded border border-gray p-2 outline-none"
+          className={` ${
+            datos.kgCarga > 0 && "text-barbieriRed"
+          } col-span-4 h-full rounded border border-gray p-2 outline-none`}
           type="number"
           name="aInf"
           onChange={handelChange}

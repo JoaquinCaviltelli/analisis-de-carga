@@ -33,7 +33,7 @@ const VigasTubo = () => {
       aInf: dataForm.luz / 2,
     });
 
-    navigate("/tipo-de-analisis/columnas");
+    // navigate("/tipo-de-analisis/columnas");
   };
 
   var { kgCubierta, margen, aInf, kgEntrepiso, kgSobrecarga, luz, ubicacion } =
@@ -135,6 +135,7 @@ const VigasTubo = () => {
   const handelSubmit = (e) => {
     e.preventDefault();
     calcularPerfil();
+    calcularColumna();
   };
   const handelChange = (e) => {
     setDataForm({
@@ -144,7 +145,7 @@ const VigasTubo = () => {
   };
 
   return (
-    <div className="my-10 mx-10 max-w-5xl text-gray lg:mx-48">
+    <div className="my-10 mx-10 max-w-5xl text-gray lg:mx-32">
       <h2 className="border-b border-ligthGray pb-4 text-3xl font-black text-barbieriBlue">
         Analisis de cargas (vigas tubo y dinteles)
       </h2>
@@ -301,7 +302,7 @@ const VigasTubo = () => {
         *El calculo realizado es a modo de referencia, recomendamos verificarlo
         con un profesional
       </p>
-      <button onClick={calcularColumna}>Calcular Columna para esa viga</button>
+      
     </div>
   );
 };
