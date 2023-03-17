@@ -232,7 +232,7 @@ const Montantes = () => {
           required
           step="0.01"
           className={` ${
-            datos.kgCarga > 0 && "text-barbieriRed"
+            datos.kgCarga > 0 && "font-bold"
           } col-span-4 h-full rounded border border-gray p-2 outline-none`}
           type="number"
           name="aInf"

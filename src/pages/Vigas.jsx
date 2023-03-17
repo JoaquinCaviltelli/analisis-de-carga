@@ -12,21 +12,19 @@ import imgViento from "/src/assets/viento.png";
 import { useDatosContext } from "../context/DatosContext";
 
 const Vigas = () => {
+  const { datos, setDatos } = useDatosContext();
 
-    const { datos, setDatos } = useDatosContext();
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const calcularMontantes = () => {
+    setDatos({
+      kgCarga: kgTotales,
+      aInf: ((dataForm.luz / 2) * 0.4).toFixed(2),
+    });
 
-    const calcularMontantes = () => {
-      setDatos({
-        kgCarga: kgTotales,
-        aInf: (dataForm.luz / 2 * 0.4).toFixed(2),
-      });
+    // navigate("/tipo-de-analisis/montantes");
+  };
 
-      // navigate("/tipo-de-analisis/montantes");
-    };
-  
-  
   //datos del formulario
   const [dataForm, setDataForm] = useState({
     kgCubierta: 35,
@@ -173,13 +171,13 @@ const Vigas = () => {
               perfil.deformacion > valorMaximo / 100
             ) {
               setPosiblesPerfiles((prev) => [...prev, perfil]);
-            } 
+            }
           });
         }
       }
     });
 
-    if(posiblesPerfiles != []){
+    if (posiblesPerfiles != []) {
       Toast.fire({
         icon: "error",
         title: `Se ha superado los kg en una luz de ${luz}m`,
@@ -216,14 +214,14 @@ const Vigas = () => {
         imageHeight: 200,
         imageAlt: "Custom image",
         showConfirmButton: false,
-      })
+      });
     }
   }, [posiblesPerfiles]);
 
   const handelSubmit = (e) => {
     e.preventDefault();
     calcularPerfil();
-    calcularMontantes()
+    calcularMontantes();
   };
   const handelChange = (e) => {
     setPosiblesPerfiles([]);
@@ -279,14 +277,27 @@ const Vigas = () => {
             info
           </span>
         </label>
-        <input
-          min="0"
-          className="col-span-4 h-full rounded border border-gray p-2 outline-none"
-          type="number"
-          name="kgSobrecarga"
+        <select
           onChange={handelChange}
-          value={kgSobrecarga}
-        />
+          name="kgSobrecarga"
+          className=" col-span-4 h-full rounded border border-gray p-2 outline-none"
+        >
+          {kgEntrepiso <= 0 ? (
+            <>
+              <option value="96">Cubierta inclinada</option>
+              <option value="100">Cubierta plana no transitada</option>
+            </>
+          ) : (
+            <>
+              <option value="200">Vivienda</option>
+              <option value="500">Balcon voladizo</option>
+              <option value="300">Azotea transitable</option>
+              <option value="250">Oficinas</option>
+              <option value="500">Sala de reuniones</option>
+              <option value="500">Comedores, restaurantes</option>
+            </>
+          )}
+        </select>
         <label className="col-span-8">
           <b>Ubicacion </b>
           (Nieve:{zonaActual.nieve} kg/m2 - Viento {zonaActual.viento} v/ms)
@@ -399,7 +410,6 @@ const Vigas = () => {
         *El calculo realizado es a modo de referencia, recomendamos verificarlo
         con un profesional
       </p>
-      
     </div>
   );
 };

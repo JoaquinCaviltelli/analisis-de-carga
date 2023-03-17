@@ -190,14 +190,27 @@ const VigasTubo = () => {
             info
           </span>
         </label>
-        <input
-          min="0"
-          className="col-span-4 h-full rounded border border-gray p-2 outline-none"
-          type="number"
-          name="kgSobrecarga"
+        <select
           onChange={handelChange}
-          value={kgSobrecarga}
-        />
+          name="kgSobrecarga"
+          className=" col-span-4 h-full rounded border border-gray p-2 outline-none"
+        >
+          {kgEntrepiso <= 0 ? (
+            <>
+              <option value="96">Cubierta inclinada</option>
+              <option value="100">Cubierta plana no transitada</option>
+            </>
+          ) : (
+            <>
+              <option value="200">Vivienda</option>
+              <option value="500">Balcon voladizo</option>
+              <option value="300">Azotea transitable</option>
+              <option value="250">Oficinas</option>
+              <option value="500">Sala de reuniones</option>
+              <option value="500">Comedores, restaurantes</option>
+            </>
+          )}
+        </select>
         <label className="col-span-8">
           <b>Ubicacion </b>
           (Nieve:{zonaActual.nieve} kg/m2 - Viento {zonaActual.viento} v/ms)
