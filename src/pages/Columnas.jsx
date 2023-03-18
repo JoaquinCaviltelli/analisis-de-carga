@@ -124,7 +124,7 @@ const Columnas = () => {
           required
           step="0.01"
           className={` ${
-            datos.kgCarga > 0 && "text-barbieriRed"
+            datos.kgCarga > 0 && ""
           } col-span-4 h-full rounded border border-gray p-2 outline-none`}
           type="number"
           name="kgCarga"
@@ -151,7 +151,7 @@ const Columnas = () => {
           required
           step="0.01"
           className={` ${
-            datos.kgCarga > 0 && "text-barbieriRed"
+            datos.kgCarga > 0 && ""
           } col-span-4 h-full rounded border border-gray p-2 outline-none`}
           type="number"
           name="aInf"
