@@ -19,7 +19,7 @@ const Vigas = () => {
   const calcularMontantes = () => {
     setDatos({
       kgCarga: kgTotales,
-      aInf: ((dataForm.luz / 2) * 0.4).toFixed(2),
+      aInf: dataForm.luz,
     });
 
     // navigate("/tipo-de-analisis/montantes");
@@ -326,8 +326,8 @@ const Vigas = () => {
           onChange={handelChange}
           name="exposicion"
         >
-          <option value="C">Tipo C</option>
-          <option value="D">Tipo D</option>
+          <option value="C">Urbana</option>
+          <option value="D">Rural</option>
         </select>
 
         <label className="col-span-8">

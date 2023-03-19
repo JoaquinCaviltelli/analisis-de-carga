@@ -1,4 +1,4 @@
-import columnas from "../columnas.json";
+import montantes from "../montantes.json";
 import { Toast } from "../components/Toast";
 import Swal from "sweetalert2";
 
@@ -15,14 +15,15 @@ const Montantes = () => {
   const [dataForm, setDataForm] = useState({
     kgCarga: 0,
     kgTerminacion: 28,
-    altoColumna: 0,
+    altoPerfil: 0,
     aInf: 1,
     ubicacion: "Seleccionar",
-    exposicion: "C",
+    exposicion: "A",
+    separacion: 0.4,
   });
-
+  
   const { datos, setDatos } = useDatosContext();
-
+  
   useEffect(() => {
     setDataForm({
       ...dataForm,
@@ -49,13 +50,19 @@ const Montantes = () => {
     qc: 0,
     qd: 0,
   });
+  
+  const [kgTotales, setKgTotales] = useState(0);
 
   useEffect(() => {
     setValores({
-      qc: Number(kgTotales * (dataForm.aInf * 0.4)) / 100,
-      qd: Number(dataForm.altoColumna * 0.4 * 0.28),
+      qc: Number(dataForm.kgCarga * ((dataForm.aInf / 2) * dataForm.separacion)) / 100,
+      qd: Number(
+        dataForm.altoPerfil *
+          dataForm.separacion *
+          (dataForm.kgTerminacion / 100 )
+      ),
     });
-  }, [dataForm]);
+  }, [dataForm, kgTotales]);
 
   useEffect(() => {
     //se calcula la carga de precion y succion segun la zona y la expocicion
@@ -84,6 +91,10 @@ const Montantes = () => {
         });
     });
     //se modifica la exposicion
+    dataForm.exposicion === "A" &&
+      setExposicionViento({
+        wm: 0,
+      });
     dataForm.exposicion === "C" &&
       setExposicionViento({
         wm: 7,
@@ -94,10 +105,9 @@ const Montantes = () => {
       });
   }, [dataForm.exposicion, dataForm.ubicacion]);
 
-  var { kgCarga, altoColumna, aInf } = dataForm;
+  var { kgCarga, altoPerfil, aInf } = dataForm;
 
   // suma los kg de la cubierta, entrepiso, sobregarga y nieve
-  const [kgTotales, setKgTotales] = useState(0);
 
   useEffect(() => {
     //se suma los kg de la cubierta, entrepiso, sobregarga y nieve
@@ -105,39 +115,60 @@ const Montantes = () => {
   }, [kgCarga, dataForm]);
 
   const calcularPerfil = () => {
-    //se redonde hacia arriba la luz de apoyo para que sea igual al de la tabla
-    var largoRounded = altoColumna < 2.5 ? 2.5 : Math.ceil(altoColumna * 4) / 4;
-    var kgRounded = kgTotales < 3000 ? 3000 : Math.ceil(kgTotales / 500) * 500;
+    // //se redonde hacia arriba la luz de apoyo para que sea igual al de la tabla
+    // var largoRounded = altoPerfil < 2.5 ? 2.5 : Math.ceil(altoPerfil * 4) / 4;
+    // var kgRounded = kgTotales < 3000 ? 3000 : Math.ceil(kgTotales / 500) * 500;
 
-    if (altoColumna > 4) {
-      return Toast.fire({
-        icon: "error",
-        title: "El largo maximo que verifica la tabla es de 4m",
-      });
-    }
+    // if (altoPerfil > 4) {
+    //   return Toast.fire({
+    //     icon: "error",
+    //     title: "El largo maximo que verifica la tabla es de 4m",
+    //   });
+    // }
 
-    columnas.map((item) => {
-      if (item.largo == largoRounded) {
-        item.carga.map((carga) => {
-          if (carga.q === kgRounded) {
-            Swal.fire({
-              title: `Columna: ${carga.perfil}`,
-              text: `2 ${carga.perfil} mm y 2 pgu de 100x0.9`,
-              showCloseButton: true,
-              imageUrl: imgPerfil,
-              imageHeight: 200,
-              imageAlt: "Custom image",
-              showConfirmButton: false,
-            });
-          } else if (kgRounded > carga.q) {
-            return Toast.fire({
-              icon: "error",
-              title: `Se ha superado los kg en un largo de ${altoColumna}m`,
+    // columnas.map((item) => {
+    //   if (item.largo == largoRounded) {
+    //     item.carga.map((carga) => {
+    //       if (carga.q === kgRounded) {
+    //         Swal.fire({
+    //           title: `Columna: ${carga.perfil}`,
+    //           text: `2 ${carga.perfil} mm y 2 pgu de 100x0.9`,
+    //           showCloseButton: true,
+    //           imageUrl: imgPerfil,
+    //           imageHeight: 200,
+    //           imageAlt: "Custom image",
+    //           showConfirmButton: false,
+    //         });
+    //       } else if (kgRounded > carga.q) {
+    //         return Toast.fire({
+    //           icon: "error",
+    //           title: `Se ha superado los kg en un largo de ${altoPerfil}m`,
+    //         });
+    //       }
+    //     });
+    //   }
+    // });
+
+    const result = montantes.some((item) => {
+      if (cargaViento.wm / 100 <= item.viento) {
+        return item.largos.some((largos) => {
+          if (altoPerfil <= largos.largo) {
+            return largos.cargas.some((cargas) => {
+              if ((valores.qc + valores.qd) <= cargas.carga) {
+                console.log(
+                  `largoo : ${largos.largo} se necesita un perfil de ${cargas.espesor}`
+                );
+                return true; // se retorna true para salir del bucle some
+              }
             });
           }
         });
       }
     });
+
+    if (!result) {
+      console.log("No se encontró un elemento que cumple con la condición.");
+    }
   };
 
   //modal con la informacion
@@ -213,7 +244,7 @@ const Montantes = () => {
         </select>
 
         <label className="col-span-8">
-          <b>Area de inlfuencia (m)</b>
+          <b>Largo de la viga que apoya (m)</b>
           <span
             onClick={() =>
               info(
@@ -239,6 +270,18 @@ const Montantes = () => {
           onChange={handelChange}
           value={aInf}
         />
+
+        <label className="col-span-8">
+          <b>Separacion entre perfiles:</b>{" "}
+        </label>
+        <select
+          className="col-span-4 h-full rounded border border-gray p-2 outline-none"
+          name="separacion"
+          onChange={handelChange}
+        >
+          <option value={0.4}>Cada 40cm</option>
+          <option value={0.6}>Cada 60cm</option>
+        </select>
 
         <label className="col-span-8">
           <b>Ubicacion </b>
@@ -268,12 +311,13 @@ const Montantes = () => {
           onChange={handelChange}
           name="exposicion"
         >
-          <option value="C">Tipo C</option>
-          <option value="D">Tipo D</option>
+          <option value="A">Sin Exposicion</option>
+          <option value="C">Urbana</option>
+          <option value="D">Rural</option>
         </select>
 
         <label className="col-span-8">
-          <b>Alto de la columna (m)</b>
+          <b>Alto del perfil (m)</b>
         </label>
         <input
           autoComplete="off"
@@ -281,7 +325,7 @@ const Montantes = () => {
           step="0.01"
           className="col-span-4 h-full rounded border border-gray p-2 outline-none"
           type="number"
-          name="altoColumna"
+          name="altoPerfil"
           onChange={handelChange}
         />
 
