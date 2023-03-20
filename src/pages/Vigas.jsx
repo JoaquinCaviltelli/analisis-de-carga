@@ -270,12 +270,7 @@ const Vigas = () => {
 
         <label className="col-span-8">
           <b> Sobrecarga </b>({kgSobrecarga} kg/m2)
-          <span
-            onClick={() => info("", "", imgSobrecarga)}
-            className="material-symbols-outlined cursor-pointer text-lg leading-none "
-          >
-            info
-          </span>
+         
         </label>
         <select
           onChange={handelChange}

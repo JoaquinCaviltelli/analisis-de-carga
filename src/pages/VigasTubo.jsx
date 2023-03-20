@@ -6,9 +6,8 @@ import { Toast } from "../components/Toast";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import imgPerfil from "../assets/viga-tubo.png";
-import imgLuzDeApoyo from "/src/assets/luz-de-apoyo.png";
-import imgAinf from "/src/assets/viga-ainf.png";
-import imgSobrecarga from "/src/assets/sobrecarga.png";
+import imgLuzDeApoyo from "/src/assets/luz-de-apoyo-tubo.png";
+import imgAinf from "/src/assets/viga-ainf.png"
 import { useDatosContext } from "../context/DatosContext";
 
 const VigasTubo = () => {
@@ -183,12 +182,7 @@ const VigasTubo = () => {
 
         <label className="col-span-8">
           <b> Sobrecarga </b>({kgSobrecarga} kg/m2)
-          <span
-            onClick={() => info("", "", imgSobrecarga)}
-            className="material-symbols-outlined cursor-pointer text-lg leading-none "
-          >
-            info
-          </span>
+          
         </label>
         <select
           onChange={handelChange}
@@ -231,7 +225,7 @@ const VigasTubo = () => {
             onClick={() =>
               info(
                 "Luz de apoyo",
-                "En este caso la distancia total es de 6m, pero la luz de apoyo es de 4.5m ya que hay una viga que divide las luces",
+                "",
                 imgLuzDeApoyo
               )
             }

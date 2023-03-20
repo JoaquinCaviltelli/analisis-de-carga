@@ -5,8 +5,8 @@ import Swal from "sweetalert2";
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import imgPerfil from "/src/assets/columna.png";
-import imgAinf from "/src/assets/columna-ainf.png";
+import imgPerfil from "/src/assets/perfil.png";
+import imgAinf from "/src/assets/luz-de-apoyo.png";
 import { useDatosContext } from "../context/DatosContext";
 import zonas from "../zonas.json";
 import imgViento from "/src/assets/viento.png";
@@ -200,8 +200,7 @@ const Montantes = () => {
       let perfil = posiblesP.join(" - ");
       console.log(perfil);
       Swal.fire({
-        title: `Se pueden utilizar perfiles de:`,
-        text: perfil,
+        title: `Se pueden utilizar PGC de: ${perfil}`,
         showCloseButton: true,
         imageUrl: imgPerfil,
         imageHeight: 200,
