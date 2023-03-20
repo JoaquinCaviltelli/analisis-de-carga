@@ -6,16 +6,20 @@
                 "largo": 2.4,
                 "cargas": [
                     {
-                        "carga": 13.57,
+                        "carga": 14.44,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 24.28,
+                        "carga": 26.56,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 33.42,
+                        "carga": 37.34,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 49.4,
+                        "espesor": 2
                     }
                 ]
             },
@@ -23,16 +27,20 @@
                 "largo": 2.6,
                 "cargas": [
                     {
-                        "carga": 13.32,
+                        "carga": 14.32,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 23.69,
+                        "carga": 26.27,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 32.58,
+                        "carga": 36.91,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 48.81,
+                        "espesor": 2
                     }
                 ]
             },
@@ -40,16 +48,20 @@
                 "largo": 2.7,
                 "cargas": [
                     {
-                        "carga": 13.18,
+                        "carga": 14.25,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 23.28,
+                        "carga": 26.12,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 32.13,
+                        "carga": 36.67,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 48.49,
+                        "espesor": 2
                     }
                 ]
             },
@@ -57,16 +69,20 @@
                 "largo": 3,
                 "cargas": [
                     {
-                        "carga": 12.74,
+                        "carga": 14.04,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 22.37,
+                        "carga": 25.62,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 30.69,
+                        "carga": 35.92,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 47.5,
+                        "espesor": 2
                     }
                 ]
             },
@@ -74,16 +90,20 @@
                 "largo": 3.3,
                 "cargas": [
                     {
-                        "carga": 12.26,
+                        "carga": 13.8,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 21.26,
+                        "carga": 25.06,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 29.1,
+                        "carga": 35.1,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 46.39,
+                        "espesor": 2
                     }
                 ]
             },
@@ -91,16 +111,20 @@
                 "largo": 3.6,
                 "cargas": [
                     {
-                        "carga": 11.74,
+                        "carga": 13.55,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 20.05,
+                        "carga": 24.44,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 27.36,
+                        "carga": 34.2,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 45.19,
+                        "espesor": 2
                     }
                 ]
             },
@@ -108,16 +132,20 @@
                 "largo": 4.2,
                 "cargas": [
                     {
-                        "carga": 10.54,
+                        "carga": 12.96,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 17.3,
+                        "carga": 23.06,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 23.42,
+                        "carga": 32.15,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 42.45,
+                        "espesor": 2
                     }
                 ]
             },
@@ -125,16 +153,20 @@
                 "largo": 4.8,
                 "cargas": [
                     {
-                        "carga": 9.17,
+                        "carga": 12.28,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 14.13,
+                        "carga": 21.46,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 18.87,
+                        "carga": 29.81,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 39.3,
+                        "espesor": 2
                     }
                 ]
             },
@@ -142,16 +174,20 @@
                 "largo": 5.4,
                 "cargas": [
                     {
-                        "carga": 7.61,
+                        "carga": 11.52,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 11.17,
+                        "carga": 19.65,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 14.91,
+                        "carga": 27.15,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 35.72,
+                        "espesor": 2
                     }
                 ]
             },
@@ -159,16 +195,20 @@
                 "largo": 6,
                 "cargas": [
                     {
-                        "carga": 6.16,
+                        "carga": 10.67,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 9.05,
+                        "carga": 17.63,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 12.08,
+                        "carga": 24.15,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 31.72,
+                        "espesor": 2
                     }
                 ]
             }
@@ -181,16 +221,20 @@
                 "largo": 2.4,
                 "cargas": [
                     {
-                        "carga": 12.19,
+                        "carga": 13.62,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 22.36,
+                        "carga": 25.57,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 31.29,
+                        "carga": 36.26,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 48.24,
+                        "espesor": 2
                     }
                 ]
             },
@@ -198,16 +242,20 @@
                 "largo": 2.6,
                 "cargas": [
                     {
-                        "carga": 11.63,
+                        "carga": 13.33,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 21.31,
+                        "carga": 25.07,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 29.91,
+                        "carga": 35.59,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 47.41,
+                        "espesor": 2
                     }
                 ]
             },
@@ -215,16 +263,20 @@
                 "largo": 2.7,
                 "cargas": [
                     {
-                        "carga": 11.33,
+                        "carga": 13.17,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 20.74,
+                        "carga": 24.8,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 29.16,
+                        "carga": 35.22,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 46.95,
+                        "espesor": 2
                     }
                 ]
             },
@@ -232,16 +284,20 @@
                 "largo": 3,
                 "cargas": [
                     {
-                        "carga": 10.35,
+                        "carga": 12.66,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 18.89,
+                        "carga": 23.9,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 26.69,
+                        "carga": 34.03,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 45.48,
+                        "espesor": 2
                     }
                 ]
             },
@@ -249,16 +305,20 @@
                 "largo": 3.3,
                 "cargas": [
                     {
-                        "carga": 9.3,
+                        "carga": 12.07,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 16.87,
+                        "carga": 22.86,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 23.96,
+                        "carga": 32.66,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 43.77,
+                        "espesor": 2
                     }
                 ]
             },
@@ -266,16 +326,20 @@
                 "largo": 3.6,
                 "cargas": [
                     {
-                        "carga": 8.21,
+                        "carga": 11.42,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 14.81,
+                        "carga": 21.69,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 21.14,
+                        "carga": 31.11,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 41.85,
+                        "espesor": 2
                     }
                 ]
             },
@@ -283,16 +347,20 @@
                 "largo": 4.2,
                 "cargas": [
                     {
-                        "carga": 6.15,
+                        "carga": 9.93,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 11.02,
+                        "carga": 18.97,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 15.89,
+                        "carga": 27.44,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 37.26,
+                        "espesor": 2
                     }
                 ]
             },
@@ -300,16 +368,20 @@
                 "largo": 4.8,
                 "cargas": [
                     {
-                        "carga": 4.44,
+                        "carga": 8.31,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 7.96,
+                        "carga": 15.96,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 11.58,
+                        "carga": 23.3,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 31.93,
+                        "espesor": 2
                     }
                 ]
             },
@@ -317,16 +389,20 @@
                 "largo": 5.4,
                 "cargas": [
                     {
-                        "carga": 3.09,
+                        "carga": 6.72,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 5.68,
+                        "carga": 13.02,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 8.43,
+                        "carga": 19.18,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 26.5,
+                        "espesor": 2
                     }
                 ]
             },
@@ -334,16 +410,20 @@
                 "largo": 6,
                 "cargas": [
                     {
-                        "carga": 2.1,
+                        "carga": 5.29,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 4.11,
+                        "carga": 10.4,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 6.24,
+                        "carga": 15.46,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 21.54,
+                        "espesor": 2
                     }
                 ]
             }
@@ -356,16 +436,20 @@
                 "largo": 2.4,
                 "cargas": [
                     {
-                        "carga": 10.93,
+                        "carga": 12.81,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 20.63,
+                        "carga": 24.6,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 29.34,
+                        "carga": 35.19,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 47.11,
+                        "espesor": 2
                     }
                 ]
             },
@@ -373,16 +457,20 @@
                 "largo": 2.6,
                 "cargas": [
                     {
-                        "carga": 10.16,
+                        "carga": 12.38,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 19.27,
+                        "carga": 23.9,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 27.58,
+                        "carga": 34.3,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 46.04,
+                        "espesor": 2
                     }
                 ]
             },
@@ -390,16 +478,20 @@
                 "largo": 2.7,
                 "cargas": [
                     {
-                        "carga": 9.76,
+                        "carga": 12.13,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 18.55,
+                        "carga": 23.53,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 26.65,
+                        "carga": 33.81,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 45.45,
+                        "espesor": 2
                     }
                 ]
             },
@@ -407,16 +499,20 @@
                 "largo": 3,
                 "cargas": [
                     {
-                        "carga": 8.51,
+                        "carga": 11.37,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 16.3,
+                        "carga": 22.29,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 23.67,
+                        "carga": 32.23,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 43.54,
+                        "espesor": 2
                     }
                 ]
             },
@@ -424,16 +520,20 @@
                 "largo": 3.3,
                 "cargas": [
                     {
-                        "carga": 7.25,
+                        "carga": 10.51,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 14.04,
+                        "carga": 20.88,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 20.61,
+                        "carga": 30.43,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 41.33,
+                        "espesor": 2
                     }
                 ]
             },
@@ -441,16 +541,20 @@
                 "largo": 3.6,
                 "cargas": [
                     {
-                        "carga": 6.05,
+                        "carga": 9.6,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 11.88,
+                        "carga": 19.33,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 17.66,
+                        "carga": 28.42,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 38.88,
+                        "espesor": 2
                     }
                 ]
             },
@@ -458,16 +562,20 @@
                 "largo": 4.2,
                 "cargas": [
                     {
-                        "carga": 3.97,
+                        "carga": 7.64,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 8.2,
+                        "carga": 15.98,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 12.53,
+                        "carga": 23.93,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 33.27,
+                        "espesor": 2
                     }
                 ]
             },
@@ -475,16 +583,20 @@
                 "largo": 4.8,
                 "cargas": [
                     {
-                        "carga": 2.38,
+                        "carga": 5.75,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 5.4,
+                        "carga": 12.64,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 8.56,
+                        "carga": 19.35,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 27.35,
+                        "espesor": 2
                     }
                 ]
             },
@@ -492,16 +604,20 @@
                 "largo": 5.4,
                 "cargas": [
                     {
-                        "carga": 1.22,
+                        "carga": 4.08,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 3.41,
+                        "carga": 9.67,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 5.74,
+                        "carga": 15.18,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 21.82,
+                        "espesor": 2
                     }
                 ]
             },
@@ -509,12 +625,20 @@
                 "largo": 6,
                 "cargas": [
                     {
-                        "carga": 2.06,
+                        "carga": 2.68,
+                        "espesor": 0.9
+                    },
+                    {
+                        "carga": 7.18,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 3.83,
+                        "carga": 11.63,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 17.06,
+                        "espesor": 2
                     }
                 ]
             }
@@ -527,16 +651,20 @@
                 "largo": 2.4,
                 "cargas": [
                     {
-                        "carga": 9.77,
+                        "carga": 12.03,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 19.04,
+                        "carga": 23.64,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 27.53,
+                        "carga": 34.15,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 45.98,
+                        "espesor": 2
                     }
                 ]
             },
@@ -544,16 +672,20 @@
                 "largo": 2.6,
                 "cargas": [
                     {
-                        "carga": 8.85,
+                        "carga": 11.45,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 17.45,
+                        "carga": 22.77,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 25.49,
+                        "carga": 33.05,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 44.69,
+                        "espesor": 2
                     }
                 ]
             },
@@ -561,16 +693,20 @@
                 "largo": 2.7,
                 "cargas": [
                     {
-                        "carga": 8.37,
+                        "carga": 11.14,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 16.63,
+                        "carga": 22.3,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 24.42,
+                        "carga": 32.45,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 43.98,
+                        "espesor": 2
                     }
                 ]
             },
@@ -578,16 +714,20 @@
                 "largo": 3,
                 "cargas": [
                     {
-                        "carga": 6.95,
+                        "carga": 10.15,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 14.16,
+                        "carga": 20.76,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 21.14,
+                        "carga": 30.52,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 41.68,
+                        "espesor": 2
                     }
                 ]
             },
@@ -595,16 +735,20 @@
                 "largo": 3.3,
                 "cargas": [
                     {
-                        "carga": 5.59,
+                        "carga": 9.08,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 11.77,
+                        "carga": 19.06,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 17.92,
+                        "carga": 28.36,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 39.05,
+                        "espesor": 2
                     }
                 ]
             },
@@ -612,16 +756,20 @@
                 "largo": 3.6,
                 "cargas": [
                     {
-                        "carga": 4.35,
+                        "carga": 7.97,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 9.6,
+                        "carga": 17.24,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 14.94,
+                        "carga": 26,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 36.18,
+                        "espesor": 2
                     }
                 ]
             },
@@ -629,16 +777,20 @@
                 "largo": 4.2,
                 "cargas": [
                     {
-                        "carga": 2.3,
+                        "carga": 5.74,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 6.03,
+                        "carga": 13.5,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 9.95,
+                        "carga": 21,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 29.92,
+                        "espesor": 2
                     }
                 ]
             },
@@ -646,16 +798,20 @@
                 "largo": 4.8,
                 "cargas": [
                     {
-                        "carga": 0.26,
+                        "carga": 3.72,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 3.44,
+                        "carga": 10.02,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 6.24,
+                        "carga": 16.22,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 23.71,
+                        "espesor": 2
                     }
                 ]
             },
@@ -663,12 +819,20 @@
                 "largo": 5.4,
                 "cargas": [
                     {
-                        "carga": 1.66,
+                        "carga": 2.02,
+                        "espesor": 0.9
+                    },
+                    {
+                        "carga": 7.08,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 3.68,
+                        "carga": 12.09,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 18.2,
+                        "espesor": 2
                     }
                 ]
             },
@@ -676,8 +840,16 @@
                 "largo": 6,
                 "cargas": [
                     {
-                        "carga": 1.97,
+                        "carga": 4.71,
+                        "espesor": 1.2
+                    },
+                    {
+                        "carga": 8.7,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 13.62,
+                        "espesor": 2
                     }
                 ]
             }
@@ -690,16 +862,20 @@
                 "largo": 2.4,
                 "cargas": [
                     {
-                        "carga": 8.69,
+                        "carga": 11.26,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 17.56,
+                        "carga": 22.71,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 25.84,
+                        "carga": 33.12,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 44.88,
+                        "espesor": 2
                     }
                 ]
             },
@@ -707,16 +883,20 @@
                 "largo": 2.6,
                 "cargas": [
                     {
-                        "carga": 7.64,
+                        "carga": 10.56,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 15.8,
+                        "carga": 21.67,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 23.57,
+                        "carga": 31.83,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 43.37,
+                        "espesor": 2
                     }
                 ]
             },
@@ -724,16 +904,20 @@
                 "largo": 2.7,
                 "cargas": [
                     {
-                        "carga": 7.12,
+                        "carga": 10.18,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 14.9,
+                        "carga": 21.11,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 22.41,
+                        "carga": 31.13,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 42.55,
+                        "espesor": 2
                     }
                 ]
             },
@@ -741,16 +925,20 @@
                 "largo": 3,
                 "cargas": [
                     {
-                        "carga": 5.58,
+                        "carga": 9,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 12.28,
+                        "carga": 19.31,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 18.92,
+                        "carga": 28.89,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 39.89,
+                        "espesor": 2
                     }
                 ]
             },
@@ -758,16 +946,20 @@
                 "largo": 3.3,
                 "cargas": [
                     {
-                        "carga": 4.15,
+                        "carga": 7.75,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 9.83,
+                        "carga": 17.36,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 15.61,
+                        "carga": 26.42,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 36.9,
+                        "espesor": 2
                     }
                 ]
             },
@@ -775,16 +967,20 @@
                 "largo": 3.6,
                 "cargas": [
                     {
-                        "carga": 2.89,
+                        "carga": 6.49,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 7.66,
+                        "carga": 15.33,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 12.62,
+                        "carga": 23.79,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 33.69,
+                        "espesor": 2
                     }
                 ]
             },
@@ -792,12 +988,20 @@
                 "largo": 4.2,
                 "cargas": [
                     {
-                        "carga": 4.21,
+                        "carga": 4.06,
+                        "espesor": 0.9
+                    },
+                    {
+                        "carga": 11.33,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 7.78,
+                        "carga": 18.43,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 26.96,
+                        "espesor": 2
                     }
                 ]
             },
@@ -805,12 +1009,20 @@
                 "largo": 4.8,
                 "cargas": [
                     {
-                        "carga": 1.78,
+                        "carga": 1.66,
+                        "espesor": 0.9
+                    },
+                    {
+                        "carga": 7.79,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 4.29,
+                        "carga": 13.56,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 20.59,
+                        "espesor": 2
                     }
                 ]
             },
@@ -818,8 +1030,33 @@
                 "largo": 5.4,
                 "cargas": [
                     {
-                        "carga": 1.95,
+                        "carga": 4.89,
+                        "espesor": 1.2
+                    },
+                    {
+                        "carga": 9.48,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 15.14,
+                        "espesor": 2
+                    }
+                ]
+            },
+            {
+                "largo": 6,
+                "cargas": [
+                    {
+                        "carga": 2.63,
+                        "espesor": 1.2
+                    },
+                    {
+                        "carga": 6.22,
+                        "espesor": 1.6
+                    },
+                    {
+                        "carga": 10.72,
+                        "espesor": 2
                     }
                 ]
             }
@@ -832,16 +1069,20 @@
                 "largo": 2.4,
                 "cargas": [
                     {
-                        "carga": 6.71,
+                        "carga": 9.77,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 14.85,
+                        "carga": 20.89,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 22.72,
+                        "carga": 31.1,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 42.71,
+                        "espesor": 2
                     }
                 ]
             },
@@ -849,16 +1090,20 @@
                 "largo": 2.6,
                 "cargas": [
                     {
-                        "carga": 5.48,
+                        "carga": 8.84,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 12.84,
+                        "carga": 19.55,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 20.12,
+                        "carga": 29.46,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 40.81,
+                        "espesor": 2
                     }
                 ]
             },
@@ -866,16 +1111,20 @@
                 "largo": 2.7,
                 "cargas": [
                     {
-                        "carga": 4.88,
+                        "carga": 8.35,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 11.85,
+                        "carga": 18.84,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 18.83,
+                        "carga": 28.58,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 39.77,
+                        "espesor": 2
                     }
                 ]
             },
@@ -883,16 +1132,20 @@
                 "largo": 3,
                 "cargas": [
                     {
-                        "carga": 3.19,
+                        "carga": 6.85,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 9.04,
+                        "carga": 16.6,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 15.08,
+                        "carga": 25.8,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 36.5,
+                        "espesor": 2
                     }
                 ]
             },
@@ -900,16 +1153,20 @@
                 "largo": 3.3,
                 "cargas": [
                     {
-                        "carga": 1.07,
+                        "carga": 5.32,
                         "espesor": 0.9
                     },
                     {
-                        "carga": 6.54,
+                        "carga": 14.26,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 11.68,
+                        "carga": 22.84,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 32.9,
+                        "espesor": 2
                     }
                 ]
             },
@@ -917,12 +1174,20 @@
                 "largo": 3.6,
                 "cargas": [
                     {
-                        "carga": 4.4,
+                        "carga": 3.77,
+                        "espesor": 0.9
+                    },
+                    {
+                        "carga": 11.93,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 8.73,
+                        "carga": 19.81,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 29.19,
+                        "espesor": 2
                     }
                 ]
             },
@@ -930,301 +1195,59 @@
                 "largo": 4.2,
                 "cargas": [
                     {
-                        "carga": 4.13,
-                        "espesor": 1.6
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "viento": 2,
-        "largos": [
-            {
-                "largo": 2.4,
-                "cargas": [
-                    {
-                        "carga": 4.91,
-                        "espesor": 0.9
-                    },
-                    {
-                        "carga": 12.41,
+                        "carga": 7.6,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 19.88,
+                        "carga": 14,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 21.82,
+                        "espesor": 2
                     }
                 ]
             },
             {
-                "largo": 2.6,
+                "largo": 4.8,
                 "cargas": [
                     {
-                        "carga": 3.48,
-                        "espesor": 0.9
-                    },
-                    {
-                        "carga": 10.22,
+                        "carga": 4.01,
                         "espesor": 1.2
                     },
                     {
-                        "carga": 17.05,
+                        "carga": 9.04,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 15.31,
+                        "espesor": 2
                     }
                 ]
             },
             {
-                "largo": 2.7,
+                "largo": 5.4,
                 "cargas": [
                     {
-                        "carga": 2.57,
-                        "espesor": 0.9
-                    },
-                    {
-                        "carga": 9.17,
-                        "espesor": 1.2
-                    },
-                    {
-                        "carga": 15.66,
+                        "carga": 5.09,
                         "espesor": 1.6
+                    },
+                    {
+                        "carga": 10,
+                        "espesor": 2
                     }
                 ]
             },
             {
-                "largo": 3,
+                "largo": 6,
                 "cargas": [
                     {
-                        "carga": 6.25,
-                        "espesor": 1.2
+                        "carga": 0.49,
+                        "espesor": 1.6
                     },
                     {
-                        "carga": 11.76,
-                        "espesor": 1.6
-                    }
-                ]
-            },
-            {
-                "largo": 3.3,
-                "cargas": [
-                    {
-                        "carga": 3.73,
-                        "espesor": 1.2
-                    },
-                    {
-                        "carga": 8.34,
-                        "espesor": 1.6
-                    }
-                ]
-            },
-            {
-                "largo": 3.6,
-                "cargas": [
-                    {
-                        "carga": 5.43,
-                        "espesor": 1.6
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "viento": 2.5,
-        "largos": [
-            {
-                "largo": 2.4,
-                "cargas": [
-                    {
-                        "carga": 2.72,
-                        "espesor": 0.9
-                    },
-                    {
-                        "carga": 10.16,
-                        "espesor": 1.2
-                    },
-                    {
-                        "carga": 17.25,
-                        "espesor": 1.6
-                    }
-                ]
-            },
-            {
-                "largo": 2.6,
-                "cargas": [
-                    {
-                        "carga": 0.59,
-                        "espesor": 0.9
-                    },
-                    {
-                        "carga": 7.85,
-                        "espesor": 1.2
-                    },
-                    {
-                        "carga": 14.25,
-                        "espesor": 1.6
-                    }
-                ]
-            },
-            {
-                "largo": 2.7,
-                "cargas": [
-                    {
-                        "carga": 6.75,
-                        "espesor": 1.2
-                    },
-                    {
-                        "carga": 12.8,
-                        "espesor": 1.6
-                    }
-                ]
-            },
-            {
-                "largo": 3,
-                "cargas": [
-                    {
-                        "carga": 3.4,
-                        "espesor": 1.2
-                    },
-                    {
-                        "carga": 8.8,
-                        "espesor": 1.6
-                    }
-                ]
-            },
-            {
-                "largo": 3.3,
-                "cargas": [
-                    {
-                        "carga": 5.37,
-                        "espesor": 1.6
-                    }
-                ]
-            },
-            {
-                "largo": 3.6,
-                "cargas": [
-                    {
-                        "carga": 0.46,
-                        "espesor": 1.6
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "viento": 3,
-        "largos": [
-            {
-                "largo": 2.4,
-                "cargas": [
-                    {
-                        "carga": 0.26,
-                        "espesor": 0.9
-                    },
-                    {
-                        "carga": 8.07,
-                        "espesor": 1.2
-                    },
-                    {
-                        "carga": 14.8,
-                        "espesor": 1.6
-                    }
-                ]
-            },
-            {
-                "largo": 2.6,
-                "cargas": [
-                    {
-                        "carga": 5.66,
-                        "espesor": 1.2
-                    },
-                    {
-                        "carga": 11.66,
-                        "espesor": 1.6
-                    }
-                ]
-            },
-            {
-                "largo": 2.7,
-                "cargas": [
-                    {
-                        "carga": 4.08,
-                        "espesor": 1.2
-                    },
-                    {
-                        "carga": 10.17,
-                        "espesor": 1.6
-                    }
-                ]
-            },
-            {
-                "largo": 3,
-                "cargas": [
-                    {
-                        "carga": 6.11,
-                        "espesor": 1.6
-                    }
-                ]
-            },
-            {
-                "largo": 3.3,
-                "cargas": [
-                    {
-                        "carga": 0.15,
-                        "espesor": 1.6
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "viento": 3.5,
-        "largos": [
-            {
-                "largo": 2.4,
-                "cargas": [
-                    {
-                        "carga": 5.92,
-                        "espesor": 1.2
-                    },
-                    {
-                        "carga": 12.49,
-                        "espesor": 1.6
-                    }
-                ]
-            },
-            {
-                "largo": 2.6,
-                "cargas": [
-                    {
-                        "carga": 2.15,
-                        "espesor": 1.2
-                    },
-                    {
-                        "carga": 9.25,
-                        "espesor": 1.6
-                    }
-                ]
-            },
-            {
-                "largo": 2.7,
-                "cargas": [
-                    {
-                        "carga": 0.15,
-                        "espesor": 1.2
-                    },
-                    {
-                        "carga": 7.72,
-                        "espesor": 1.6
-                    }
-                ]
-            },
-            {
-                "largo": 3,
-                "cargas": [
-                    {
-                        "carga": 1.51,
-                        "espesor": 1.6
+                        "carga": 5.85,
+                        "espesor": 2
                     }
                 ]
             }

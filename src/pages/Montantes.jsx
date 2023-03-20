@@ -1,4 +1,5 @@
 import montantes from "../montantes.json";
+import montantes150 from "../montantes150.json";
 import { Toast } from "../components/Toast";
 import Swal from "sweetalert2";
 
@@ -21,9 +22,9 @@ const Montantes = () => {
     exposicion: "A",
     separacion: 0.4,
   });
-  
+
   const { datos, setDatos } = useDatosContext();
-  
+
   useEffect(() => {
     setDataForm({
       ...dataForm,
@@ -50,16 +51,18 @@ const Montantes = () => {
     qc: 0,
     qd: 0,
   });
-  
+
   const [kgTotales, setKgTotales] = useState(0);
 
   useEffect(() => {
     setValores({
-      qc: Number(dataForm.kgCarga * ((dataForm.aInf / 2) * dataForm.separacion)) / 100,
+      qc:
+        Number(dataForm.kgCarga * ((dataForm.aInf / 2) * dataForm.separacion)) /
+        100,
       qd: Number(
         dataForm.altoPerfil *
           dataForm.separacion *
-          (dataForm.kgTerminacion / 100 )
+          (dataForm.kgTerminacion / 100)
       ),
     });
   }, [dataForm, kgTotales]);
@@ -149,15 +152,18 @@ const Montantes = () => {
     //   }
     // });
 
-    const result = montantes.some((item) => {
+    let posiblesP = [];
+
+    const result100 = montantes.some((item) => {
       if (cargaViento.wm / 100 <= item.viento) {
         return item.largos.some((largos) => {
           if (altoPerfil <= largos.largo) {
             return largos.cargas.some((cargas) => {
-              if ((valores.qc + valores.qd) <= cargas.carga) {
+              if (valores.qc + valores.qd <= cargas.carga) {
                 console.log(
-                  `largoo : ${largos.largo} se necesita un perfil de ${cargas.espesor}`
+                  `largo ${largos.largo}: se necesita un perfil de 100x${cargas.espesor}`
                 );
+                posiblesP.push(`100x${cargas.espesor}`);
                 return true; // se retorna true para salir del bucle some
               }
             });
@@ -166,8 +172,42 @@ const Montantes = () => {
       }
     });
 
-    if (!result) {
-      console.log("No se encontró un elemento que cumple con la condición.");
+    const result150 = montantes150.some((item) => {
+      if (cargaViento.wm / 100 <= item.viento) {
+        return item.largos.some((largos) => {
+          if (altoPerfil <= largos.largo) {
+            return largos.cargas.some((cargas) => {
+              if (valores.qc + valores.qd <= cargas.carga) {
+                console.log(
+                  `largo ${largos.largo}: se necesita un perfil de 150x${cargas.espesor}`
+                );
+                posiblesP.push(`150x${cargas.espesor}`);
+                return true; // se retorna true para salir del bucle some
+              }
+            });
+          }
+        });
+      }
+    });
+
+    if (!result150 && !result100) {
+      console.log("No se encontró un perfil que cumpla con la condición.");
+      Toast.fire({
+        icon: "error",
+        title: `No se encontró un perfil que cumpla con la condición.`,
+      });
+    } else {
+      let perfil = posiblesP.join(" - ");
+      console.log(perfil);
+      Swal.fire({
+        title: `Se pueden utilizar perfiles de:`,
+        text: perfil,
+        showCloseButton: true,
+        imageUrl: imgPerfil,
+        imageHeight: 200,
+        imageAlt: "Custom image",
+        showConfirmButton: false,
+      });
     }
   };
 
