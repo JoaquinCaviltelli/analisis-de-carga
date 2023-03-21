@@ -1,28 +1,30 @@
 import Swal from "sweetalert2";
-import tabla from "../tabla.json";
-import zonas from "../zonas.json";
 import { Toast } from "../components/Toast";
 
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useDatosContext } from "../context/DatosContext";
+
+import tabla from "../database/vigas.json";
+import zonas from "../database/zonas.json";
+
 import imgPerfil from "/src/assets/perfil.png";
 import imgLuzDeApoyo from "/src/assets/luz-de-apoyo.png";
-import imgSobrecarga from "/src/assets/sobrecarga.png";
 import imgViento from "/src/assets/viento.png";
-import { useDatosContext } from "../context/DatosContext";
+
+import BtnBack from "../components/BtnBack";
+import BtnSubmit from "../components/BtnSubmit";
+import TextFooter from "../components/TextFooter";
 
 const Vigas = () => {
   const { datos, setDatos } = useDatosContext();
 
-  const navigate = useNavigate();
 
   const calcularMontantes = () => {
     setDatos({
       kgCarga: kgTotales,
-      aInf: dataForm.luz,
+      largo: dataForm.luz,
     });
 
-    // navigate("/tipo-de-analisis/montantes");
   };
 
   //datos del formulario
@@ -270,7 +272,6 @@ const Vigas = () => {
 
         <label className="col-span-8">
           <b> Sobrecarga </b>({kgSobrecarga} kg/m2)
-         
         </label>
         <select
           onChange={handelChange}
@@ -388,23 +389,10 @@ const Vigas = () => {
           </p>
         </div>
 
-        <Link
-          className="col-span-6 rounded border border-barbieriBlue p-2 text-center text-barbieriBlue hover:border-barbieriRed hover:bg-barbieriRed hover:text-white"
-          to="/tipo-de-analisis"
-        >
-          <button type="button">Atras</button>
-        </Link>
-        <button
-          type="submit"
-          className="col-span-6 rounded bg-barbieriBlue p-2 text-white hover:bg-barbieriBlueFocus"
-        >
-          Calcular
-        </button>
+        <BtnBack />
+        <BtnSubmit />
       </form>
-      <p className="mt-6 text-xs">
-        *El calculo realizado es a modo de referencia, recomendamos verificarlo
-        con un profesional
-      </p>
+      <TextFooter />
     </div>
   );
 };

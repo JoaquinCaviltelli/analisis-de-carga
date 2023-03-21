@@ -1,15 +1,12 @@
 import { createContext, useContext, useState } from "react";
 
-export const DatosContext = createContext({
-  kgCarga: 50,
-  luz: 3.5,
-});
+export const DatosContext = createContext();
 
 const DatosProvider = ({ children }) => {
 
     const [datos, setDatos] = useState({
-        kgCarga: 0,
-        aInf: 1,
+        kgCarga: "",
+        largo: "",
       })
   return <DatosContext.Provider value={{datos, setDatos}} >{children}</DatosContext.Provider>;
 };

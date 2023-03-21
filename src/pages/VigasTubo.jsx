@@ -1,14 +1,20 @@
 import Swal from "sweetalert2";
-import vigasTubo from "../vigasTubo.json";
-import zonas from "../zonas.json";
 import { Toast } from "../components/Toast";
 
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDatosContext } from "../context/DatosContext";
+
+import vigasTubo from "../database/vigasTubo.json";
+import zonas from "../database/zonas.json";
+
 import imgPerfil from "../assets/viga-tubo.png";
 import imgLuzDeApoyo from "/src/assets/luz-de-apoyo-tubo.png";
-import imgAinf from "/src/assets/viga-ainf.png"
-import { useDatosContext } from "../context/DatosContext";
+import imgAinf from "/src/assets/viga-ainf.png";
+
+import BtnBack from "../components/BtnBack";
+import BtnSubmit from "../components/BtnSubmit";
+import TextFooter from "../components/TextFooter";
 
 const VigasTubo = () => {
   //datos del formulario
@@ -21,6 +27,8 @@ const VigasTubo = () => {
     margen: 1.1,
     aInf: 1,
   });
+  var { kgCubierta, margen, aInf, kgEntrepiso, kgSobrecarga, luz, ubicacion } =
+    dataForm;
 
   const { datos, setDatos } = useDatosContext();
 
@@ -29,14 +37,11 @@ const VigasTubo = () => {
   const calcularColumna = () => {
     setDatos({
       kgCarga: kgTotales,
-      aInf: dataForm.luz / 2,
+      largo: dataForm.luz,
     });
 
     // navigate("/tipo-de-analisis/columnas");
   };
-
-  var { kgCubierta, margen, aInf, kgEntrepiso, kgSobrecarga, luz, ubicacion } =
-    dataForm;
 
   // suma los kg de la cubierta, entrepiso, sobregarga y nieve
   const [kgTotales, setKgTotales] = useState(0);
@@ -103,10 +108,6 @@ const VigasTubo = () => {
               imageHeight: 200,
               imageAlt: "Custom image",
               showConfirmButton: false,
-            }).then((result) => {
-              if (result.isConfirmed) {
-                calcularColumna();
-              }
             });
           } else if (kgRounded > carga.q) {
             return Toast.fire({
@@ -182,7 +183,6 @@ const VigasTubo = () => {
 
         <label className="col-span-8">
           <b> Sobrecarga </b>({kgSobrecarga} kg/m2)
-          
         </label>
         <select
           onChange={handelChange}
@@ -222,13 +222,7 @@ const VigasTubo = () => {
         <label className="col-span-8">
           <b> Luz de apoyo</b>
           <span
-            onClick={() =>
-              info(
-                "Luz de apoyo",
-                "",
-                imgLuzDeApoyo
-              )
-            }
+            onClick={() => info("Luz de apoyo", "", imgLuzDeApoyo)}
             className="material-symbols-outlined cursor-pointer text-lg leading-none"
           >
             info
@@ -292,24 +286,10 @@ const VigasTubo = () => {
           </p>
         </div>
 
-        <Link
-          className="col-span-6 rounded border border-barbieriBlue p-2 text-center text-barbieriBlue hover:border-barbieriRed hover:bg-barbieriRed hover:text-white"
-          to="/tipo-de-analisis"
-        >
-          <button type="button">Atras</button>
-        </Link>
-        <button
-          type="submit"
-          className="col-span-6 rounded bg-barbieriBlue p-2 text-white hover:bg-barbieriBlueFocus"
-        >
-          Calcular
-        </button>
+        <BtnBack />
+        <BtnSubmit />
       </form>
-      <p className="mt-6 text-xs">
-        *El calculo realizado es a modo de referencia, recomendamos verificarlo
-        con un profesional
-      </p>
-      
+      <TextFooter />
     </div>
   );
 };

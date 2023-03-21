@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import columnas from "../columnas.json";
+import columnas from "../database/columnas.json";
 import { Toast } from "../components/Toast";
 
 import { useEffect, useState } from "react";
@@ -7,6 +7,9 @@ import { Link } from "react-router-dom";
 import imgPerfil from "/src/assets/columna.png";
 import imgAinf from "/src/assets/columna-ainf.png";
 import { useDatosContext } from "../context/DatosContext";
+import BtnBack from "../components/BtnBack";
+import BtnSubmit from "../components/BtnSubmit";
+import TextFooter from "../components/TextFooter";
 
 const Columnas = () => {
   //datos del formulario
@@ -22,7 +25,7 @@ const Columnas = () => {
     setDataForm({
       ...dataForm,
       kgCarga: datos.kgCarga,
-      aInf: datos.aInf,
+      aInf: datos.largo,
     });
   }, [datos]);
 
@@ -177,23 +180,10 @@ const Columnas = () => {
           </p>
         </div>
 
-        <Link
-          className="col-span-6 rounded border border-barbieriBlue p-2 text-center text-barbieriBlue hover:border-barbieriRed hover:bg-barbieriRed hover:text-white"
-          to="/tipo-de-analisis"
-        >
-          <button type="button">Atras</button>
-        </Link>
-        <button
-          type="submit"
-          className="col-span-6 rounded bg-barbieriBlue p-2 text-white hover:bg-barbieriBlueFocus"
-        >
-          Calcular
-        </button>
+        <BtnBack />
+        <BtnSubmit />
       </form>
-      <p className="mt-6 text-xs">
-        *El calculo realizado es a modo de referencia, recomendamos verificarlo
-        con un profesional
-      </p>
+      <TextFooter/>
     </div>
   );
 };

@@ -1,15 +1,20 @@
-import montantes from "../montantes.json";
-import montantes150 from "../montantes150.json";
 import { Toast } from "../components/Toast";
 import Swal from "sweetalert2";
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useDatosContext } from "../context/DatosContext";
+
+import montantes from "../database/montantes.json";
+import montantes150 from "../database/montantes150.json";
+import zonas from "../database/zonas.json";
+
 import imgPerfil from "/src/assets/perfil.png";
 import imgAinf from "/src/assets/luz-de-apoyo.png";
-import { useDatosContext } from "../context/DatosContext";
-import zonas from "../zonas.json";
 import imgViento from "/src/assets/viento.png";
+import BtnBack from "../components/BtnBack";
+import BtnSubmit from "../components/BtnSubmit";
+import TextFooter from "../components/TextFooter";
 
 const Montantes = () => {
   //datos del formulario
@@ -22,16 +27,18 @@ const Montantes = () => {
     exposicion: "A",
     separacion: 0.4,
   });
-
+  var { kgCarga, altoPerfil, aInf } = dataForm;
+  
   const { datos, setDatos } = useDatosContext();
-
+  
   useEffect(() => {
     setDataForm({
       ...dataForm,
       kgCarga: datos.kgCarga,
-      aInf: datos.aInf,
+      aInf: datos.largo,
     });
   }, [datos]);
+  
 
   //cargas de viento y nieve segun la zona (por defecto Cordoba)
   const [zonaActual, setZonaActual] = useState({
@@ -47,7 +54,7 @@ const Montantes = () => {
     wm: 0,
   });
 
-  const [valores, setValores] = useState({
+  const [valoresQ, setValoresQ] = useState({
     qc: 0,
     qd: 0,
   });
@@ -55,7 +62,7 @@ const Montantes = () => {
   const [kgTotales, setKgTotales] = useState(0);
 
   useEffect(() => {
-    setValores({
+    setValoresQ({
       qc:
         Number(dataForm.kgCarga * ((dataForm.aInf / 2) * dataForm.separacion)) /
         100,
@@ -77,13 +84,6 @@ const Montantes = () => {
     });
   }, [zonaActual, exposicionViento]);
 
-  useEffect(() => {
-    setDataForm({
-      ...dataForm,
-      kgCarga: datos.kgCarga,
-      aInf: datos.aInf,
-    });
-  }, [datos]);
 
   useEffect(() => {
     //se modifica las cargas de viento y nieve segun la zona (se trae de un json)
@@ -108,62 +108,21 @@ const Montantes = () => {
       });
   }, [dataForm.exposicion, dataForm.ubicacion]);
 
-  var { kgCarga, altoPerfil, aInf } = dataForm;
-
-  // suma los kg de la cubierta, entrepiso, sobregarga y nieve
-
   useEffect(() => {
     //se suma los kg de la cubierta, entrepiso, sobregarga y nieve
     setKgTotales(Math.round(Number(kgCarga) + Number(dataForm.kgTerminacion)));
   }, [kgCarga, dataForm]);
 
   const calcularPerfil = () => {
-    // //se redonde hacia arriba la luz de apoyo para que sea igual al de la tabla
-    // var largoRounded = altoPerfil < 2.5 ? 2.5 : Math.ceil(altoPerfil * 4) / 4;
-    // var kgRounded = kgTotales < 3000 ? 3000 : Math.ceil(kgTotales / 500) * 500;
-
-    // if (altoPerfil > 4) {
-    //   return Toast.fire({
-    //     icon: "error",
-    //     title: "El largo maximo que verifica la tabla es de 4m",
-    //   });
-    // }
-
-    // columnas.map((item) => {
-    //   if (item.largo == largoRounded) {
-    //     item.carga.map((carga) => {
-    //       if (carga.q === kgRounded) {
-    //         Swal.fire({
-    //           title: `Columna: ${carga.perfil}`,
-    //           text: `2 ${carga.perfil} mm y 2 pgu de 100x0.9`,
-    //           showCloseButton: true,
-    //           imageUrl: imgPerfil,
-    //           imageHeight: 200,
-    //           imageAlt: "Custom image",
-    //           showConfirmButton: false,
-    //         });
-    //       } else if (kgRounded > carga.q) {
-    //         return Toast.fire({
-    //           icon: "error",
-    //           title: `Se ha superado los kg en un largo de ${altoPerfil}m`,
-    //         });
-    //       }
-    //     });
-    //   }
-    // });
-
-    let posiblesP = [];
+    let posiblesPerfiles = [];
 
     const result100 = montantes.some((item) => {
       if (cargaViento.wm / 100 <= item.viento) {
         return item.largos.some((largos) => {
           if (altoPerfil <= largos.largo) {
             return largos.cargas.some((cargas) => {
-              if (valores.qc + valores.qd <= cargas.carga) {
-                console.log(
-                  `largo ${largos.largo}: se necesita un perfil de 100x${cargas.espesor}`
-                );
-                posiblesP.push(`100x${cargas.espesor}`);
+              if (valoresQ.qc + valoresQ.qd <= cargas.carga) {
+                posiblesPerfiles.push(`100x${cargas.espesor}`);
                 return true; // se retorna true para salir del bucle some
               }
             });
@@ -177,11 +136,8 @@ const Montantes = () => {
         return item.largos.some((largos) => {
           if (altoPerfil <= largos.largo) {
             return largos.cargas.some((cargas) => {
-              if (valores.qc + valores.qd <= cargas.carga) {
-                console.log(
-                  `largo ${largos.largo}: se necesita un perfil de 150x${cargas.espesor}`
-                );
-                posiblesP.push(`150x${cargas.espesor}`);
+              if (valoresQ.qc + valoresQ.qd <= cargas.carga) {
+                posiblesPerfiles.push(`150x${cargas.espesor}`);
                 return true; // se retorna true para salir del bucle some
               }
             });
@@ -190,17 +146,15 @@ const Montantes = () => {
       }
     });
 
+
     if (!result150 && !result100) {
-      console.log("No se encontró un perfil que cumpla con la condición.");
       Toast.fire({
         icon: "error",
         title: `No se encontró un perfil que cumpla con la condición.`,
       });
     } else {
-      let perfil = posiblesP.join(" - ");
-      console.log(perfil);
       Swal.fire({
-        title: `Se pueden utilizar PGC de: ${perfil}`,
+        title: `Se pueden utilizar PGC de: ${posiblesPerfiles.join(" - ")}`,
         showCloseButton: true,
         imageUrl: imgPerfil,
         imageHeight: 200,
@@ -370,33 +324,20 @@ const Montantes = () => {
 
         <div className="col-span-full p-2 text-right">
           <p>
-            <b>Carga vertical</b> (Q*L/2): {kgTotales} kg/m2
+            <b>Carga vertical</b>: {kgTotales} kg/m2
           </p>
           <p>
             <b>Carga viento</b>: {cargaViento.wm} kg/m2
           </p>
           <p>
-            <b>qm</b>: {(valores.qc + valores.qd).toFixed(2)} kN/m2
+            <b>qm</b>: {(valoresQ.qc + valoresQ.qd).toFixed(2)} kN/m2
           </p>
         </div>
 
-        <Link
-          className="col-span-6 rounded border border-barbieriBlue p-2 text-center text-barbieriBlue hover:border-barbieriRed hover:bg-barbieriRed hover:text-white"
-          to="/tipo-de-analisis"
-        >
-          <button type="button">Atras</button>
-        </Link>
-        <button
-          type="submit"
-          className="col-span-6 rounded bg-barbieriBlue p-2 text-white hover:bg-barbieriBlueFocus"
-        >
-          Calcular
-        </button>
+        <BtnBack />
+        <BtnSubmit />
       </form>
-      <p className="mt-6 text-xs">
-        *El calculo realizado es a modo de referencia, recomendamos verificarlo
-        con un profesional
-      </p>
+      <TextFooter />
     </div>
   );
 };
