@@ -40,9 +40,7 @@ const Columnas = () => {
   }, [kgCarga, altoColumna, aInf]);
 
   const calcularPerfil = () => {
-    //se redonde hacia arriba la luz de apoyo para que sea igual al de la tabla
-    var largoRounded = altoColumna < 2.5 ? 2.5 : Math.ceil(altoColumna * 4) / 4;
-    var kgRounded = kgTotales < 3000 ? 3000 : Math.ceil(kgTotales / 500) * 500;
+
 
     if (altoColumna > 4) {
       return Toast.fire({
@@ -51,10 +49,10 @@ const Columnas = () => {
       });
     }
 
-    columnas.map((item) => {
-      if (item.largo == largoRounded) {
-        item.carga.map((carga) => {
-          if (carga.q === kgRounded) {
+    const result = columnas.some((item) => {
+      if (item.largo >= altoColumna) {
+       return item.carga.some((carga) => {
+          if (carga.q >= kgTotales) {
             Swal.fire({
               title: `Columna: ${carga.perfil}`,
               text: `2 ${carga.perfil} mm y 2 pgu de 100x0.9`,
@@ -64,15 +62,20 @@ const Columnas = () => {
               imageAlt: "Custom image",
               showConfirmButton: false,
             });
-          } else if (kgRounded > carga.q) {
-            return Toast.fire({
-              icon: "error",
-              title: `Se ha superado los kg en un largo de ${altoColumna}m`,
-            });
-          }
+            return true
+          } 
+          
         });
       }
     });
+    if (!result) {
+      return Toast.fire({
+        icon: "error",
+        title: `Se ha superado los kg en un largo de ${altoColumna}m`,
+      });
+    }
+    
+    
   };
 
   //modal con la informacion

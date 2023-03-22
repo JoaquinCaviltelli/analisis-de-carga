@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 const Home = () => {
+
+ 
   return (
     <div
       className={`h-screen w-full bg-[url("/src/assets/bg-home.webp")] bg-cover bg-center bg-no-repeat pt-44`}
