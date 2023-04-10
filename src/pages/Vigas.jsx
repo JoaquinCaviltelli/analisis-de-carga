@@ -37,6 +37,7 @@ const Vigas = () => {
     ubicacion: "Seleccionar",
     exposicion: "C",
     margen: 1.1,
+    doble:1
   });
 
   var {
@@ -48,6 +49,7 @@ const Vigas = () => {
     separacion,
     ubicacion,
     exposicion,
+    doble
   } = dataForm;
 
   // suma los kg de la cubierta, entrepiso, sobregarga y nieve
@@ -110,30 +112,30 @@ const Vigas = () => {
     //se calcula la carga de precion y succion segun la zona y la expocicion
     setCargaViento({
       wp: Math.round(
-        (Number(Math.pow(zonaActual.viento, 2)) / 100) *
+        ((Number(Math.pow(zonaActual.viento, 2)) / 100) *
           Number(exposicionViento.wp) +
-          Number(kgCubierta)
+          Number(kgCubierta)) /doble
       ),
       ws: Math.round(
-        (Number(Math.pow(zonaActual.viento, 2)) / 100) *
+        ((Number(Math.pow(zonaActual.viento, 2)) / 100) *
           Number(exposicionViento.ws) -
-          Number(kgCubierta)
+          Number(kgCubierta)) / doble
       ),
     });
-  }, [zonaActual, exposicionViento, kgCubierta]);
+  }, [zonaActual, exposicionViento, kgCubierta, doble]);
 
   useEffect(() => {
     //se suma los kg de la cubierta, entrepiso, sobregarga y nieve
     setKgTotales(
       Math.round(
-        (Number(kgSobrecarga) +
+        ((Number(kgSobrecarga) +
           Number(kgCubierta) +
           Number(kgEntrepiso) +
           Number(zonaActual.nieve)) *
-          margen
+          margen) / doble
       )
     );
-  }, [kgSobrecarga, kgCubierta, kgEntrepiso, zonaActual.nieve, margen]);
+  }, [kgSobrecarga, kgCubierta, kgEntrepiso, zonaActual.nieve, margen, doble]);
 
   useEffect(() => {
     setValorMaximo(Math.max(kgTotales, cargaViento.wp, cargaViento.ws));
@@ -359,6 +361,18 @@ const Vigas = () => {
           onChange={handelChange}
         >
           <option value={40}>Cada 40cm</option>
+          {/* <option value={60}>Cada 60cm</option> */}
+        </select>
+         <label className="col-span-8">
+          <b>Perfiles:</b>{" "}
+        </label>
+        <select
+          className="col-span-4 h-full rounded border border-gray p-2 outline-none"
+          name="doble"
+          onChange={handelChange}
+        >
+          <option value={1}>Simple</option>
+          <option value={2}>Doble</option>
           {/* <option value={60}>Cada 60cm</option> */}
         </select>
         <label className="col-span-8">
