@@ -6,7 +6,7 @@ module.exports = {
     colors: {
       barbieriBlue: "#022a3a",
       barbieriBlueFocus: "#063347",
-      barbieriRed: "#e2231a",
+      barbieriRed: "#fad419",
       gray: "#666666",
       white: "#ffffff",
       ligthGray: "#cccccc",
